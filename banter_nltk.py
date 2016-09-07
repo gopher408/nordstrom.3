@@ -199,6 +199,17 @@ class BanterThinker:
                buf.append(word.lower())
         return buf
 
+    def check_stopwords(self,words):
+        stopwords = nltk.corpus.stopwords.words(fileids='english')
+        buf = []
+        for word in words:
+            if word in stopwords:
+               if word == 'under' or word == 'less':
+                  buf.append(word)
+            elif word not in stopwords:
+                  buf.append(word)
+        return buf
+
     def check_endword(self, words):
         if len(words) > 0:
            buf = []
@@ -222,6 +233,8 @@ class BanterThinker:
 #           print words
            words = self.convert_neglist(words)
 #           print words
+           words = self.check_stopwords(words)
+#	   print words
            words = self.check_endword(words)
 #	   print words
            query = ' '.join(words)
@@ -229,12 +242,12 @@ class BanterThinker:
 
 
     def parse_query(self, dict, query, test=False, limits=None):
-        query0 = query
 	lost = []
         self.reset_datastore_request()
         print 'INPUT:' + query
         self.performNLP(dict,query,test) 
         query = self.get_query()
+	print query
         cp = nltk.load_parser(self.banter_config.get_grammer_file())
         try:
             if len(query.split()) == 0:
@@ -269,9 +282,19 @@ class BanterThinker:
                 missing = missing[1:]
 		print "Missing words = \"" + missing + "\"" 
    	        self.set_missed(missing)
-#                print self.get_missed()
-		if query != query0:
-                   self.parse_query(dict, query, test, limits)
+                print self.get_missed()
+		print "Query: " + query
+                words = query.split()
+	        print words
+                print missing.split()
+                for word in missing.split():
+                    if word in words:
+                       words.remove(word)
+		print words
+                subquery = ' '.join(words)
+		print "Subquery: " + subquery
+	        if subquery != None and len(subquery) > 0:
+                   self.parse_query(dict, subquery, test, limits)
                 else:
                    self.datastore_request['lost'] = lost 
                    self.set_datastore_request(self.datastore_request)
@@ -535,9 +558,11 @@ if __name__ == "__main__":
     query = "What is the price?" 
     query = "How expensive is that boot?" 
     query = "Between $70 and $100"
-    query = "Above $100"
-    query = "Below $100"
-    query = "Less than $100"
+#    query = "Above $100"
+#    query = "Below $100"
+#    query = "Less than $100"
+#    query = "Yellow Between $70 and $100"
+    query = "Yellow under $70"
     limits = 3
     datastore_request = nlu.parse_query(dict, query, test, limits)
     nlu.submit_query()
