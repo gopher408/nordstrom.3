@@ -1,4 +1,5 @@
 from communication import Communication
+import json
 
 class Chat(Communication):
     def __init__(self):
@@ -6,7 +7,15 @@ class Chat(Communication):
         pass
 
     def send(self, record):
-        print(str(record['speaker']) + ' > ' + (str(record['message']) if 'message' in record and record['message'] else ''))
+        if 'link' in record and record['link']:
+            record['link'] = self.shortenUrl(record['link'])
+
+        #print(str(record['speaker']) + ' > ' + (str(record['message']) if 'message' in record and record['message'] else ''))
+        print(str(record['speaker']) + ' > ' + json.dumps(record))
+        print(record['link'] if 'link' in record and record['link'] else '')
+
+
+
         self.response = record
 
     def get(self, to=None, date_sent=None):
