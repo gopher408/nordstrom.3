@@ -61,7 +61,6 @@ global_dict = ["ralph lauren", "polo shirt", "6 inch", "old fashion", "old fashi
         "expected to", "liked to", "needed to", "wanted to", "what time", "how much", "how late", "how early", "how soon","how long",
         "lunch time", "lunch break", "lunch hour", "lunch hours", "short sleeve", "long sleeve", "how expensive", "how costly", "how cheap"]
 
-#abbr = {"I'm": "I am", "I'd": "I would", "You're": "You are", "We're": "We are"}
 abbr = {"I'm": "I am", "I'd": "I would", "You're": "You are", "We're": "We are", "<":"below", "<=":"below",">":"above",">=":"above","=":"equal","~":"about"}
 
 neglist = {"ai'nt": "are not", "are'nt": "are not", "isn't": "is not", "wasn't": "was not", "weren't": "were not",
