@@ -682,8 +682,6 @@ class BanterClient:
                 record = self.set_data(data, states[3])
 
             elif data['datastore_action'] == 'location_question':
-                # RHS: need to consider the holiday schedule, e.g. store open schedule after thanksgiving?
-                # "datetime":"tomorrow"
                 datetimefield = data['datetime'] if 'datetime' in data else 'today'
                 daytolookup = datetime.date.today().weekday()
                 dayword = calendar.day_name[daytolookup]

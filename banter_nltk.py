@@ -157,7 +157,6 @@ class BanterThinker:
             temp = []  
             if terms in text:
                words = list(set(items).intersection(ques))
-# RHS: to fix the bug of "close to" matched to "close tonight"
 	       if len(words) == len(items): 
                   buf = '_'.join(items)
                   text = text.replace(terms, buf)
@@ -173,8 +172,6 @@ class BanterThinker:
     def normalize_message(self, message):
         message = message.strip().replace(u'\u2019s', "")
         message = message.strip().replace(u'\u2019', "")
-# RHS: abbreviation will be converted to the original form by calling convert_abbr
-#        message = message.strip().replace("'", "")
         message = message.strip().replace("\"", "")
         return message
 
