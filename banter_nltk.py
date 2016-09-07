@@ -529,6 +529,7 @@ if __name__ == "__main__":
 #    datastore_request = nlu.parse_query(dict, query, test, limits)
 #    nlu.submit_query()
 
+# RHS20160907
     query = "I need a new dress for a wedding"
     query = "I need a new dress for old fashioned day"
     query = "I'm looking for some old fashioned dresses"
@@ -558,11 +559,13 @@ if __name__ == "__main__":
     query = "What is the price?" 
     query = "How expensive is that boot?" 
     query = "Between $70 and $100"
-#    query = "Above $100"
-#    query = "Below $100"
-#    query = "Less than $100"
-#    query = "Yellow Between $70 and $100"
+    query = "Above $100"
+    query = "Below $100"
+    query = "Less than $100"
+    query = "Yellow Between $70 and $100"
     query = "Yellow under $70"
+    query = "Yellow under $70 size 12"
+    query = "Yellow between $70 and $100 size 12"
     limits = 3
     datastore_request = nlu.parse_query(dict, query, test, limits)
     nlu.submit_query()
