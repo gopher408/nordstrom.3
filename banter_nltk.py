@@ -2,6 +2,10 @@
 """
 Created on Wed Aug 03 11:01:25 2016
 
+@title: banter_nltk.py
+
+@version: 1.3
+
 @author: raysun
 """
 
@@ -229,29 +233,11 @@ class BanterThinker:
 
     def parse_query(self, dict, query, test=False, limits=None):
         query0 = query
+	lost = []
         self.reset_datastore_request()
         print 'INPUT:' + query
-# RHS: turn this on for standalone grammar test
         self.performNLP(dict,query,test) 
         query = self.get_query()
-#        print query
-#        #	 nltk.data.show_cfg(self.banter_config.get_grammer_file())
-#        words = str(query).split()
-#        if words[-1][-1] in exts:
-#            words[-1] = words[-1][:-1]
-#        buf = []
-#        for word in words:
-#	    if word[-1] in exts:
-#               word = word[:-1]
-#            buf.append(word)
-#        words = buf
-#        print words
-#        query = ' '.join(words)
-#        print query
-#        self.set_query(query)
-#        #	 print 'NLP: ' + query
-#        #        print 'NLP: '
-#        #        print query.split()
         cp = nltk.load_parser(self.banter_config.get_grammer_file())
         try:
             if len(query.split()) == 0:
@@ -309,14 +295,12 @@ class BanterThinker:
             datastore_request = {}
             for field in temp:
                 parts = field.split('=')
-# RHS: to avoid duplicate
                 if parts[0] in datastore_request:
 		    item = parts[1].replace('"','') 
 		    if item not in datastore_request[parts[0]].split(','):
                        datastore_request[parts[0]] += ',' + item
                 else:
                     datastore_request[parts[0]] = parts[1].replace('"', '')
-# RHS: to generate action of 'ask time'. This is not accurate yet. Need to specify more conditions
             if 'descriptor' in datastore_request and 'datetime' in datastore_request: 
 	       items = datastore_request['descriptor'].split(',')
 	       buf = []
@@ -336,7 +320,6 @@ class BanterThinker:
                if len(datastore_request['datetime']) > 0:
                   if 'action' not in datastore_request: 
                      datastore_request['action'] = 'ask time'
-# RHS: to generate action of 'find store'
 	    elif 'datetime' not in datastore_request: 
                if 'store' and 'location' in datastore_request:
                   if 'action' not in datastore_request and 'datetime' not in datastore_request:
@@ -408,9 +391,7 @@ class BanterThinker:
             return answerData
             # FVZ is this right? search may not find anything or have an error, do we reset the query
 
-# RHS: clean up missing words here -- don't want to carry over to next query
         self.reset_missed()
-
         self.reset_query()
         self.reset_answerData()
 
@@ -557,6 +538,9 @@ if __name__ == "__main__":
     query = "What is the price?" 
     query = "How expensive is that boot?" 
     query = "Between $70 and $100"
+    query = "Above $100"
+    query = "Below $100"
+    query = "Less than $100"
     limits = 3
     datastore_request = nlu.parse_query(dict, query, test, limits)
     nlu.submit_query()

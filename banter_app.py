@@ -3,12 +3,11 @@
 """
 Created on Wed Jul 13 10:52:35 2016
 
-@author: Ray-Hon Sun
-
 @title: banter_app.py
 
-@version: 1.2
+@version: 1.3
 
+@author: raysun
 """
 
 import banter_nltk as banter
@@ -129,61 +128,18 @@ class BanterClient:
     def normalize_message(self, message):
         message = message.strip().replace(u'\u2019s', "")
         message = message.strip().replace(u'\u2019', "")
-# RHS: abbreviation will be converted to the original form by calling convert_abbr
-#        message = message.strip().replace("'", "")
         message = message.strip().replace("\"", "")
         return message
 
     def preprocess(self, message):
         # tokenization of message
-#        message = self.normalize_message(message)
-#        tokens = self.evaluate(message)
-#        words = self.convert_abbr(tokens)
-#        words = self.convert_neglist(words)
-#        words = self.check_price(words)
-#        self.fix_endword(words)
         self.nlu.performNLP(self.localdict, message,test=True)
         query = self.nlu.get_query() 
         self.in_text.append(query)
         words = query.split()
 #        print words
         self.update_tone(words)
-#        self.set_grammar(12)
 
-
-#    def convert_abbr(self,words):
-#       buf = []
-#        for word in words:
-#            lword = word
-#            if lword in abbr:
-#	       # 	print lword, abbr[lword]
-#               for term in abbr[lword].split():
-#                   buf.append(term.lower())
-#            else:
-#               buf.append(word.lower())
-#        return buf
-
-#    def convert_neglist(self,words):
-#        buf = []
-#        for word in words:
-#            lword = word.lower()
-#            if lword in neglist:
-#		#	print lword, neglist[lword]
-#               for term in neglist[lword].split():
-#                   buf.append(term.lower())
-#            else:
-#               buf.append(word.lower())
-#        return buf
-
-#    def fix_endword(self, words):
-#        if len(words) > 0:
-#           if words[-1][-1] in exts:
-#              words[-1] = words[-1][:-1]
-#           text = ' '.join(words)
-#           self.in_text.append(text)
-
-# In IM, we don't know the tone, e.g. "thank you", unless we parse the message first.
-# If message is null (len(words) == 0), then we need to check this situation
 
     def update_tone(self, words):
         prev_tone = self.get_tone()
@@ -231,10 +187,6 @@ class BanterClient:
         curr_tone  = self.get_tone()
         hist_tones = self.get_tones()
         num_tones = len(hist_tones)
-#         i = 0
-#         for tone in hist_tones:
-#             print str(i) + ": " + tone
-#             i += 1
         in_text = self.in_text[-1]
         newdata = {}
         resultData = self.nlu.parse_query(self.localdict, in_text, False, limits)
@@ -320,13 +272,6 @@ class BanterClient:
                 if in_text in basic_colors:
                     newdata['color'] = in_text
 
-# RHS: does not make sense
-#                else:
-#                    if 'descriptor' in newdata:
-#                        newdata['lost'].append(in_text)
-#                    else:
-#                        newdata['lost'] = [in_text]
-
             if 'ERROR_CODE' in newdata:
                 del newdata['ERROR_CODE']
             if 'action' in newdata:
@@ -350,16 +295,6 @@ class BanterClient:
                 if in_text in basic_colors:
                     newdata['color'] = in_text
 
-# RHS: does not make sense
-#                else:
-#                    if 'descriptor' in newdata:
-#                       if 'lost' in newdata:
-#                          newdata['lost'].append(in_text)
-#                       else:
-#                          newdata['lost'] = [in_text]
-#                    else:
-#                       newdata['lost'] = [in_text]
-
                 if 'action' in newdata:
                     newdata['action'] += ',' + states[2] # 'question'
                     if 'find store' in newdata['action'] and not 'location' in newdata:
@@ -372,15 +307,6 @@ class BanterClient:
                 newdata.update(resultData)
                 if 'ERROR_CODE' in newdata:
                     del newdata['ERROR_CODE']
-
-# RHS: does not make sense
-#                if 'descriptor' in newdata:
-#                   if 'lost' in newdata:
-#                      newdata['lost'].append(in_text)
-#                   else:
-#                      newdata['lost'] = [in_text]
-#                else:
-#                    newdata['lost'] = [in_text]
                     if 'action' in newdata:
                         newdata['action'] += ',' + states[3] #'answer'
                         if 'find store' in newdata['action'] and not 'location' in newdata:
@@ -413,15 +339,7 @@ class BanterClient:
                 if 'ERROR_CODE' in newdata:
                     del newdata['ERROR_CODE']
 
-#        if len(newdata) > 0:
-#           for item in newdata:
-#               print item, newdata[item]
-#           self.nlu.set_datastore_request(newdata)
-
         resultData = self.nlu.submit_query()
-
-#        for item in resultData:
-#            print item, resultData[item]
 
         return resultData
 
@@ -440,13 +358,11 @@ class BanterClient:
                 self.close()
             else:
                 self.thank_you()
-        else: # curr_tone = 2,3
+        else: 
             if prev_state == None or prev_state == states[0]:
                self.start()
                prev_state = self.get_state()
             resultData = self.verify_dialog(limits)
-#            for item in resultData:
-# 		print item
             if 'ERROR_CODE' in resultData:
                 self.respondWithQuestion(resultData)
             else:
@@ -519,9 +435,6 @@ class BanterClient:
         record['state'] = state
         record['topic'] = self.get_topic()
         self.data.append(record)
-        # tokens = self.evaluate(text)
-        # print tokens
-        #time.sleep(random.random() * 3)
         return record
 
     def get_data(self):
@@ -670,7 +583,7 @@ class BanterClient:
                          'look' in intent['action'] or \
                          'need' in intent['action'] or \
                          'find' in intent['action'] or \
-                         'buy' in intent['action'] or \
+                         'buy'  in intent['action'] or \
                          'like' in intent['action'] or \
                          'want' in intent['action']:
 
