@@ -227,6 +227,8 @@ class BanterThinker:
            # tokenization of message
            message = self.normalize_message(message)
 #           print message
+           message = self.lookup(message,dict)
+#           print message 
            words = self.evaluate(message)
 #           print words
            words = self.convert_abbr(words)

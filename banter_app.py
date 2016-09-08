@@ -896,7 +896,7 @@ if __name__ == '__main__':
     # agent will respond given dummyDataStore.setReturnError above agent.respondWithQuestion({'text': text})
 
     # customer replies the location
-#    text = "Palo Alto"
+    text = "Palo Alto"
 #    text = "94301"
 #    text = "SF"
 #    text = "San Francisco Central"
