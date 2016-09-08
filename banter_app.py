@@ -232,7 +232,7 @@ class BanterClient:
                  print "Change topic: Resetting to " + topic.upper()
                  if 'lost' in resultData:
                     del newdata['lost']
-           self.set_topic(topic)
+              self.set_topic(topic)
 
         elif 'datetime' in resultData or ('action' in resultData and 'time' in resultData['action']) or ('descriptor' in resultData and resultData['descriptor'] in ['open', 'close']):
            topic = 'datetime' 
@@ -241,6 +241,9 @@ class BanterClient:
 	      if 'lost' in resultData:
                  del newdata['lost']
            self.set_topic(topic)
+
+           if 'action' not in resultData:
+              resultData['ac tion'] = 'ask time'
 
         else:
             prev_data = self.get_data()['data']
@@ -945,7 +948,7 @@ if __name__ == '__main__':
     # "Nordstrom Stanford Shopping Center opens at 10:00 AM tomorrow."
     agent.converse(text)
 
-#    exit()
+    exit()
 
     ##### case 3: customer requests for service - women's shoes
     print "\n ***** CASE 3 *****\n"
