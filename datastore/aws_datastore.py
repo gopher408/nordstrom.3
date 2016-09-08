@@ -212,8 +212,7 @@ class AWSDataStore(DataStore):
                                 ]
 
     def search(self, queryData):
-        print 'datastore.search'
-        print queryData
+        print 'AWSDataStore.search:' + json.dumps(queryData)
 
         if 'ERROR_CODE' in queryData:
             del queryData['ERROR_CODE']
@@ -251,16 +250,19 @@ class AWSDataStore(DataStore):
                 elif 'datastore_action' in queryData and 'location_search' in queryData['datastore_action']:
                     return self.locationSearch(queryData)
 
+                print 'AWSDataStore.search -> returning DID_NOT_UNDERSTAND'
                 queryData['ERROR_CODE'] = 'DID_NOT_UNDERSTAND'
 
         elif 'descriptor' in queryData:
             if 'business hours' in queryData['descriptor']:
                 return self.locationQuestion(queryData)
             else:
+                print 'AWSDataStore.search -> returning DID_NOT_UNDERSTAND'
                 queryData['ERROR_CODE'] = 'DID_NOT_UNDERSTAND'
                 #if 'zipcode' in queryData or 'location' in queryData:
                 #return self.locationSearch(queryData)
         else:
+            print 'AWSDataStore.search -> returning DID_NOT_UNDERSTAND'
             queryData['ERROR_CODE'] = 'DID_NOT_UNDERSTAND'
 
         return queryData
@@ -391,7 +393,7 @@ class AWSDataStore(DataStore):
             }
         }
 
-        print {"aaaaaa": queryFields}
+        print 'AWSDataStore search query:' +  json.dumps(queryFields)
         try:
             res = es.search(index='locations', body=queryFields)
         except Exception as e:
@@ -406,7 +408,7 @@ class AWSDataStore(DataStore):
 
         queryData["datastore_locations"] = []
 
-        print("%d documents found" % res['hits']['total'])
+        print("AWSDataStore %d documents found" % res['hits']['total'])
         for doc in res['hits']['hits']:
             queryData["datastore_locations"].append({
                 'sort': doc['sort'],
@@ -471,15 +473,14 @@ class AWSDataStore(DataStore):
             "size": 10
         }
 
-        print queryFields
+        print 'AWSDataStore seach query' + json.dumps(queryFields)
         res = es.search(index='locations', body=queryFields)
         # default_operator, min_score
 
         locations = []
 
-        print("%d documents found" % res['hits']['total'])
+        print("AWSDataStore %d documents found" % res['hits']['total'])
         for doc in res['hits']['hits']:
-            print doc
             if (doc['_score'] > 0.25):
                 locations.append({
                     'score': doc['_score'],
@@ -813,20 +814,20 @@ class AWSDataStore(DataStore):
 
         # fvz other fields, in bd and passed
 
-        print {"query": queryFields}
+        print 'AWSDataStore search query:' + json.dumps({"query": queryFields})
         res = es.search(index='products', body={"query": queryFields, "size": 12})
         # default_operator, min_score
 
         queryData["datastore_products"] = []
 
-        print("%d documents found" % res['hits']['total'])
+        print("AWSDataStore - %d documents found" % res['hits']['total'])
         if res['hits']['total'] > 20 and not 'answer' in queryData['action']:
             queryData['ERROR_CODE'] = 'TOO_MANY'
             print "AWSDataStore.productSearch - TOO_MANY:" + json.dumps(queryData)
             return queryData
 
         for doc in res['hits']['hits']:
-            print("%s) %s" % (doc['_id'], doc['_score']), doc['_source']['id'], doc['_source']['title'])
+            print("AWSDataStore found doc: %s) %s" % (doc['_id'], doc['_score']), doc['_source']['id'], doc['_source']['title'])
             queryData["datastore_products"].append({
                 'score': doc['_score'],
                 'docID': doc['_id'],
@@ -857,8 +858,7 @@ class AWSDataStore(DataStore):
         return cleaned
 
     def getMulti(self, ids):
-        print 'getMulti'
-        print ids
+        print 'AWSDataStore getMulti'
 
         dynamodb = boto3.client('dynamodb', region_name='us-west-2')
 
@@ -907,8 +907,7 @@ class AWSDataStore(DataStore):
         return products
 
     def getColors(self, productID):
-        print 'getColors'
-        print productID
+        print 'AWSDataStore getColors' + str(productID)
 
         dynamodb = boto3.client('dynamodb', region_name='us-west-2')
 
@@ -927,7 +926,7 @@ class AWSDataStore(DataStore):
             KeyConditionExpression=filterexpression
         )
 
-        print response
+        print 'AWSDataStore response' + json.dumps(response)
 
         tmpProducts = []
         for itemDB in response[u'Items']:
@@ -994,9 +993,6 @@ class AWSDataStore(DataStore):
         data['sizes'] = set([])
         data['description'] = set([])
 
-        print expressionattributenames
-        print expressionattributevalues
-
         response = dynamodb.scan(
             TableName='products',
             ExpressionAttributeNames=expressionattributenames,
@@ -1047,8 +1043,6 @@ class AWSDataStore(DataStore):
                 data['sizes'].update(self.cleanData(field, [], False))
 
         while 'LastEvaluatedKey' in response:
-            print expressionattributenames
-            print expressionattributevalues
 
             response = dynamodb.scan(
                 TableName='products',

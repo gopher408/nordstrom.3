@@ -851,8 +851,8 @@ if __name__ == '__main__':
 
     comm_dump = None
 
-    use_datastore = False
-    partner = None #'nordstrom'
+    use_datastore = True
+    partner = 'nordstrom'
 
     grammarConfig = BanterConfig(partner, 'case12.fcfg')
     dummyDataStore = DummyDataStore()
@@ -896,7 +896,7 @@ if __name__ == '__main__':
     # agent will respond given dummyDataStore.setReturnError above agent.respondWithQuestion({'text': text})
 
     # customer replies the location
-#    text = "Palo Alto"
+    text = "Palo Alto"
 #    text = "94301"
 #    text = "SF"
 #    text = "San Francisco Central"
@@ -913,8 +913,6 @@ if __name__ == '__main__':
     # 2) Nordstrom Hillsdale Shopping Center - San Mateo, CA
     # 3) Nordstrom Valley Fair - San Jose, CA
     agent.converse(text)
-
-    exit()
 
     ##### case 2: store hours
     print "\n ***** CASE 2 *****\n"
