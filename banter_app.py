@@ -948,7 +948,7 @@ if __name__ == '__main__':
     # "Nordstrom Stanford Shopping Center opens at 10:00 AM tomorrow."
     agent.converse(text)
 
-    exit()
+#    exit()
 
     ##### case 3: customer requests for service - women's shoes
     print "\n ***** CASE 3 *****\n"
@@ -978,6 +978,8 @@ if __name__ == '__main__':
     # text = 'Below is the information for you.'
     # product info should be attached to the end of text
     agent.converse(text)
+
+#    exit()
 
     ##### case 4: to test bad sentences
     print "\n ***** CASE 4 *****\n"
@@ -1027,6 +1029,8 @@ if __name__ == '__main__':
     # product info should be attached to the end of text
     agent.converse(text)
 
+#    exit()
+
     ##### case 6: customer requests for service -- men's shirts/t-shirts
     print "\n ***** CASE 6 *****\n"
 #    text = "Below $100"
@@ -1062,6 +1066,8 @@ if __name__ == '__main__':
     # product info should be attached to the end of text
     agent.converse(text)
 
+#    exit()
+
     ##### case 8: agent verifies the question
     print "\n ***** CASE 8 *****\n"
     text = "We don't have any in stock. Does size 5 work for you?"
@@ -1071,6 +1077,8 @@ if __name__ == '__main__':
     text = "Yes"
 #    text = "No"
     customer.answer(text)
+
+#    exit()
 
     ##### case 9: customer likes to see some more products
     print "\n ***** CASE 9 *****\n"
@@ -1104,6 +1112,8 @@ if __name__ == '__main__':
     # when message is received by agent
     agent.converse(text)
 
+#    exit()
+
     ##### case 11: customer has additional questions (more sophisticated)
     print "\n ***** CASE 11 *****\n"
     text = "Can I see more?"
@@ -1116,21 +1126,25 @@ if __name__ == '__main__':
     # when message is received by agent
     agent.converse(text)
 
+#    exit()
+
     ##### case 12 for V2: more sophisticated questions
     print "\n ***** CASE 12 *****\n"
 #    text = "Do you have something like the gucci in black"
 #    text = "What about something in a 6 inch heel"
 #    text = "Like to see some red boots" # to test not understandable sentence (grammar can handle this sentence now)
 #    text = "I need some old fashioned purple comfort shoes with with buckle" # to test bogus word
-    text = "I need some old fashioned purple comfort shoes with with long white buckle" # to test bogus word
+#    text = "I need some old fashioned purple comfort shoes with with long white buckle" # to test bogus word
 #    text = "need some old fashioned purple comfort shoes with with long white buckle" # to test bogus word
-#    text = "where to find some old fashioned purple comfort shoes with with long white buckel" # to test bogus word
+    text = "where to find some old fashioned purple comfort shoes with with long white buckel" # to test bogus word
     customer.question(text)
 
     # agent sends the product information of customer's products
     # text = 'Below is the information for you.'
     # product info should be attached to the end of text
     agent.converse(text)
+
+#    exit()
 
     ##### case 13: customer sends a "thank you" message
     print "\n ***** CASE 13 *****\n"
@@ -1139,6 +1153,8 @@ if __name__ == '__main__':
 
     # agent sends thanks
     agent.converse(text)
+
+#    exit()
 
     ##### case 14: # automatically close the conversation on both sides
     print "\n ***** CASE 14 *****\n"
