@@ -66,9 +66,9 @@ basic_colors = [
 global_dict = ["ralph lauren", "polo shirt", "6 inch", "old fashion", "old fashioned", "in stock", "zip code", "palo alto", "walnut creek",
         "san mateo", "santa clara", "san jose","san francisco","hewlett packard","microsoft surtfaces","microsoft surface", "broadway plaza",
         "home theaters", "home theater","remote controllers","remote controller","digital cameras","digital camera", "stoneridge mall",
-        "hard drives", "hard drive", "blue rays", "blue ray", "flat panel", "high definition", 'trouble shoot',
+        "hard drives", "hard drive", "blue rays", "blue ray", "flat panel", "high definition", "trouble shoot",
         "microsoft offices", "microsoft office", "windows 10", "win 10", "windows 7", "win 7", "smart tvs", "smart tv",
-        "personal computers","personal coumpter", "sky blue", "pacific blue", "suger plum"
+        "personal computers","personal coumpter", "sky blue", "pacific blue", "suger plum", "the stanford",
         "t shirt", "t shirts","new year","martin luther king", "martin luther king jr.", "presidents day",
         "st. patrick","saint patrick","memorial day","independence day", "july 4th","july forth","jul 4th","labor day",
         "colmbus day","thanksgiving day","christmas eve", "no one", "best buy",
@@ -192,6 +192,7 @@ class BanterClient:
         in_text = self.in_text[-1]
         newdata = {}
         resultData = self.nlu.parse_query(self.localdict, in_text, False, limits)
+        newdata = resultData
 
 #        for item in resultData:
 #            print item, resultData[item]
@@ -207,7 +208,43 @@ class BanterClient:
             return resultData
 
         # this handles switching between goods or retrieving previous goods
-        if 'goods' in resultData:
+        if 'action' in resultData:
+	   if resultData['action'] == 'find store':
+              topic = 'location'
+              if topic != self.get_topic():
+                 print "Change topic: Resetting to " + topic.upper()
+                 if 'lost' in resultData:
+                    del newdata['lost']
+              self.set_topic(topic)
+           elif resultData['action'] == 'ask time':
+              topic = 'datetime'
+              if topic != self.get_topic():
+                 print "Change topic: Resetting to " + topic.upper()
+                 if 'lost' in resultData:
+                    del newdata['lost']
+              self.set_topic(topic)
+
+        elif 'datetime' in resultData or ('descriptor' in resultData and resultData['descriptor'] in ['open', 'close']):
+           topic = 'datetime' 
+           if topic != self.get_topic():
+              print "Change topic: Resetting to " + topic.upper()
+	      if 'lost' in resultData:
+                 del newdata['lost']
+           self.set_topic(topic)
+
+           if 'action' not in resultData:
+#              resultData['action'] = 'ask time'
+              newdata['action'] = 'ask time'
+
+        elif 'location' in resultData:
+           topic = 'location'
+           if topic != self.get_topic():
+              print "Change topic: Resetting to " + topic.upper()
+              if 'lost' in resultData:
+                 del newdata['lost']
+           self.set_topic(topic)
+
+        elif 'goods' in resultData:
            goods = resultData['goods'].split(':')
            if len(goods) > 0:
               topic = goods[0]
@@ -217,41 +254,16 @@ class BanterClient:
                     del newdata['lost']
               self.set_topic(topic)
 
-        elif 'location' in resultData:
-           topic = 'location' 
-           if topic != self.get_topic():
-              print "Change topic: Resetting to " + topic.upper()
-              if 'lost' in resultData:
-                 del newdata['lost']
-           self.set_topic(topic)
-
-        elif 'action' in resultData:
-	   if resultData['action'] == 'find store':
-              topic = 'location'
-              if topic != self.get_topic():
-                 print "Change topic: Resetting to " + topic.upper()
-                 if 'lost' in resultData:
-                    del newdata['lost']
-              self.set_topic(topic)
-
-        elif 'datetime' in resultData or ('action' in resultData and 'time' in resultData['action']) or ('descriptor' in resultData and resultData['descriptor'] in ['open', 'close']):
-           topic = 'datetime' 
-           if topic != self.get_topic():
-              print "Change topic: Resetting to " + topic.upper()
-	      if 'lost' in resultData:
-                 del newdata['lost']
-           self.set_topic(topic)
-
-           if 'action' not in resultData:
-              resultData['ac tion'] = 'ask time'
-
         else:
             prev_data = self.get_data()['data']
+	    print "***** prev_data *****\n"
+	    print prev_data
             if len(prev_data) > 0:
                 if 'goods' in prev_data:
                    for key,value in prev_data.iteritems():
                        if key in prev_data and key not in resultData:
-                          resultData[key] = value
+#                          resultData[key] = value
+                          newdata[key] = value
                    goods = resultData['goods'].split(':')
                    if len(goods) > 0:
                       topic = goods[0]
@@ -260,14 +272,16 @@ class BanterClient:
                 elif 'location' in prev_data:
                    for key,value in prev_data.iteritems():
                        if key in prev_data and key not in resultData:
-                          resultData[key] = value
+#                          resultData[key] = value
+                          newdata[key] = value
                    topic = 'location'
                    print "Inherit topic: Retrieving from " + topic.upper()
                    self.set_topic(topic)
                 elif 'datetime' in prev_data:
                    for key,value in prev_data.iteritems():
                        if key in prev_data and key not in resultData:
-                          resultData[key] = value
+#                          resultData[key] = value
+                          newdata[key] = value
                    topic = 'datetime'
                    print "Inherit topic: Retrieving from " + topic.upper()
                    self.set_topic(topic)
@@ -284,14 +298,14 @@ class BanterClient:
 
             if resultData['ERROR_CODE'] == 'DID_NOT_UNDERSTAND':
                 if in_text in basic_colors:
-                    newdata['color'] = in_text
+                   newdata['color'] = in_text
 
             if 'ERROR_CODE' in newdata:
                 del newdata['ERROR_CODE']
             if 'action' in newdata:
                 newdata['action'] += ',' + states[3] #'answer'
                 if 'find store' in newdata['action'] and not 'location' in newdata:
-                    newdata['location'] = in_text
+                   newdata['location'] = in_text
             else:
                 newdata['action'] = states[3] #'answer'
 
@@ -329,7 +343,7 @@ class BanterClient:
                         newdata['action'] = states[3] #'answer'
 
             else:
-                if 'prior_subject' in resultData:
+                if 'prior_subject' in resultData and resultData['prior_subject'] == 1:
                     print '-----------------'
                     print self.data
                     print '-----------------'
@@ -338,12 +352,14 @@ class BanterClient:
                     newdata.update(resultData)
                     if 'ERROR_CODE' in newdata:
                         del newdata['ERROR_CODE']
+
                     if 'state' not in resultData:
-                       resultData['state'] = str(self.get_state())
+#                       resultData['state'] = str(self.get_state())
+                       newdata['state'] = str(self.get_state())
 
         else:
             # fix state passing, either returned so the object is stateless or not
-            if 'prior_subject' in resultData:
+            if 'prior_subject' in resultData and resultData['prior_subject'] == 1:
                 print '-----------------'
                 print self.data
                 print '-----------------'
@@ -353,10 +369,17 @@ class BanterClient:
 
                 if 'ERROR_CODE' in newdata:
                     del newdata['ERROR_CODE']
-		if 'state' not in resultData:
-                    resultData['state'] = str(self.get_state())
 
+		if 'state' not in resultData:
+#                    resultData['state'] = str(self.get_state())
+                    newdata['state'] = str(self.get_state())
+
+       
+        self.nlu.set_datastore_request(newdata) 
         resultData = self.nlu.submit_query()
+
+#        print "\n***** resultData *****\n"
+#        print resultData
 
         return resultData
 
@@ -388,7 +411,7 @@ class BanterClient:
                 # 	use intent to generate answer
                 self.respondWithAnswer(resultData)
 
-        top = "Current state: " + str(self.get_state())
+        tmp = "Current state: " + str(self.get_state())
         print tmp
         top = "Current topic: " + str(self.get_topic())
         print top
@@ -781,7 +804,7 @@ class BanterClient:
                     if 'title' in data['datastore_product']:
                         tmp.append(data['datastore_product']['title'])
                     if 'price' in data['datastore_product']:
-                        tmp.append('$' + data['datastore_product']['brand'])
+                        tmp.append('$' + data['datastore_product']['price'])
                     elif 'salePrice' in data['datastore_product']:
                         tmp.append('$' + data['datastore_product']['salePrice'])
                     elif 'orginalPrice' in data['datastore_product']:
@@ -953,11 +976,8 @@ if __name__ == '__main__':
     # "Nordstrom Stanford Shopping Center opens at 10:00 AM tomorrow."
     agent.converse(text)
 
-<<<<<<< HEAD
 #    exit()
 
-=======
->>>>>>> a1f6c4d357e368b7daea247bd67c4dc38d8fedfe
     ##### case 3: customer requests for service - women's shoes
     print "\n ***** CASE 3 *****\n"
 #    text = "I'm looking for a new TV"
