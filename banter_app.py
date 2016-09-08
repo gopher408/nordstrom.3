@@ -27,6 +27,8 @@ import json
 import urllib
 import urllib2
 import requests
+from datastore.aws_datastore import AWSDataStore
+
 
 states = ['closing', 'opening', 'question', 'answer', 'thanks']
 
@@ -840,12 +842,16 @@ if __name__ == '__main__':
 
     comm_dump = None
 
-    grammarConfig = BanterConfig(None, 'case12.fcfg')
+    use_datastore = False
+    partner = None #'nordstrom'
+
+    grammarConfig = BanterConfig(partner, 'case12.fcfg')
     dummyDataStore = DummyDataStore()
+    realDataStore = AWSDataStore(partner, None)
 
     ##### configure banter client for an agent
     name_1 = "Banter"
-    agent = BanterClient(name_1,grammarConfig, Echo(), dummyDataStore)
+    agent = BanterClient(name_1,grammarConfig, Echo(), realDataStore if use_datastore else dummyDataStore)
 
     ##### configure banter client for a customer
     name_2 = "Joe"
