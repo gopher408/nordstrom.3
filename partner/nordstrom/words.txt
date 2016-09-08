@@ -1133,10 +1133,11 @@ empire
 casual
 ballet
 brooks
-length
+dinner
 heeled
 hiking
 chrome
+length
 medium
 modern
 curved

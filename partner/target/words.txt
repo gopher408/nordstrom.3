@@ -49,8 +49,8 @@ low heel
 ballgown
 shoulder
 slip ons
-designer
 cocktail
+designer
 trim fit
 body con
 high low
@@ -71,6 +71,7 @@ sweater
 chrome
 plasma
 medium
+dinner
 formal
 target
 sleeve
@@ -79,9 +80,9 @@ summer
 a line
 sheath
 empire
-halter
 casual
 skater
+halter
 curved
 peplum
 length

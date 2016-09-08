@@ -919,7 +919,7 @@ if __name__ == '__main__':
 
     ##### case 2: store hours
     print "\n ***** CASE 2 *****\n"
-    text = "What time does the store close?"
+    text = "What time does the stanford store close?"
 #    text = "What time does the Stanford store close?"
 #    text = "What time is Richfield open until?"
     customer.question(text)
@@ -948,8 +948,11 @@ if __name__ == '__main__':
     # "Nordstrom Stanford Shopping Center opens at 10:00 AM tomorrow."
     agent.converse(text)
 
+<<<<<<< HEAD
 #    exit()
 
+=======
+>>>>>>> a1f6c4d357e368b7daea247bd67c4dc38d8fedfe
     ##### case 3: customer requests for service - women's shoes
     print "\n ***** CASE 3 *****\n"
 #    text = "I'm looking for a new TV"

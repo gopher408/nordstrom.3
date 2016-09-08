@@ -258,7 +258,6 @@ N[SEM='descriptor="old fashion"'] -> 'old_fashion' | 'old-fashion'
 N[SEM='descriptor="6 inch"'] -> '6_inch'
 #how to distinct if it is goods or  just a descriptor 
 N[SEM='goods="accessory:buckle"'] -> 'buckle'
-N[SEM='goods="dress:lace"'] -> 'lace'       
 N[SEM='descriptor="wedding"'] -> 'wedding'
 N[SEM='descriptor="picnic"'] -> 'picnic'
 N[SEM='descriptor="cocktail"'] -> 'cocktail'
