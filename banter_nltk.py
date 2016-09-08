@@ -54,9 +54,9 @@ basic_colors = [
 global_dict = ["ralph lauren", "polo shirt", "6 inch", "old fashion", "old fashioned", "in stock", "zip code", "palo alto", "walnut creek",
         "san bruno", "san mateo", "santa clara", "san jose","san francisco","hewlett packard","microsoft surtfaces","microsoft surface",
         "home theaters", "home theater","remote controllers","remote controller","digital cameras","digital camera", "broadway plaza",
-        "hard drives", "hard drive", "blue rays", "blue ray", "flat panel", "high definition", 'trouble shoot', 'stoneridge mall',
+        "hard drives", "hard drive", "blue rays", "blue ray", "flat panel", "high definition", "trouble shoot", "stoneridge mall",
         "microsoft offices", "microsoft office", "windows 10", "win 10", "windows 7", "win 7", "smart tvs", "smart tv",
-        "personal computers","personal coumpter", "sky blue", "pacific blue", "suger plum",
+        "personal computers","personal coumpter", "sky blue", "pacific blue", "suger plum","the stanford",
         "t shirt", "t shirts","new year","martin luther king", "martin luther king jr.", "presidents day",
         "st. patrick","saint patrick","memorial day","independence day", "july 4th","july forth","jul 4th","labor day",
         "colmbus day","thanksgiving day","christmas eve", "no one", "best buy",
@@ -235,7 +235,7 @@ class BanterThinker:
 #           print words
            words = self.convert_neglist(words)
 #           print words
-           words = self.check_stopwords(words)
+#           words = self.check_stopwords(words)
 #	   print words
            words = self.check_endword(words)
 #	   print words
@@ -249,7 +249,7 @@ class BanterThinker:
         print 'INPUT:' + query
         self.performNLP(dict,query,test) 
         query = self.get_query()
-	print query
+#	print query
         cp = nltk.load_parser(self.banter_config.get_grammer_file())
         try:
             if len(query.split()) == 0:
@@ -344,7 +344,8 @@ class BanterThinker:
                      datastore_request['action'] = 'ask time'
 	    elif 'datetime' not in datastore_request: 
                if 'store' and 'location' in datastore_request:
-                  if 'action' not in datastore_request and 'datetime' not in datastore_request:
+#                  if 'action' not in datastore_request and 'datetime' not in datastore_request:
+                  if 'action' not in datastore_request:
                      datastore_request['action'] = 'find store'
             if limits != None:
                 if isinstance(limits, int):
@@ -369,19 +370,19 @@ class BanterThinker:
            price = []
            for word in lost:
 	       word = word.replace(',','')
-               if word[0] in ['>','<']:
-                  nword = word[1:len(word)]
-                  if re.search("^\${0,1}\d+(\.\d*){0,1}",nword) != None:
-                     if is_number(nword):
-                        nword = '$' + nword
-                     nword = word[0] + nword
-                     price.append(nword) 
-	       else:
-                  if re.search("^\${0,1}\d+(\.\d*){0,1}",word) != None:
-		     if is_number(word):
-                     	price.append('$'+word) 
-                     else:
-			price.append(word) 
+#               if word[0] in ['>','<']:
+#                  nword = word[1:len(word)]
+#                  if re.search("^\${0,1}\d+(\.\d*){0,1}",nword) != None:
+#                     if is_number(nword):
+#                        nword = '$' + nword
+#                     nword = word[0] + nword
+#                     price.append(nword) 
+#	       else:
+               if re.search("^\${0,1}\d+(\.\d*){0,1}",word) != None:
+	    	  if is_number(word):
+                     price.append('$'+word) 
+                  else:
+		     price.append(word) 
 
            if len(price) > 0:
               self.datastore_request['price'] = price
@@ -476,9 +477,11 @@ if __name__ == "__main__":
     query = "55 Vizio"
     query = "Mac"
     query = "Red"
-#    limits = 3
-#    datastore_request = nlu.parse_query(dict, query, test, limits)
-#    nlu.submit_query()
+    query = "What time does the stanford store close?"
+    limits = 3
+    datastore_request = nlu.parse_query(dict, query, test, limits)
+    nlu.submit_query()
+    exit()
 
 # RHS20160828
     query = "What time does it open tomorrow?"

@@ -32,7 +32,7 @@ JP[SEM=(?jj + ?pp)] -> JJ[SEM=?jj] PP[SEM=?pp]
 JP[SEM=(?jj + ?jp)] -> JJ[SEM=?jj] JP[SEM=?jp]
 JP[SEM=?jj] -> JJ[SEM=?jj]
 JP[SEM=(?np1 + ?np2)] -> NP[SEM=?np1] NP[SEM=?np2]
-NP[SEM=(?det + ?n)] -> Det[SEM=?det] N[SEM=?n]
+NP[SEM=(?det + ?np)] -> Det[SEM=?det] NP[SEM=?np]
 NP[SEM=(?det + ?rb)] -> Det[SEM=?det] RB[SEM=?rb]
 NP[SEM=(?det + ?pp)] -> Det[SEM=?det] PP[SEM=?pp]
 NP[SEM=(?np + ?pp)] -> NP[SEM=?np] PP[SEM=?pp]
@@ -2435,7 +2435,7 @@ NP[SEM = 'location="mayfair"'] -> 'mayfair'
 NP[SEM = 'location="nordstrom topanga"'] -> 'nordstrom_topanga'
 NP[SEM = 'location="topanga"'] -> 'topanga'
 # LOCATION NAME END
-N[SEM='location="Stanford"'] -> 'stanford_mall' | 'stanford_shopping_mall'
+N[SEM='location="Stanford"'] -> 'stanford_mall' | 'stanford_shopping_mall' | 'the_stanford'
 N[SEM='location="Stoneridge Mall"'] -> 'stoneridge_mall' | 'stoneridge'
 N[SEM='location="Broadway"'] -> 'broadway' 
 N[SEM='location="Broadway Plaza"'] -> 'broadway_plaza' 
@@ -2656,7 +2656,8 @@ JJ[SEM='descriptor="expensive"'] -> 'expensive' | 'costly'
 JJ[SEM='descriptor="cheap"'] -> 'cheap' 
 N[SEM='descriptor="this"'] -> 'this' 
 N[SEM='check_avail="1"'] -> 'in_stock'
-N[SEM='prior_subject="1"'] -> 'it' | 'that' | 'the'
+N[SEM='prior_subject="1"'] -> 'it' 
+Det[SEM='prior_subject="1"'] -> 'that' | 'the'
 P[SEM='descriptor="until"'] -> 'until'
 P[SEM='descriptor="before"'] -> 'before' 
 P[SEM='descriptor="after"'] -> 'after' 
