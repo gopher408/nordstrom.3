@@ -76,6 +76,7 @@ class AWSDataStore(DataStore):
             'Two-Piece',
             'Wrap',
             'little',
+            'dinner',
 
             'Extra Trim Fit',
             'Trim Fit',
@@ -722,6 +723,49 @@ class AWSDataStore(DataStore):
 
             queryFields['bool']['must'].append(should)
 
+
+        if 'price' in queryData:
+            # price is [$555], [$100,$222], look at lost for under or over
+            should = {
+                'bool': {
+                    'should': []
+                }
+            }
+
+            if len(queryData['price']) == 2:
+                locost = re.findall(r'\d+', queryData['price'][0])
+                hicost = re.findall(r'\d+', queryData['price'][2])
+
+                should['bool']['should'].append({"range": {"orginalPrice": {"gte": Decimal(locost[0])}}})
+                should['bool']['should'].append({"range": {"salePrice": {"gte": Decimal(locost[0])}}})
+                should['bool']['should'].append({"range": {"regularPrice": {"gte": Decimal(locost[0])}}})
+
+                should['bool']['should'].append({"range": {"orginalPrice": {"lte": Decimal(hicost[0])}}})
+                should['bool']['should'].append({"range": {"salePrice": {"lte": Decimal(hicost[0])}}})
+                should['bool']['should'].append({"range": {"regularPrice": {"lte": Decimal(hicost[0])}}})
+
+            else:
+                lost = queryData['lost'] if 'lost' in queryData else []
+
+                cost = re.findall(r'\d+', queryData['price'][0])
+                if 'under' in lost:
+                    should['bool']['should'].append({"range": {"orginalPrice": {"lte": Decimal(cost[0])}}})
+                    should['bool']['should'].append({"range": {"salePrice": {"lte": Decimal(cost[0])}}})
+                    should['bool']['should'].append({"range": {"regularPrice": {"lte": Decimal(cost[0])}}})
+
+                elif 'over' in lost:
+
+                    should['bool']['should'].append({"range": {"orginalPrice": {"gte": Decimal(cost[0])}}})
+                    should['bool']['should'].append({"range": {"salePrice": {"gte": Decimal(cost[0])}}})
+                    should['bool']['should'].append({"range": {"regularPrice": {"gte": Decimal(cost[0])}}})
+
+                else:
+                    should['bool']['should'].append({"range": {"orginalPrice": {"lte": Decimal(cost[0])}}})
+                    should['bool']['should'].append({"range": {"salePrice": {"lte": Decimal(cost[0])}}})
+                    should['bool']['should'].append({"range": {"regularPrice": {"lte": Decimal(cost[0])}}})
+
+            queryFields['bool']['should'].append(should)
+
         if 'lost' in queryData:
             for field in queryData['lost']:
                 should = {
@@ -730,35 +774,13 @@ class AWSDataStore(DataStore):
                     }
                 }
 
-                if '$' in field:
-                    if 'under' in field:
-                        cost = re.findall(r'\d+', field)
-                        should['bool']['should'].append({"range": {"orginalPrice": {"lte": Decimal(cost[0])}}})
-                        should['bool']['should'].append({"range": {"salePrice": {"lte": Decimal(cost[0])}}})
-                        should['bool']['should'].append({"range": {"regularPrice": {"lte": Decimal(cost[0])}}})
-                        field = field.replace('under $' + cost[0], '').strip()
-                    elif 'over' in field:
-                        cost = re.findall(r'\d+', field)
-                        should['bool']['should'].append({"range": {"orginalPrice": {"gte": Decimal(cost[0])}}})
-                        should['bool']['should'].append({"range": {"salePrice": {"gte": Decimal(cost[0])}}})
-                        should['bool']['should'].append({"range": {"regularPrice": {"gte": Decimal(cost[0])}}})
-                        field = field.replace('over $' + cost[0], '').strip()
-                    else:
-                        cost = re.findall(r'\d+', field)
-                        should['bool']['should'].append({"range": {"orginalPrice": {"lte": Decimal(cost[0])}}})
-                        should['bool']['should'].append({"range": {"salePrice": {"lte": Decimal(cost[0])}}})
-                        should['bool']['should'].append({"range": {"regularPrice": {"lte": Decimal(cost[0])}}})
-                        field = field.replace('$' + cost[0], '').strip()
-
-                    queryFields['bool']['must'].append(should)
-
-                elif field in self.colors:
+                if field in self.colors:
                     should['bool']['should'].append({"match": {"color": {"query": field}}})
                     should['bool']['should'].append({"match": {"colors": {"query": field}}})
 
                     queryFields['bool']['must'].append(should)
 
-                else:
+                elif field not in ['under', 'over', 'between']:
                     should['bool']['should'].append({"match": {"title": {"query": field}}})
                     should['bool']['should'].append({"match": {"description": {"query": field}}})
                     should['bool']['should'].append({"match": {"categories": {"query": field}}})
@@ -770,7 +792,32 @@ class AWSDataStore(DataStore):
 
                     queryFields['bool']['should'].append(should)
 
+        if 'descriptor' in queryData:
+            fields = queryData['descriptor'].split(',')
+            for field in fields:
+                should = {
+                    'bool': {
+                        'should': []
+                    }
+                }
 
+                if field in self.colors:
+                    should['bool']['should'].append({"match": {"color": {"query": field}}})
+                    should['bool']['should'].append({"match": {"colors": {"query": field}}})
+
+                    queryFields['bool']['must'].append(should)
+
+                elif field not in ['under', 'over', 'between']:
+                    should['bool']['should'].append({"match": {"title": {"query": field}}})
+                    should['bool']['should'].append({"match": {"description": {"query": field}}})
+                    should['bool']['should'].append({"match": {"categories": {"query": field}}})
+                    should['bool']['should'].append({"match": {"details": {"query": field}}})
+                    should['bool']['should'].append({"match": {"features": {"query": field}}})
+                    should['bool']['should'].append({"match": {"sizes": {"query": field}}})
+                    should['bool']['should'].append({"match": {"color": {"query": field}}})
+                    should['bool']['should'].append({"match": {"colors": {"query": field}}})
+
+                    queryFields['bool']['should'].append(should)
 
         if 'size' in queryData:
             should = {
