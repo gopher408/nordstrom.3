@@ -68,7 +68,7 @@ def updatePartnerFile(partner):
             strList.sort(key=lambda s: len(s), reverse=True)
 
             for tmp in strList:
-                newStr += "NP[SEM = 'goods=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
+                newStr += "N[SEM = 'goods=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
                 words.append(tmp)
 
             content = content.replace(oldStr[0][0] + oldStr[0][1] + oldStr[0][2],
@@ -83,7 +83,7 @@ def updatePartnerFile(partner):
             strList.sort(key=lambda s: len(s), reverse=True)
 
             for tmp in strList:
-                newStr += "NP[SEM = 'brand=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
+                newStr += "N[SEM = 'brand=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
                 words.append(tmp)
 
             content = content.replace(oldStr[0][0] + oldStr[0][1] + oldStr[0][2],
@@ -98,7 +98,7 @@ def updatePartnerFile(partner):
             strList.sort(key=lambda s: len(s), reverse=True)
 
             for tmp in strList:
-                newStr += "NP[SEM = 'size=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
+                newStr += "N[SEM = 'size=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
                 words.append(tmp)
 
             content = content.replace(oldStr[0][0] + oldStr[0][1] + oldStr[0][2],
@@ -114,7 +114,7 @@ def updatePartnerFile(partner):
             strList.sort(key=lambda s: len(s), reverse=True)
 
             for tmp in strList:
-                newStr += "NP[SEM = 'descriptor=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
+                newStr += "N[SEM = 'descriptor=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
                 words.append(tmp)
 
             content = content.replace(oldStr[0][0] + oldStr[0][1] + oldStr[0][2],
@@ -130,12 +130,12 @@ def updatePartnerFile(partner):
             strList.sort(key=lambda s: len(s), reverse=True)
 
             for tmp in strList:
-                newStr += "NP[SEM = 'location=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
+                newStr += "N[SEM = 'location=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
                 words.append(tmp)
 
                 if partner in tmp.lower():
                     tmp = tmp.replace(partner, '').strip()
-                    newStr += "NP[SEM = 'location=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
+                    newStr += "N[SEM = 'location=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
                     words.append(tmp)
 
             content = content.replace(oldStr[0][0] + oldStr[0][1] + oldStr[0][2],
@@ -151,7 +151,7 @@ def updatePartnerFile(partner):
             strList.sort(key=lambda s: len(s), reverse=True)
 
             for tmp in strList:
-                newStr += "NP[SEM = 'location=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
+                newStr += "N[SEM = 'location=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
                 words.append(tmp)
 
                 # remove partner
@@ -159,7 +159,7 @@ def updatePartnerFile(partner):
                     tmp = tmp.replace(partner, '').strip()
                     if not tmp in words:
                         if tmp:
-                            newStr += "NP[SEM = 'location=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
+                            newStr += "N[SEM = 'location=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
                             words.append(tmp)
 
                 # remove common suffixes
@@ -192,7 +192,7 @@ def updatePartnerFile(partner):
 
                 if not tmp in words:
                     if tmp:
-                        newStr += "NP[SEM = 'location=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
+                        newStr += "N[SEM = 'location=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
                         words.append(tmp)
 
 
@@ -209,7 +209,7 @@ def updatePartnerFile(partner):
             strList.sort(key=lambda s: len(s), reverse=True)
 
             for tmp in strList:
-                newStr += "NP[SEM = 'zipcode=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
+                newStr += "N[SEM = 'zipcode=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
                 words.append(tmp)
 
             content = content.replace(oldStr[0][0] + oldStr[0][1] + oldStr[0][2],
