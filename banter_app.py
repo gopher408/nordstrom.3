@@ -336,9 +336,10 @@ class BanterClient:
                     # build data from existing conversation
                     newdata.update(self.get_data()['data'])
                     newdata.update(resultData)
-
                     if 'ERROR_CODE' in newdata:
                         del newdata['ERROR_CODE']
+                    if 'state' not in resultData:
+                       resultData['state'] = str(self.get_state())
 
         else:
             # fix state passing, either returned so the object is stateless or not
@@ -352,6 +353,8 @@ class BanterClient:
 
                 if 'ERROR_CODE' in newdata:
                     del newdata['ERROR_CODE']
+		if 'state' not in resultData:
+                    resultData['state'] = str(self.get_state())
 
         resultData = self.nlu.submit_query()
 
@@ -377,10 +380,7 @@ class BanterClient:
                self.start()
                prev_state = self.get_state()
             resultData = self.verify_dialog(limits)
-	    if 'prior_subject' in resultData:
-               if resultData('prior_subject') == 1:
-                  if 'state' not in resultData:
-                     resultData['state'] = str(self.get_state())
+
             if 'ERROR_CODE' in resultData:
                 self.respondWithQuestion(resultData)
             else:
