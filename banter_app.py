@@ -919,7 +919,7 @@ if __name__ == '__main__':
 
     ##### case 2: store hours
     print "\n ***** CASE 2 *****\n"
-    text = "What time does the store close?"
+    text = "What time does the stanford store close?"
 #    text = "What time does the Stanford store close?"
 #    text = "What time is Richfield open until?"
     customer.question(text)

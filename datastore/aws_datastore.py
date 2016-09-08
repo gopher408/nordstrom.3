@@ -461,8 +461,8 @@ class AWSDataStore(DataStore):
         queryFields = {
             "query": {
                 "bool": {
-                    "should": [{"match": {"city": {"query": queryData['location'], "boost": 10}}},
-                               {"match": {"name": {"query": queryData['location'], "boost": 5}}}],
+                    "should": [{"match": {"city": {"query": location, "boost": 10}}},
+                               {"match": {"name": {"query": location, "boost": 5}}}],
                     "filter": [{
                       "match": {
                         "businessID": self.partner
