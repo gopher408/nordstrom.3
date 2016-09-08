@@ -393,7 +393,7 @@ class AWSDataStore(DataStore):
             }
         }
 
-        print 'AWSDataStore search query:' +  json.dumps(queryFields)
+        print 'AWSDataStore search query:' +  str(queryFields)
         try:
             res = es.search(index='locations', body=queryFields)
         except Exception as e:
@@ -473,7 +473,7 @@ class AWSDataStore(DataStore):
             "size": 10
         }
 
-        print 'AWSDataStore seach query' + json.dumps(queryFields)
+        print 'AWSDataStore seach query' + str(queryFields)
         res = es.search(index='locations', body=queryFields)
         # default_operator, min_score
 
@@ -814,7 +814,7 @@ class AWSDataStore(DataStore):
 
         # fvz other fields, in bd and passed
 
-        print 'AWSDataStore search query:' + json.dumps({"query": queryFields})
+        print 'AWSDataStore search query:' + str({"query": queryFields})
         res = es.search(index='products', body={"query": queryFields, "size": 12})
         # default_operator, min_score
 

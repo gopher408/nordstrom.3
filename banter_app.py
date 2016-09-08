@@ -898,7 +898,7 @@ if __name__ == '__main__':
     # customer replies the location
     text = "Palo Alto"
 #    text = "94301"
-#    text = "SF"
+    text = "SF"
 #    text = "San Francisco Central"
 #    text = "San Francisco CBD East"
 #    text = "Richfield"
