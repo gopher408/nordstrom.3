@@ -268,8 +268,7 @@ class AWSDataStore(DataStore):
         return queryData
 
     def locationQuestion(self, queryData):
-        logging.warning('locationQuestion')
-        logging.warning(queryData)
+        print 'AWSDataStore.locationQuestion:' + str(queryData)
 
         queryData['datastore_action'] = 'location_question'
 
@@ -307,8 +306,7 @@ class AWSDataStore(DataStore):
         return queryData
 
     def locationSearch(self, queryData):
-        logging.warning('locationSearch')
-        logging.warning(queryData)
+        print 'AWSDataStore.locationSearch:' + str(queryData)
 
         queryData['datastore_action'] = 'location_search'
 
@@ -419,12 +417,12 @@ class AWSDataStore(DataStore):
                 'address': doc['_source']['address']
             })
 
-        logging.warning(queryData)
+        print 'AWSDataStore.locationSearch -> response' + str(queryData)
+
         return queryData
 
     def findProduct(self, queryData):
-        logging.warning('findProduct')
-        logging.warning(queryData)
+        print 'AWSDataStore.findProduct' + str(queryData)
 
         if 'rownum' in queryData and 'datastore_products' in queryData:
             if int(queryData['rownum']) <= len(queryData['datastore_products']):
@@ -434,8 +432,7 @@ class AWSDataStore(DataStore):
 
 
     def findLocation(self, queryData):
-        logging.warning('findLocation')
-        logging.warning(queryData)
+        print 'AWSDataStore.findProduct' + str(queryData)
 
         location = None
 
@@ -491,13 +488,13 @@ class AWSDataStore(DataStore):
                     'address': doc['_source']['address']
                 })
 
-        logging.warning(locations)
+        print 'AWSDataStore.locations' + str(locations)
+
         return locations
 
 
     def productQuestion(self, queryData):
-        logging.warning('productQuestion')
-        logging.warning(queryData)
+        print 'AWSDataStore.productQuestion' + str(queryData)
 
         queryData['datastore_action'] = 'product_question'
 
@@ -539,8 +536,7 @@ class AWSDataStore(DataStore):
         return queryData
 
     def productSearch(self, queryData):
-        logging.warning('productSearch')
-        logging.warning(queryData)
+        print 'AWSDataStore.productSearch' + str(queryData)
 
         queryData['datastore_action'] = 'product_search'
 
@@ -834,7 +830,8 @@ class AWSDataStore(DataStore):
                 'id': doc['_source']['id']
             })
 
-        logging.warning(queryData)
+        print 'AWSDataStore.productSearch -> response' + str(queryData)
+
         return queryData
 
     def cleanData(self, str, blacklist, parseString=True):
