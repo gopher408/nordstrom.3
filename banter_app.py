@@ -380,7 +380,7 @@ class BanterClient:
 	    if 'prior_subject' in resultDatai:
                if resultData('prior_subject') == 1:
                   if 'state' not in resultData:
-                     resultData('state') = self.get_state()
+                     resultData('state') = str(self.get_state())
             if 'ERROR_CODE' in resultData:
                 self.respondWithQuestion(resultData)
             else:
@@ -388,6 +388,7 @@ class BanterClient:
                 # 	use intent to generate answer
                 self.respondWithAnswer(resultData)
 
+        top = "Current state: " + str(self.get_state())
         print tmp
         top = "Current topic: " + str(self.get_topic())
         print top
