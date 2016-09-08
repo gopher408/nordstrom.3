@@ -253,6 +253,9 @@ class AWSDataStore(DataStore):
                 print 'AWSDataStore.search -> returning DID_NOT_UNDERSTAND'
                 queryData['ERROR_CODE'] = 'DID_NOT_UNDERSTAND'
 
+        elif 'datetime' in queryData and queryData['datetime'] == 'time':
+            return self.locationQuestion(queryData)
+
         elif 'descriptor' in queryData:
             if 'business hours' in queryData['descriptor']:
                 return self.locationQuestion(queryData)
