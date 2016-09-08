@@ -193,8 +193,8 @@ class BanterClient:
         newdata = {}
         resultData = self.nlu.parse_query(self.localdict, in_text, False, limits)
 
-        for item in resultData:
-            print item, resultData[item]
+#        for item in resultData:
+#            print item, resultData[item]
 
         if 'action' in resultData and 'reset' == resultData['action']:
             self.reset(self.name)
@@ -377,13 +377,16 @@ class BanterClient:
                self.start()
                prev_state = self.get_state()
             resultData = self.verify_dialog(limits)
+	    if 'prior_subject' in resultDatai:
+               if resultData('prior_subject') == 1:
+                  resultData('state') = self.get_state()
             if 'ERROR_CODE' in resultData:
                 self.respondWithQuestion(resultData)
             else:
 	        #	print '----> found results'
                 # 	use intent to generate answer
                 self.respondWithAnswer(resultData)
-        tmp = "Current state: " + str(self.get_state())
+
         print tmp
         top = "Current topic: " + str(self.get_topic())
         print top
