@@ -379,7 +379,8 @@ class BanterClient:
             resultData = self.verify_dialog(limits)
 	    if 'prior_subject' in resultDatai:
                if resultData('prior_subject') == 1:
-                  resultData('state') = self.get_state()
+                  if 'state' not in resultData:
+                     resultData('state') = self.get_state()
             if 'ERROR_CODE' in resultData:
                 self.respondWithQuestion(resultData)
             else:
@@ -951,6 +952,11 @@ if __name__ == '__main__':
     # "Nordstrom Stanford Shopping Center opens at 10:00 AM tomorrow."
     agent.converse(text)
 
+<<<<<<< HEAD
+#    exit()
+
+=======
+>>>>>>> a1f6c4d357e368b7daea247bd67c4dc38d8fedfe
     ##### case 3: customer requests for service - women's shoes
     print "\n ***** CASE 3 *****\n"
 #    text = "I'm looking for a new TV"
