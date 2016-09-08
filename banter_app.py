@@ -377,7 +377,7 @@ class BanterClient:
                self.start()
                prev_state = self.get_state()
             resultData = self.verify_dialog(limits)
-	    if 'prior_subject' in resultDatai:
+	    if 'prior_subject' in resultData:
                if resultData('prior_subject') == 1:
                   if 'state' not in resultData:
                      resultData('state') = str(self.get_state())
