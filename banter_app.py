@@ -380,7 +380,7 @@ class BanterClient:
 	    if 'prior_subject' in resultData:
                if resultData('prior_subject') == 1:
                   if 'state' not in resultData:
-                     resultData('state') = str(self.get_state())
+                     resultData['state'] = str(self.get_state())
             if 'ERROR_CODE' in resultData:
                 self.respondWithQuestion(resultData)
             else:
