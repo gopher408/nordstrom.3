@@ -238,7 +238,7 @@ class BanterThinker:
            words = self.check_endword(words)
 #	   print words
            query = ' '.join(words)
-           self.set_query(query)
+        self.set_query(query)
 
 
     def parse_query(self, dict, query, test=False, limits=None):

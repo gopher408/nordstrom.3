@@ -138,7 +138,7 @@ class BanterClient:
         self.nlu.performNLP(self.localdict, message,test=True)
         query = self.nlu.get_query() 
         self.in_text.append(query)
-        words = query.split()
+        words = message.split()
 #        print words
         self.update_tone(words)
 
@@ -220,6 +220,15 @@ class BanterClient:
         elif 'location' in resultData:
            topic = 'location' 
            if topic != self.get_topic():
+              print "Change topic: Resetting to " + topic.upper()
+              if 'lost' in resultData:
+                 del newdata['lost']
+           self.set_topic(topic)
+
+        elif 'action' in resultData:
+	   if resultData['action'] == 'find store':
+              topic = 'location'
+              if topic != self.get_topic():
                  print "Change topic: Resetting to " + topic.upper()
                  if 'lost' in resultData:
                     del newdata['lost']
@@ -887,9 +896,9 @@ if __name__ == '__main__':
     # agent will respond given dummyDataStore.setReturnError above agent.respondWithQuestion({'text': text})
 
     # customer replies the location
-    text = "SF"
 #    text = "Palo Alto"
 #    text = "94301"
+#    text = "SF"
 #    text = "San Francisco Central"
 #    text = "San Francisco CBD East"
 #    text = "Richfield"
