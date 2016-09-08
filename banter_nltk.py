@@ -566,6 +566,8 @@ if __name__ == "__main__":
     query = "Yellow under $70"
     query = "Yellow under $70 size 12"
     query = "Yellow between $70 and $100 size 12"
+    query = "Yellow from $70 to $100 size 12"
+    query = "Yellow shirt from $70 to $100 size 12"
     limits = 3
     datastore_request = nlu.parse_query(dict, query, test, limits)
     nlu.submit_query()

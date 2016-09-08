@@ -851,6 +851,14 @@ if __name__ == '__main__':
     name_2 = "Joe"
     customer = BanterClient(name_2,grammarConfig, Echo(), None)
 
+    ##### case 0: product information 
+    print "\n ***** CASE 0 *****\n"
+    text = "Yellow polo from $70 to $100 size 12"
+   
+    customer.question(text)
+
+    agent.converse(text)
+
     ##### case 1: store locations
     print "\n ***** CASE 1 *****\n"
     text = "Is there a store near me?"
@@ -873,7 +881,8 @@ if __name__ == '__main__':
     # agent will respond given dummyDataStore.setReturnError above agent.respondWithQuestion({'text': text})
 
     # customer replies the location
-    text = "Palo Alto"
+    text = "SF"
+#    text = "Palo Alto"
 #    text = "94301"
 #    text = "San Francisco Central"
 #    text = "San Francisco CBD East"
@@ -890,7 +899,7 @@ if __name__ == '__main__':
     # 3) Nordstrom Valley Fair - San Jose, CA
     agent.converse(text)
 
-#    exit()
+    exit()
 
     ##### case 2: store hours
     print "\n ***** CASE 2 *****\n"
