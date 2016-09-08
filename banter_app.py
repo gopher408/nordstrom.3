@@ -1052,7 +1052,7 @@ if __name__ == '__main__':
     ##### case 7: customer specifies questions
     print "\n ***** CASE 7 *****\n"
 #    text = "Do you have the second one in a large"
-    text = "Do you have the gucci in size 4"
+    text = "Do you have the French Connection in size 4"
     customer.question(text)
 
     # agent sends the information of customer's products
@@ -1072,10 +1072,19 @@ if __name__ == '__main__':
 
     ##### case 9: customer likes to see some more products
     print "\n ***** CASE 9 *****\n"
+
+    text = "I am looking for black boots size 6"
+    customer.question(text)
+
+    # agent sends the information of customer's products
+    # text = 'Below is the information for you.'
+    # product info should be attached to the end of text
+    agent.converse(text)
+
 #    text = "Can I see more like the first one"
 #    text = "Do you have more like the first one?"
 #    text = "I'm looking for tall dress boots like the first one"
-    text = "I am looking for more tall dress boots like the third one"
+    text = "I am looking for more tall boots like the third one"
     customer.question(text)
 
     # agent sends the information of customer's products
