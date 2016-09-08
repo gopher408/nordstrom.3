@@ -803,13 +803,13 @@ class BanterClient:
                         tmp.append(data['datastore_product']['brand'])
                     if 'title' in data['datastore_product']:
                         tmp.append(data['datastore_product']['title'])
-                    if 'price' in data['datastore_product']:
+                    if 'price' in data['datastore_product'] and data['datastore_product']['price']:
                         tmp.append('$' + data['datastore_product']['price'])
-                    elif 'salePrice' in data['datastore_product']:
+                    elif 'salePrice' in data['datastore_product']  and data['datastore_product']['salePrice']:
                         tmp.append('$' + data['datastore_product']['salePrice'])
-                    elif 'orginalPrice' in data['datastore_product']:
-                        tmp.append('$' + data['datastore_product']['orginalPrice'])
-                    elif 'regularPrice' in data['datastore_product']:
+                    elif 'originalPrice' in data['datastore_product']  and data['datastore_product']['originalPrice']:
+                        tmp.append('$' + data['datastore_product']['originalPrice'])
+                    elif 'regularPrice' in data['datastore_product'] and data['datastore_product']['regularPrice']:
                         tmp.append('$' + data['datastore_product']['regularPrice'])
 
                     self.set_response_text(data, 'Your selection is '+', '.join(tmp)+'. Would you like to buy it?')
