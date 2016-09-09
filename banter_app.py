@@ -382,8 +382,8 @@ class BanterClient:
 
         resultData = self.nlu.submit_query()
 
-        print "\n***** resultData *****\n"
-        print resultData
+#        print "\n***** resultData *****\n"
+#        print resultData
 
         return resultData
 
