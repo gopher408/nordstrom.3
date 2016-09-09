@@ -204,7 +204,7 @@ class BanterThinker:
         buf = []
         for word in words:
             if word in stopwords:
-               if word == 'under' or word == 'less':
+               if word in ['under','less','the','it']:
                   buf.append(word)
             elif word not in stopwords:
                   buf.append(word)
@@ -235,10 +235,10 @@ class BanterThinker:
 #           print words
            words = self.convert_neglist(words)
 #           print words
-#           words = self.check_stopwords(words)
-#	   print words
+           words = self.check_stopwords(words)
+#	    print words
            words = self.check_endword(words)
-#	   print words
+#	    print words
            query = ' '.join(words)
         self.set_query(query)
 
@@ -284,15 +284,15 @@ class BanterThinker:
                 missing = missing[1:]
 		print "Missing words = \"" + missing + "\"" 
    	        self.set_missed(missing)
-                print self.get_missed()
+#                print self.get_missed()
 		print "Query: " + query
                 words = query.split()
-	        print words
-                print missing.split()
+#	        print words
+#                print missing.split()
                 for word in missing.split():
                     if word in words:
                        words.remove(word)
-		print words
+#		print words
                 subquery = ' '.join(words)
 		print "Subquery: " + subquery
 	        if subquery != None and len(subquery) > 0:
@@ -313,6 +313,8 @@ class BanterThinker:
             if not isinstance(temp, (list, tuple)):  # hack so this is always a list
                 temp = [temp]
             temp = [s for s in temp if s]
+
+#            print temp
 
             datastore_request = {}
             for field in temp:
@@ -478,6 +480,8 @@ if __name__ == "__main__":
     query = "Mac"
     query = "Red"
     query = "What time does the stanford store close?"
+    query = "where to find some old fashioned purple comfort shoes with long white buckle"
+    query = "where to find some old fashioned purple comfort shoes with with long white buckel"
     limits = 3
     datastore_request = nlu.parse_query(dict, query, test, limits)
     nlu.submit_query()
@@ -573,9 +577,9 @@ if __name__ == "__main__":
     query = "Yellow between $70 and $100 size 12"
     query = "Yellow from $70 to $100 size 12"
     query = "Yellow shirt from $70 to $100 size 12"
-    limits = 3
-    datastore_request = nlu.parse_query(dict, query, test, limits)
-    nlu.submit_query()
+#    limits = 3
+#    datastore_request = nlu.parse_query(dict, query, test, limits)
+#    nlu.submit_query()
 
 # RHS20160827
     query = "I need a dress"
