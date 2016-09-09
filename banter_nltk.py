@@ -412,6 +412,7 @@ class BanterThinker:
         '''
 
         answerData = self.datastore.search(self.datastore_request)
+#	answerData = {}
         if 'ERROR_CODE' in answerData:
             return answerData
             # FVZ is this right? search may not find anything or have an error, do we reset the query

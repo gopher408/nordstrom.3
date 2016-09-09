@@ -19,12 +19,12 @@ class BanterConfig:
         self.grammer_file = grammer_file
 
     def get_grammer_file(self):
-        print 'BanterConfig.grammer_file:' + os.path.join(self.path, self.grammer_file)
+#        print 'BanterConfig.grammer_file:' + os.path.join(self.path, self.grammer_file)
         return os.path.join(self.path, self.grammer_file)
 
     def get_words_file(self, file_name):
         self.file_name = file_name
 
     def get_words_file(self):
-        print 'BanterConfig.get_words_file:' + os.path.join(self.path, 'words.txt')
+#        print 'BanterConfig.get_words_file:' + os.path.join(self.path, 'words.txt')
         return os.path.join(self.path, 'words.txt')

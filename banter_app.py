@@ -190,14 +190,10 @@ class BanterClient:
         hist_tones = self.get_tones()
         num_tones = len(hist_tones)
         in_text = self.in_text[-1]
-        newdata = {}
+
         resultData = self.nlu.parse_query(self.localdict, in_text, False, limits)
-
-        if 'prior_subject' in resultData and resultData['prior_subject'] == '1':
-           newdata = resultData
-
-#        for item in resultData:
-#            print item, resultData[item]
+#        print "\n***** Original resultData *****\n"
+#        print resultData           
 
         if 'action' in resultData and 'reset' == resultData['action']:
             self.reset(self.name)
@@ -209,176 +205,186 @@ class BanterClient:
             self.reset(self.name)
             return resultData
 
+        prev_topic = self.get_topic()
+#        print "PREV_TOPIC: " + prev_topic
+	topic = ''
+
         # this handles switching between goods or retrieving previous goods
         if 'action' in resultData:
-	   if resultData['action'] == 'find store':
-              topic = 'location'
-              if topic != self.get_topic():
-                 print "Change topic: Resetting to " + topic.upper()
-                 if 'lost' in resultData:
-                    del newdata['lost']
-              self.set_topic(topic)
-           elif resultData['action'] == 'ask time':
-              topic = 'datetime'
-              if topic != self.get_topic():
-                 print "Change topic: Resetting to " + topic.upper()
-                 if 'lost' in resultData:
-                    del newdata['lost']
-              self.set_topic(topic)
+	    if resultData['action'] == 'find store':
+               topic = 'location'
+               if topic != prev_topic:
+                  print "Change topic: Resetting to " + topic.upper()
+                  if 'lost' in resultData:
+                      del resultData['lost']
+                  self.set_topic(topic)
+            elif resultData['action'] == 'ask time':
+               topic = 'datetime'
+               if topic != prev_topic:
+                  print "Change topic: Resetting to " + topic.upper()
+                  if 'lost' in resultData:
+                      del resultData['lost']
+                  self.set_topic(topic)
+            else:
+	       if 'goods' in resultData:
+            	  goods = resultData['goods'].split(':')
+                  if len(goods) > 0:
+                     topic = goods[0]
+                     if topic != prev_topic:
+                        print "Change topic: Resetting to " + topic.upper()
+                        if 'lost' in resultData:
+                            del resultData['lost']
+                        self.set_topic(topic)
+               elif 'rownum>limits' in resultData['action'].split(','):
+                  resultData['action'] = 'rownum>limits'
+                  topic = prev_topic
+                  print "Inherit topic: " + topic.upper()
+                  if 'lost' in resultData:
+                      del resultData['lost']
+                  self.set_topic(topic)
 
         elif 'datetime' in resultData or ('descriptor' in resultData and resultData['descriptor'] in ['open', 'close']):
-           topic = 'datetime' 
-           if topic != self.get_topic():
-              print "Change topic: Resetting to " + topic.upper()
-	      if 'lost' in resultData:
-                 del newdata['lost']
-           self.set_topic(topic)
-
-           if 'action' not in resultData:
-#              resultData['action'] = 'ask time'
-              newdata['action'] = 'ask time'
+            topic = 'datetime' 
+            if topic != prev_topic:
+               print "Change topic: Resetting to " + topic.upper()
+	       if 'lost' in resultData:
+                   del resultData['lost']
+               self.set_topic(topic)
+            if 'action' not in resultData:
+               resultData['action'] = 'ask time'
 
         elif 'location' in resultData:
-           topic = 'location'
-           if topic != self.get_topic():
-              print "Change topic: Resetting to " + topic.upper()
-              if 'lost' in resultData:
-                 del newdata['lost']
-           self.set_topic(topic)
+            topic = 'location'
+            if topic != prev_topic:
+               print "Change topic: Resetting to " + topic.upper()
+               if 'lost' in resultData:
+                   del resultData['lost']
+               self.set_topic(topic)
+            if 'action' not in resultData:
+               resultData['action'] = 'find store'
 
         elif 'goods' in resultData:
-           goods = resultData['goods'].split(':')
-           if len(goods) > 0:
-              topic = goods[0]
-              if topic != self.get_topic():
-                 print "Change topic: Resetting to " + topic.upper()
-                 if 'lost' in resultData:
-                    del newdata['lost']
-              self.set_topic(topic)
+            goods = resultData['goods'].split(':')
+            if len(goods) > 0:
+               topic = goods[0]
+               print "GOODS: " + topic
+               if topic != prev_topic:
+                  print "Change topic: Resetting to " + topic.upper()
+                  if 'lost' in resultData:
+                      del resultData['lost']
+                  self.set_topic(topic)
+
+        elif 'color' in resultData:
+            topic = prev_topic
+            print "Inherit topic: " + topic.upper()
+            if 'lost' in resultData:
+                del resultData['lost']
+            self.set_topic(topic)
+
+	elif 'size' in resultData:
+            topic = prev_topic
+            print "Inherit topic: " + topic.upper()
+            if 'lost' in resultData:
+                del resultData['lost']
+            self.set_topic(topic)
+
+	elif 'brand' in resultData:
+            topic = prev_topic
+            print "Inherit topic: " + topic.upper()
+            if 'lost' in resultData:
+                del resultData['lost']
+            self.set_topic(topic)
+
+        elif 'descriptor' in resultData:
+            topic = prev_topic
+            print "Inherit topic: " + topic.upper()
+            if 'lost' in resultData:
+                del resultData['lost']
+            self.set_topic(topic)
 
         else:
+            if 'lost' in resultData:
+                del resultData['lost']
+            topic = "others"
+            self.set_topic(topic)
+
+#        print "TOPIC: " + topic
+
+        prev_tone = hist_tones[num_tones-2]
+#        print "PREV_TONE: " + prev_tone
+
+        if (topic == prev_topic) or 'prior_subject' in resultData and resultData['prior_subject'] == '1':
             prev_data = self.get_data()['data']
-	    print "***** prev_data *****\n"
-	    print prev_data
-            if len(prev_data) > 0:
-                if 'goods' in prev_data:
-                   for key,value in prev_data.iteritems():
-                       if key in prev_data and key not in resultData:
-#                          resultData[key] = value
-                          newdata[key] = value
-                   goods = prev_data['goods'].split(':')
-		   print goods
-                   if len(goods) > 0:
-                      topic = goods[0]
-                      print "Inherit topic: Retrieving from " + topic.upper()
-                      self.set_topic(topic)
-                elif 'location' in prev_data:
-                   for key,value in prev_data.iteritems():
-                       if key in prev_data and key not in resultData:
-#                          resultData[key] = value
-                          newdata[key] = value
-                   topic = 'location'
-                   print "Inherit topic: Retrieving from " + topic.upper()
-                   self.set_topic(topic)
-                elif 'datetime' in prev_data:
-                   for key,value in prev_data.iteritems():
-                       if key in prev_data and key not in resultData:
-#                          resultData[key] = value
-                          newdata[key] = value
-                   topic = 'datetime'
-                   print "Inherit topic: Retrieving from " + topic.upper()
-                   self.set_topic(topic)
-     		else:
-                   self.set_topic('others')
-            else:
-                self.set_topic('others')
-#                tmp = "TOPIC: " + self.get_topic()
-#	         print tmp
 
-        if 'ERROR_CODE' in resultData:
-            newdata.update(self.get_data()['data'])
-            newdata.update(resultData)
+            if 'ERROR_CODE' in resultData:
+                del resultData['ERROR_CODE']
 
-            if resultData['ERROR_CODE'] == 'DID_NOT_UNDERSTAND':
-                if in_text in basic_colors:
-                   newdata['color'] = in_text
+            if 'state' not in resultData:
+               resultData['state'] = str(self.get_state())
 
-            if 'ERROR_CODE' in newdata:
-                del newdata['ERROR_CODE']
-            if 'action' in newdata:
-                newdata['action'] += ',' + states[3] #'answer'
-                if 'find store' in newdata['action'] and not 'location' in newdata:
-                   newdata['location'] = in_text
-            else:
-                newdata['action'] = states[3] #'answer'
+            if in_text in basic_colors:
+               resultData['color'] = in_text
 
-        elif num_tones > 1:
-            prev_tone = hist_tones[num_tones-2]
-            # 	print "PREV_TONE: " + prev_tone
             if prev_tone == states[2] and curr_tone == states[2]:
-                if len(self.get_data()['data']) > 0:
-                   newdata.update(self.get_data()['data'])
-                if len(resultData) > 0:
-                   newdata.update(resultData)
-                if 'ERROR_CODE' in newdata:
-                    del newdata['ERROR_CODE']
-
-                if in_text in basic_colors:
-                    newdata['color'] = in_text
-
-                if 'action' in newdata:
-                    newdata['action'] += ',' + states[2] # 'question'
-                    if 'find store' in newdata['action'] and not 'location' in newdata:
-                        newdata['location'] = in_text
-                else:
-                    newdata['action'] = states[2] #'question'
+               if 'action' in resultData:
+                   if 'find store' in resultData['action'] and not 'location' in resultData:
+                       resultData['location'] = in_text
+               else:
+                   resultData['action'] = states[2] #'question'
 
             elif prev_tone == states[2] and curr_tone == states[3]:
-                newdata.update(self.get_data()['data'])
-                newdata.update(resultData)
-                if 'ERROR_CODE' in newdata:
-                    del newdata['ERROR_CODE']
-                    if 'action' in newdata:
-                        newdata['action'] += ',' + states[3] #'answer'
-                        if 'find store' in newdata['action'] and not 'location' in newdata:
-                            newdata['location'] = in_text
-                    else:
-                        newdata['action'] = states[3] #'answer'
+               if 'action' in resultData:
+                   if 'find store' in resultData['action'] and not 'location' in resultData:
+                       resultData['location'] = in_text
+               else:
+                   resultData['action'] = states[3] #'answer'
 
-            else:
-                if 'prior_subject' in resultData and resultData['prior_subject'] == '1':
-                    print '-----------------'
-                    print self.data
-                    print '-----------------'
-                    # build data from existing conversation
-                    newdata.update(self.get_data()['data'])
-                    newdata.update(resultData)
-                    if 'ERROR_CODE' in newdata:
-                        del newdata['ERROR_CODE']
-
-                    if 'state' not in resultData:
-#                       resultData['state'] = str(self.get_state())
-                       newdata['state'] = str(self.get_state())
+            newdata = {}
+            newdata.update(self.get_data()['data'])
+            newdata.update(resultData)
+	    resultData = newdata
 
         else:
-            # fix state passing, either returned so the object is stateless or not
-            if 'prior_subject' in resultData and resultData['prior_subject'] == '1':
-                print '-----------------'
-                print self.data
-                print '-----------------'
-                #build data from existing conversation
-                newdata.update(self.get_data()['data'])
-                newdata.update(resultData)
+            if 'ERROR_CODE' in resultData:
+                del resultData['ERROR_CODE']
 
-                if 'ERROR_CODE' in newdata:
-                    del newdata['ERROR_CODE']
+            if 'state' not in resultData:
+               resultData['state'] = str(self.get_state())
 
-		if 'state' not in resultData:
-#                    resultData['state'] = str(self.get_state())
-                    newdata['state'] = str(self.get_state())
+            if in_text in basic_colors:
+               resultData['color'] = in_text
 
-        if 'prior_subject' in resultData and resultData['prior_subject'] == '1': 
-           self.nlu.set_datastore_request(newdata) 
+            if prev_tone == states[2] and curr_tone == states[2]:
+               if 'action' in resultData:
+                   if 'find store' in resultData['action'] and not 'location' in resultData:
+                       resultData['location'] = in_text
+               else:
+                   resultData['action'] = states[2] #'question'
+
+            elif prev_tone == states[2] and curr_tone == states[3]:
+               if 'action' in resultData:
+                   if 'find store' in resultData['action'] and not 'location' in resultData:
+                       resultData['location'] = in_text
+               else:
+                   resultData['action'] = states[3] #'answer'
+
+        if 'action' not in resultData or resultData['action'] in (states[2], states[3]):
+           if 'datetime' in resultData and resultData['datetime'] != None:
+              resultData['action'] = 'ask time'
+           elif 'location' in resultData and resultData['location'] != None:
+              resultData['action'] = 'find store' 
+           elif 'goods' in resultData and resultData['goods'] != None:
+              resultData['action'] = 'find' 
+           elif 'color' in resultData and resultData['color'] != None:
+              resultData['action'] = 'find' 
+           elif 'color' in resultData and resultData['size'] != None:
+              resultData['action'] = 'find' 
+           elif 'color' in resultData and resultData['brand'] != None:
+              resultData['action'] = 'find' 
+           elif 'descriptor' in resultData and resultData['descriptor'] != None:
+              resultData['action'] = 'find' 
+
+        self.nlu.set_datastore_request(resultData) 
 
         resultData = self.nlu.submit_query()
 
@@ -677,8 +683,11 @@ class BanterClient:
 
         self.sendResponse(record)
 
+### RHS: to be mopre precise
     def question(self, text=None):
         record = self.set_data({'text': text}, states[2])
+        self.set_topic("question")
+        record['topic'] = "question"
         self.sendResponse(record)
 
     def respondWithAnswer(self, data=None):
@@ -847,6 +856,8 @@ class BanterClient:
 
     def answer(self, text=None):
         record = self.set_data({'text': text}, states[3])
+        self.set_topic("answer")
+        record['topic'] = "answer"
         self.sendResponse(record)
 
     def thank_you(self, text=None):
@@ -907,14 +918,6 @@ if __name__ == '__main__':
     name_2 = "Joe"
     customer = BanterClient(name_2,grammarConfig, Echo(), None)
 
-    ##### case 0: product information 
-    print "\n ***** CASE 0 *****\n"
-    text = "Yellow polo from $70 to $100 size 12"
-   
-    customer.question(text)
-
-    agent.converse(text)
-
     ##### case 1: store locations
     print "\n ***** CASE 1 *****\n"
     text = "Is there a store near me?"
@@ -937,7 +940,7 @@ if __name__ == '__main__':
     # agent will respond given dummyDataStore.setReturnError above agent.respondWithQuestion({'text': text})
 
     # customer replies the location
-    text = "Palo Alto"
+#    text = "Palo Alto"
 #    text = "94301"
     text = "SF"
 #    text = "San Francisco Central"
@@ -1193,7 +1196,20 @@ if __name__ == '__main__':
 
 #    exit()
 
-    ##### case 13: customer sends a "thank you" message
+    ##### case 13: product information
+    print "\n ***** CASE 13 *****\n"
+    text = "Yellow polo from $70 to $100 size 12"
+#    text = "Yellow polo under $100 size 12"
+    customer.question(text)
+
+    # agent sends the product information of customer's products
+    # text = 'Below is the information for you.'
+    # product info should be attached to the end of text
+    agent.converse(text)
+
+#    exit()
+
+    ##### case 14: customer sends a "thank you" message
     print "\n ***** CASE 13 *****\n"
     text = "Thank you"
     customer.thank_you(text)
@@ -1203,7 +1219,7 @@ if __name__ == '__main__':
 
 #    exit()
 
-    ##### case 14: # automatically close the conversation on both sides
+    ##### case 15: # automatically close the conversation on both sides
     print "\n ***** CASE 14 *****\n"
     #text = "Bye, bye now"
     text = ""

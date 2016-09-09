@@ -734,7 +734,7 @@ class AWSDataStore(DataStore):
 
             if len(queryData['price']) == 2:
                 locost = re.findall(r'\d+', queryData['price'][0])
-                hicost = re.findall(r'\d+', queryData['price'][2])
+                hicost = re.findall(r'\d+', queryData['price'][1])
 
                 should['bool']['should'].append({"range": {"orginalPrice": {"gte": Decimal(locost[0])}}})
                 should['bool']['should'].append({"range": {"salePrice": {"gte": Decimal(locost[0])}}})
