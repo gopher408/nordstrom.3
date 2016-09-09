@@ -192,7 +192,9 @@ class BanterClient:
         in_text = self.in_text[-1]
         newdata = {}
         resultData = self.nlu.parse_query(self.localdict, in_text, False, limits)
-        newdata = resultData
+
+        if 'prior_subject' in resultData and resultData['prior_subject'] == '1':
+           newdata = resultData
 
 #        for item in resultData:
 #            print item, resultData[item]
@@ -343,7 +345,7 @@ class BanterClient:
                         newdata['action'] = states[3] #'answer'
 
             else:
-                if 'prior_subject' in resultData and resultData['prior_subject'] == 1:
+                if 'prior_subject' in resultData and resultData['prior_subject'] == '1':
                     print '-----------------'
                     print self.data
                     print '-----------------'
@@ -359,7 +361,7 @@ class BanterClient:
 
         else:
             # fix state passing, either returned so the object is stateless or not
-            if 'prior_subject' in resultData and resultData['prior_subject'] == 1:
+            if 'prior_subject' in resultData and resultData['prior_subject'] == '1':
                 print '-----------------'
                 print self.data
                 print '-----------------'
@@ -374,12 +376,13 @@ class BanterClient:
 #                    resultData['state'] = str(self.get_state())
                     newdata['state'] = str(self.get_state())
 
-       
-        self.nlu.set_datastore_request(newdata) 
+        if 'prior_subject' in resultData and resultData['prior_subject'] == '1': 
+           self.nlu.set_datastore_request(newdata) 
+
         resultData = self.nlu.submit_query()
 
-#        print "\n***** resultData *****\n"
-#        print resultData
+        print "\n***** resultData *****\n"
+        print resultData
 
         return resultData
 
@@ -1013,7 +1016,7 @@ if __name__ == '__main__':
     # product info should be attached to the end of text
     agent.converse(text)
 
-#    exit()
+    exit()
 
     ##### case 4: to test bad sentences
     print "\n ***** CASE 4 *****\n"
