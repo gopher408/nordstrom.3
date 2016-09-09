@@ -266,7 +266,8 @@ class BanterClient:
                        if key in prev_data and key not in resultData:
 #                          resultData[key] = value
                           newdata[key] = value
-                   goods = resultData['goods'].split(':')
+                   goods = prev_data['goods'].split(':')
+		   print goods
                    if len(goods) > 0:
                       topic = goods[0]
                       print "Inherit topic: Retrieving from " + topic.upper()
@@ -1016,7 +1017,7 @@ if __name__ == '__main__':
     # product info should be attached to the end of text
     agent.converse(text)
 
-    exit()
+#    exit()
 
     ##### case 4: to test bad sentences
     print "\n ***** CASE 4 *****\n"
