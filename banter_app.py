@@ -120,7 +120,7 @@ class BanterClient:
         self.in_text = []
         self.MesgId = 0
 #        self.qa_iter = 0
-        self.topics = []
+        self.topics = ["closing"]
 
     def evaluate(self, text):
         tokenizer = MWETokenizer()
@@ -520,6 +520,8 @@ class BanterClient:
         #        else:
         #            self.set_data(text,states[1])
         record = self.set_data({'text': text}, states[1])
+        self.set_topic("opening")
+        record['topic'] = "opening"
         if (text):
             self.sendResponse(record)
 
@@ -854,6 +856,8 @@ class BanterClient:
                 ext = ''
             tet = text + ext
         record = self.set_data({'text': text}, states[4])
+        self.set_topic("thanks")
+        record['topic'] = "thanks"
         self.sendResponse(record)
 
     def close(self, comm_dump=None, text=None):
@@ -865,6 +869,8 @@ class BanterClient:
                 text = "Goodbye"
 
         record = self.set_data({'text': text}, states[0])
+        self.set_topic("closing")
+        record['topic'] = "closing"
         self.sendResponse(record)
         # self.dump_log(comm_dump)
         # print 'Reset status ...'
