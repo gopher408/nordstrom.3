@@ -38,8 +38,9 @@ def updatePartnerFile(partner):
             strList.sort(key=lambda s: len(s), reverse=True)
 
             for tmp in strList:
-                newStr += "JJ[SEM = 'color=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
-                words.append(tmp)
+                if tmp and len(tmp) >= 3 and not tmp in ds.globalBlackList:
+                    newStr += "JJ[SEM = 'color=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
+                    words.append(tmp)
 
             content = content.replace(oldStr[0][0] + oldStr[0][1] + oldStr[0][2], oldStr[0][0] + newStr + oldStr[0][2])
 
@@ -53,8 +54,9 @@ def updatePartnerFile(partner):
             strList.sort(key=lambda s: len(s), reverse=True)
 
             for tmp in strList:
-                newStr += "JJ[SEM = 'style=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
-                words.append(tmp)
+                if tmp and len(tmp) >= 3 and not tmp in ds.globalBlackList:
+                    newStr += "JJ[SEM = 'style=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
+                    words.append(tmp)
 
             content = content.replace(oldStr[0][0] + oldStr[0][1] + oldStr[0][2], oldStr[0][0] + newStr + oldStr[0][2])
 
@@ -68,8 +70,9 @@ def updatePartnerFile(partner):
             strList.sort(key=lambda s: len(s), reverse=True)
 
             for tmp in strList:
-                newStr += "N[SEM = 'goods=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
-                words.append(tmp)
+                if tmp and len(tmp) >= 3 and not tmp in ds.globalBlackList:
+                    newStr += "N[SEM = 'goods=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
+                    words.append(tmp)
 
             content = content.replace(oldStr[0][0] + oldStr[0][1] + oldStr[0][2],
                                       oldStr[0][0] + newStr + oldStr[0][2])
@@ -83,8 +86,9 @@ def updatePartnerFile(partner):
             strList.sort(key=lambda s: len(s), reverse=True)
 
             for tmp in strList:
-                newStr += "N[SEM = 'brand=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
-                words.append(tmp)
+                if tmp and len(tmp) >= 3 and not tmp in ds.globalBlackList:
+                    newStr += "N[SEM = 'brand=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
+                    words.append(tmp)
 
             content = content.replace(oldStr[0][0] + oldStr[0][1] + oldStr[0][2],
                                       oldStr[0][0] + newStr + oldStr[0][2])
@@ -98,8 +102,9 @@ def updatePartnerFile(partner):
             strList.sort(key=lambda s: len(s), reverse=True)
 
             for tmp in strList:
-                newStr += "N[SEM = 'size=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
-                words.append(tmp)
+                if tmp and len(tmp) >= 3 and not tmp in ds.globalBlackList:
+                    newStr += "N[SEM = 'size=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
+                    words.append(tmp)
 
             content = content.replace(oldStr[0][0] + oldStr[0][1] + oldStr[0][2],
                                       oldStr[0][0] + newStr + oldStr[0][2])
@@ -114,8 +119,9 @@ def updatePartnerFile(partner):
             strList.sort(key=lambda s: len(s), reverse=True)
 
             for tmp in strList:
-                newStr += "N[SEM = 'descriptor=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
-                words.append(tmp)
+                if tmp and len(tmp) >= 3 and not tmp in ds.globalBlackList:
+                    newStr += "N[SEM = 'descriptor=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
+                    words.append(tmp)
 
             content = content.replace(oldStr[0][0] + oldStr[0][1] + oldStr[0][2],
                                       oldStr[0][0] + newStr + oldStr[0][2])
@@ -130,13 +136,15 @@ def updatePartnerFile(partner):
             strList.sort(key=lambda s: len(s), reverse=True)
 
             for tmp in strList:
-                newStr += "N[SEM = 'location=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
-                words.append(tmp)
-
-                if partner in tmp.lower():
-                    tmp = tmp.replace(partner, '').strip()
+                if tmp and len(tmp) >= 3 and not tmp in ds.globalBlackList:
                     newStr += "N[SEM = 'location=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
                     words.append(tmp)
+
+                    if partner in tmp.lower():
+                        tmp = tmp.replace(partner, '').strip()
+                        if tmp and  len(tmp) >= 3 and not tmp in ds.globalBlackList:
+                            newStr += "N[SEM = 'location=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
+                            words.append(tmp)
 
             content = content.replace(oldStr[0][0] + oldStr[0][1] + oldStr[0][2],
                                       oldStr[0][0] + newStr + oldStr[0][2])
@@ -151,14 +159,15 @@ def updatePartnerFile(partner):
             strList.sort(key=lambda s: len(s), reverse=True)
 
             for tmp in strList:
-                newStr += "N[SEM = 'location=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
-                words.append(tmp)
+                if tmp and len(tmp) >= 3 and not tmp in ds.globalBlackList:
+                    newStr += "N[SEM = 'location=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
+                    words.append(tmp)
 
                 # remove partner
                 if partner in tmp.lower():
                     tmp = tmp.replace(partner, '').strip()
                     if not tmp in words:
-                        if tmp:
+                        if tmp and len(tmp) >= 3 and not tmp in ds.globalBlackList:
                             newStr += "N[SEM = 'location=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
                             words.append(tmp)
 
@@ -191,7 +200,7 @@ def updatePartnerFile(partner):
                 tmp = re.sub(r' at .*$', '', tmp).strip()
 
                 if not tmp in words:
-                    if tmp:
+                    if tmp and len(tmp) >= 3 and not tmp in ds.globalBlackList:
                         newStr += "N[SEM = 'location=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
                         words.append(tmp)
 
@@ -209,8 +218,9 @@ def updatePartnerFile(partner):
             strList.sort(key=lambda s: len(s), reverse=True)
 
             for tmp in strList:
-                newStr += "N[SEM = 'zipcode=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
-                words.append(tmp)
+                if tmp and len(tmp) >= 3 and not tmp in ds.globalBlackList:
+                    newStr += "N[SEM = 'zipcode=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
+                    words.append(tmp)
 
             content = content.replace(oldStr[0][0] + oldStr[0][1] + oldStr[0][2],
                                       oldStr[0][0] + newStr + oldStr[0][2])

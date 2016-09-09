@@ -1369,7 +1369,6 @@ madison east
 turnersville
 mesa central
 south center
-south
 west seattle
 crystal lake
 lake stevens
