@@ -198,9 +198,9 @@ class AWSDataStore(DataStore):
                                 'skirts', 'skirt', 'tshirts', 'tshirt', 't shirts', 't shirt'
                                 'new', 'dress', 'shoe', 'shirt', 'boot', 'laptop', 'and', 'shop',
                                 'the', 'con', 'com', 'largeselected', 'near', 'what', 'need', 'looking', 'want',
-                                "pink", 'little black', 'littl white',
-                                "black", 'little', 'big',
-                                "blue", "the", "in", "south", 'shops',
+                                "pink", 'little black', 'little white',
+                                "black", 'little', 'big', 'at',
+                                "blue", "in", "south", 'shops',
                                 "brown",
                                 "green",
                                 "orange",

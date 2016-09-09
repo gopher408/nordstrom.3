@@ -1888,7 +1888,6 @@ freehold raceway mall
 freehold raceway
 nordstrom shops at merrick park
 shops at merrick park
-shops
 nordstrom saint louis galleria
 saint louis galleria
 saint louis
@@ -2063,7 +2062,6 @@ nordstrom valley fair
 valley fair
 nordstrom southcenter
 southcenter
-south
 nordstrom northshore
 northshore
 nordstrom menlo park
@@ -2092,7 +2090,6 @@ nordstrom ala moana
 ala moana
 nordstrom aventura
 nordstrom the mall
-the
 nordstrom spokane
 nordstrom mayfair
 mayfair
