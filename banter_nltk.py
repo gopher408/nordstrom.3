@@ -204,7 +204,7 @@ class BanterThinker:
         buf = []
         for word in words:
             if word in stopwords:
-               if word in ['under','less','the','it']:
+               if word in ['under','less','more,'the','that','it']:
                   buf.append(word)
             elif word not in stopwords:
                   buf.append(word)
