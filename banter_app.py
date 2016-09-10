@@ -77,7 +77,7 @@ global_dict = ["ralph lauren", "polo shirt", "6 inch", "old fashion", "old fashi
         "expected to", "liked to", "needed to", "wanted to", "what time", "how much", "how late", "how early", "how soon","how long",
         "lunch time", "lunch break", "lunch hour", "lunch hours", "short sleeve", "long sleeve", "how expensive", "how costly", "how cheap"]
 
-wh_tones = ["what", "when", "where", "which", "hHow", "why", "what_time", "how_much", "how_late"]
+wh_tones = ["what", "when", "where", "which", "how", "why", "what_time", "how_much", "how_late"]
 
 yesno_tones = ["Do", "Does", "Did", "Am", "Are", "Is", "Was", "Were", "Will", "Would", "Shall", "Should",
                "Don't", "Doesn't", "Didn't", "Ain't", "Aren't", "Wasn't", "Weren't", "Won't", "Wouldn't", "Shan't", "Shouldn't"]
@@ -1167,7 +1167,9 @@ if __name__ == '__main__':
 #    text = "Do you have that in size 4"
     customer.question(text)
 
-    # when message is received by agent
+    # agent sends the product information of customer's products
+    # text = 'Below is the information for you.'
+    # product info should be attached to the end of text
     agent.converse(text)
 
 #    exit()
@@ -1181,7 +1183,9 @@ if __name__ == '__main__':
 #    text = "I am looking for a gucci handbag"
     customer.question(text)
 
-    # when message is received by agent
+    # agent sends the product information of customer's products
+    # text = 'Below is the information for you.'
+    # product info should be attached to the end of text
     agent.converse(text)
 
 #    exit()
@@ -1206,8 +1210,9 @@ if __name__ == '__main__':
 
     ##### case 13: product information
     print "\n ***** CASE 13 *****\n"
-    text = "Yellow polo from $70 to $100 size 12"
-#    text = "Yellow polo under $100 size 12"
+#    text = "Yellow polo under $100 size S"
+#    text = "Yellow polo from $70 to $100 size L"
+    text = "Blue polo from $20 to $50 size XL"
     customer.question(text)
 
     # agent sends the product information of customer's products

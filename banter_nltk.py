@@ -182,11 +182,13 @@ class BanterThinker:
         for word in words:
             lword = word
             if lword in abbr:
-               #        print lword, abbr[lword]
+#        	print lword, abbr[lword]
                for term in abbr[lword].split():
                    buf.append(term.lower())
             else:
+               word = word.lower().split("'")[0]
                buf.append(word.lower())
+
         return buf
 
     def convert_neglist(self,words):
@@ -485,6 +487,7 @@ if __name__ == "__main__":
     query = "What time does the stanford store close?"
     query = "where to find some old fashioned purple comfort shoes with long white buckle"
     query = "where to find some old fashioned purple comfort shoes with with long white buckel"
+    query = "What are Stanford's hours?"
     limits = 3
     datastore_request = nlu.parse_query(dict, query, test, limits)
     nlu.submit_query()
