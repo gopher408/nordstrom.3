@@ -1159,7 +1159,9 @@ if __name__ == '__main__':
 #    text = "Do you have that in size 4"
     customer.question(text)
 
-    # when message is received by agent
+    # agent sends the product information of customer's products
+    # text = 'Below is the information for you.'
+    # product info should be attached to the end of text
     agent.converse(text)
 
 #    exit()
@@ -1173,7 +1175,9 @@ if __name__ == '__main__':
 #    text = "I am looking for a gucci handbag"
     customer.question(text)
 
-    # when message is received by agent
+    # agent sends the product information of customer's products
+    # text = 'Below is the information for you.'
+    # product info should be attached to the end of text
     agent.converse(text)
 
 #    exit()
@@ -1198,8 +1202,9 @@ if __name__ == '__main__':
 
     ##### case 13: product information
     print "\n ***** CASE 13 *****\n"
-    text = "Yellow polo from $70 to $100 size 12"
-#    text = "Yellow polo under $100 size 12"
+#    text = "Yellow polo under $100 size S"
+#    text = "Yellow polo from $70 to $100 size L"
+    text = "Blue polo from $20 to $50 size XL"
     customer.question(text)
 
     # agent sends the product information of customer's products
