@@ -77,7 +77,7 @@ global_dict = ["ralph lauren", "polo shirt", "6 inch", "old fashion", "old fashi
         "expected to", "liked to", "needed to", "wanted to", "what time", "how much", "how late", "how early", "how soon","how long",
         "lunch time", "lunch break", "lunch hour", "lunch hours", "short sleeve", "long sleeve", "how expensive", "how costly", "how cheap"]
 
-wh_tones = ["what", "when", "where", "which", "hHow", "why", "what_time", "how_much", "how_late"]
+wh_tones = ["what", "when", "where", "which", "how", "why", "what_time", "how_much", "how_late"]
 
 yesno_tones = ["Do", "Does", "Did", "Am", "Are", "Is", "Was", "Were", "Will", "Would", "Shall", "Should",
                "Don't", "Doesn't", "Didn't", "Ain't", "Aren't", "Wasn't", "Weren't", "Won't", "Wouldn't", "Shan't", "Shouldn't"]
