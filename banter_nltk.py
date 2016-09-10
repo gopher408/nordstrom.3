@@ -9,7 +9,7 @@ Created on Wed Aug 03 11:01:25 2016
 @author: raysun
 """
 
-ITimport banter_nltk as banter
+import banter_nltk as banter
 
 import numbers, os, re, sys
 
