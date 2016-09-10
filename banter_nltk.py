@@ -19,8 +19,6 @@ sys.path.insert(0, file_folder)
 
 import math, nltk, os, random
 
-nltk.download("stopwords")
-
 from nltk.tokenize import MWETokenizer
 
 from config.banter_config import BanterConfig
