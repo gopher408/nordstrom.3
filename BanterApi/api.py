@@ -24,6 +24,8 @@ def send(request):
         partner = 'nordstrom'
         if 'partner' in request.data:
             partner = request.data['partner']
+            if partner.startswith('nordstrom'):
+                partner = 'nordstrom'
         name = 'Nordstom'
         if partner == 'nordstrom':
             name = 'Nordstom'
