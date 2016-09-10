@@ -9,7 +9,7 @@ Created on Wed Aug 03 11:01:25 2016
 @author: raysun
 """
 
-import banter_nltk as banter
+ITimport banter_nltk as banter
 
 import numbers, os, re, sys
 
@@ -18,6 +18,8 @@ sys.path.insert(0, os.path.join(file_folder, '..'))
 sys.path.insert(0, file_folder)
 
 import math, nltk, os, random
+
+nltk.download("stopwords")
 
 from nltk.tokenize import MWETokenizer
 
