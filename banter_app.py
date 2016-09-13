@@ -543,7 +543,14 @@ class BanterClient:
                 self.set_response_text(intent, "Thank you for contacting "+self.banter_config.get_partner().title()+". Where are you located?")
                 record = self.set_data(intent, states[2])
             elif intent['ERROR_CODE'] == 'LOCATION_LOOKUP_FAILED':
-                self.set_response_text(intent, "We could not find a store in '" + intent['location'] + "'. Can you please try again?")
+                sentence = "We could not find a store"
+                if 'location' in intent:
+                    sentence += " in '" + str(intent['location']) + "'"
+                elif 'lost' in intent:
+                    sentence += " in '" + ','.join(intent['lost']) + "'"
+                sentence +=  ". Can you please try again?"
+
+                self.set_response_text(intent, sentence)
                 record = self.set_data(intent, states[2])
             elif intent['ERROR_CODE'] == 'DID_NOT_UNDERSTAND':
                 self.set_response_text(intent, "Sorry, I don't understand your question. Can you please try to rephrase it?")
@@ -740,9 +747,31 @@ class BanterClient:
 
             elif data['datastore_action'] == 'location_question':
                 datetimefield = data['datetime'] if 'datetime' in data else 'today'
+                datetimefield = datetimefield.split(',')
+                if 'evening' in datetimefield or 'afternoon' in datetimefield or 'night'  in datetimefield:
+                    data['descriptor'] = 'close'
+                elif 'morning' in datetimefield:
+                    data['descriptor'] = 'close'
+
+                if datetimefield[0] == 'time' or datetimefield[0] == 'datetime' or datetimefield[0] == 'date':
+                    datetimefield = datetimefield[1] if len(datetimefield)  > 1 else 'today'
+                else:
+                    datetimefield = datetimefield[0]
+                #datetimefield = datetimefield[len(datetimefield) - 1]
 
                 # hack for time passed in
                 if datetimefield == 'time':
+                    datetimefield = 'today'
+                elif datetimefield == 'now':
+                    datetimefield = 'today'
+                    data['descriptor'] = 'hours'
+                elif datetimefield == 'night':
+                    datetimefield = 'tonight'
+                elif datetimefield == 'afternoon':
+                    datetimefield = 'tonight'
+                elif datetimefield == 'evening':
+                    datetimefield = 'tonight'
+                elif datetimefield == 'morning':
                     datetimefield = 'today'
 
                 daytolookup = datetime.date.today().weekday()
@@ -793,19 +822,19 @@ class BanterClient:
                 parts = dayhours.split('-')
                 if 'action' in data and 'how late' in data['action']:
                     self.set_response_text(data, data['datastore_location']['name'] + ' ' + data['datastore_location']['city'] + ' is open until ' + parts[1] + ' ' + (
-                        data['datetime'] if 'datetime' in data and data['datetime'] != 'time' else 'tonight') + '.')
+                        datetimefield if 'datetime' in data else 'tonight') + '.')
 
                 elif 'descriptor' in data and 'close' in data['descriptor']:
                     # Nordstrom Stanford Shopping Center closes at 9:00 PM tonight.
                     self.set_response_text(data, data['datastore_location']['name'] + ' ' + data['datastore_location']['city'] + ' closes at ' + parts[1] + ' ' + (
-                            data['datetime'] if 'datetime' in data and data['datetime'] != 'time' else 'tonight') + '.')
+                        datetimefield if 'datetime' in data else 'tonight') + '.')
                 elif 'descriptor' in data and 'open' in data['descriptor']:
                     # Nordstrom Stanford Shopping Center opens at 9:00 AM tomorrow.
                     self.set_response_text(data, data['datastore_location']['name'] + ' ' + data['datastore_location']['city'] + ' opens at ' + parts[0] + ' ' + (
-                            data['datetime'] if 'datetime' in data and data['datetime'] != 'time' else 'today') + '.')
+                        datetimefield if 'datetime' in data else 'today') + '.')
                 else:
                     self.set_response_text(data, data['datastore_location']['name'] + ' ' + data['datastore_location']['city'] + ' is open from ' + parts[0] + ' until ' + parts[1] + ' ' + (
-                            data['datetime'] if 'datetime' in data and data['datetime'] != 'time' else 'today') + '.')
+                        datetimefield if 'datetime' in data else 'today') + '.')
 
                 record = self.set_data(data, states[3])
             elif data['datastore_action'] == 'product_question':

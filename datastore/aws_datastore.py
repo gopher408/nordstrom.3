@@ -13,7 +13,7 @@ import json
 import re
 from decimal import *
 
-
+B = False
 
 tds = TypeDeserializer()
 
@@ -316,13 +316,15 @@ class AWSDataStore(DataStore):
 
         # use zipcode or location
         location = None
+        guess = False
 
         if not location and 'location' in queryData and queryData['location']:
             location = queryData['location']
         if not location and 'zipcode' in queryData and queryData['zipcode']:
             location = queryData['zipcode']
         if not location and 'lost' in queryData and queryData['lost']:
-            location = queryData['lost'][0]
+            guess = True
+            location = ' '.join(queryData['lost'])
 
         if not location:
             print "AWSDataStore.locationSearch - NO_LOCATION:" + json.dumps(queryData)
@@ -336,16 +338,27 @@ class AWSDataStore(DataStore):
         try:
             geoPoint = googleplaces.geocode_location(location)
         except GooglePlacesError:
-            print "AWSDataStore.locationSearch - LOCATION_LOOKUP_FAILED:" + location
-            queryData['ERROR_CODE'] = 'LOCATION_LOOKUP_FAILED'
+            if guess:
+                print "AWSDataStore.locationSearch - NO_LOCATION:" + json.dumps(queryData)
+                queryData['ERROR_CODE'] = 'NO_LOCATION'
+            else:
+                print "AWSDataStore.locationSearch - LOCATION_LOOKUP_FAILED:" + location
+                queryData['ERROR_CODE'] = 'LOCATION_LOOKUP_FAILED'
             return queryData
 
         if not geoPoint:
-            print "AWSDataStore.locationSearch - LOCATION_LOOKUP_FAILED:" + location
-            queryData['ERROR_CODE'] = 'LOCATION_LOOKUP_FAILED'
+            if guess:
+                print "AWSDataStore.locationSearch - NO_LOCATION:" + json.dumps(queryData)
+                queryData['ERROR_CODE'] = 'NO_LOCATION'
+            else:
+                print "AWSDataStore.locationSearch - LOCATION_LOOKUP_FAILED:" + location
+                queryData['ERROR_CODE'] = 'LOCATION_LOOKUP_FAILED'
             return queryData
 
         print "AWSDataStore.locationSearch - using location" + str(geoPoint)
+
+        if guess:
+            queryData['location'] = location
 
         es = Elasticsearch(
             hosts=[{'host': self.searchHost, 'port': 443}],
