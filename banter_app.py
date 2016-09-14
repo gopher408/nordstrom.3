@@ -1220,7 +1220,7 @@ if __name__ == '__main__':
     ##### case 9: customer likes to see some more products
     print "\n***** CASE 9 *****\n"
 
-    text = "I am looking for golden sandals size 4"
+    text = "I am looking for gold sandals size 4"
     customer.question(text)
 
     # agent sends the information of customer's products
