@@ -24,9 +24,11 @@ def send(request):
         partner = 'nordstrom'
         if 'partner' in request.data:
             partner = request.data['partner']
-        name = 'Nordstom'
+            if partner.startswith('nordstrom'):
+                partner = 'nordstrom'
+        name = 'Nordstrom'
         if partner == 'nordstrom':
-            name = 'Nordstom'
+            name = 'Nordstrom'
         elif partner == 'target':
             name = 'Target'
         elif partner == 'bestbuy':

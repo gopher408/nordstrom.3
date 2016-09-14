@@ -13,7 +13,7 @@ import json
 import re
 from decimal import *
 
-
+B = False
 
 tds = TypeDeserializer()
 
@@ -223,6 +223,8 @@ class AWSDataStore(DataStore):
                 return self.locationQuestion(queryData)
             elif 'find store' in queryData['action']:
                 return self.locationSearch(queryData)
+            elif 'find' in queryData['action'] and 'store' in queryData:
+                return self.locationSearch(queryData)
             elif 'need' in queryData['action'] or  \
                 'look' in queryData['action'] or   \
                 'need' in queryData['action'] or   \
@@ -316,13 +318,15 @@ class AWSDataStore(DataStore):
 
         # use zipcode or location
         location = None
+        guess = False
 
         if not location and 'location' in queryData and queryData['location']:
             location = queryData['location']
         if not location and 'zipcode' in queryData and queryData['zipcode']:
             location = queryData['zipcode']
         if not location and 'lost' in queryData and queryData['lost']:
-            location = queryData['lost'][0]
+            guess = True
+            location = ' '.join(queryData['lost'])
 
         if not location:
             print "AWSDataStore.locationSearch - NO_LOCATION:" + json.dumps(queryData)
@@ -336,16 +340,27 @@ class AWSDataStore(DataStore):
         try:
             geoPoint = googleplaces.geocode_location(location)
         except GooglePlacesError:
-            print "AWSDataStore.locationSearch - LOCATION_LOOKUP_FAILED:" + location
-            queryData['ERROR_CODE'] = 'LOCATION_LOOKUP_FAILED'
+            if guess:
+                print "AWSDataStore.locationSearch - NO_LOCATION:" + json.dumps(queryData)
+                queryData['ERROR_CODE'] = 'NO_LOCATION'
+            else:
+                print "AWSDataStore.locationSearch - LOCATION_LOOKUP_FAILED:" + location
+                queryData['ERROR_CODE'] = 'LOCATION_LOOKUP_FAILED'
             return queryData
 
         if not geoPoint:
-            print "AWSDataStore.locationSearch - LOCATION_LOOKUP_FAILED:" + location
-            queryData['ERROR_CODE'] = 'LOCATION_LOOKUP_FAILED'
+            if guess:
+                print "AWSDataStore.locationSearch - NO_LOCATION:" + json.dumps(queryData)
+                queryData['ERROR_CODE'] = 'NO_LOCATION'
+            else:
+                print "AWSDataStore.locationSearch - LOCATION_LOOKUP_FAILED:" + location
+                queryData['ERROR_CODE'] = 'LOCATION_LOOKUP_FAILED'
             return queryData
 
         print "AWSDataStore.locationSearch - using location" + str(geoPoint)
+
+        if guess:
+            queryData['location'] = location
 
         es = Elasticsearch(
             hosts=[{'host': self.searchHost, 'port': 443}],
@@ -536,6 +551,7 @@ class AWSDataStore(DataStore):
             'sizes': tds.deserialize(response['Item']['sizes']) if 'sizes' in response['Item'] else None,
             'thumbnails': tds.deserialize(response['Item']['thumbnails']) if 'thumbnails' in response['Item'] else None
         }
+        
 
         return queryData
 
@@ -766,7 +782,7 @@ class AWSDataStore(DataStore):
                     should['bool']['should'].append({"range": {"salePrice": {"lte": Decimal(cost[0])}}})
                     should['bool']['should'].append({"range": {"regularPrice": {"lte": Decimal(cost[0])}}})
 
-            queryFields['bool']['should'].append(should)
+            queryFields['bool']['must'].append(should)
 
         if 'lost' in queryData:
             for field in queryData['lost']:
@@ -860,7 +876,7 @@ class AWSDataStore(DataStore):
 
             queryFields['bool']['must'].append(should)
 
-        # fvz other fields, in bd and passed
+        # fvz other fields, in db and passed
 
         print 'AWSDataStore search query:' + str({"query": queryFields})
         res = es.search(index='products', body={"query": queryFields, "size": 12})
