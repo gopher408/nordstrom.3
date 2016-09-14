@@ -6,8 +6,9 @@ class Echo(Communication):
         pass
 
     def send(self, record):
+        print("***** MESSAGE *****\n")
         print(str(record['speaker']) + ' > ' + (str(record['message']) if 'message' in record and record['message'] else ''))
-
+        print("\n***** MESSAGE LOG *****\n")
         print(str(record['speaker']) + ' > ' + json.dumps(record))
         return None
 
