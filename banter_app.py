@@ -1173,7 +1173,7 @@ if __name__ == '__main__':
     ##### case 9: customer likes to see some more products
     print "\n***** CASE 9 *****\n"
 
-    text = "I am looking for black boots size 6"
+    text = "I am looking for golden sandals size 4"
     customer.question(text)
 
     # agent sends the information of customer's products
@@ -1196,11 +1196,11 @@ if __name__ == '__main__':
 
     ##### case 10: customer asks specific question
     print "\n***** CASE 10 *****\n"
-    text = "How much is the first one"
+    text = "Do you have that in stock"
+#    text = "How much is the first one"
 #    text = "How much for the gucci"
 #    text = "Do you have the second one in a large"
 #    text = "Do you have the gucci in size 4"
-#    text = "Do you have that in stock"
 #    text = "Do you have it in black"
 #    text = "Do you have that in a large"
 #    text = "Do you have that in red"
@@ -1217,12 +1217,13 @@ if __name__ == '__main__':
 
     ##### case 11: customer has additional questions (more sophisticated)
     print "\n***** CASE 11 *****\n"
-    text = "Do you have that in red?"
+#    text = "Do you have the leather one?"
+#    text = "Do you have that in red?"
 #    text = "Can I see more?"
 #    text = "Can I see the gucci?"
 #    text = "Can I see the leather boot"
 #    text = "I am looking for the ralph lauren white polo shirt"
-#    text = "I am looking for a gucci handbag"
+    text = "I am also looking for a gucci handbag"
     customer.question(text)
 
     # agent sends the product information of customer's products
