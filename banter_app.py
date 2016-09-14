@@ -196,8 +196,6 @@ class BanterClient:
         hist_tones = self.get_tones()
         num_tones = len(hist_tones)
         in_text = self.in_text[-1]
-
-        prevQuery = self.get_query()
         resultData = self.nlu.parse_query(self.localdict, in_text, False, limits)
 
         if 'action' in resultData and 'reset' == resultData['action']:
