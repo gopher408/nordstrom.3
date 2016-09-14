@@ -32,11 +32,12 @@ JP[SEM=(?jj + ?pp)] -> JJ[SEM=?jj] PP[SEM=?pp]
 JP[SEM=(?jj + ?jp)] -> JJ[SEM=?jj] JP[SEM=?jp]
 JP[SEM=?jj] -> JJ[SEM=?jj]
 JP[SEM=(?np1 + ?np2)] -> NP[SEM=?np1] NP[SEM=?np2]
-NP[SEM=(?det + ?np)] -> Det[SEM=?det] NP[SEM=?np]
+NP[SEM=(?det + ?jp)] -> Det[SEM=?det] JP[SEM=?jp]
 NP[SEM=(?det + ?rb)] -> Det[SEM=?det] RB[SEM=?rb]
 NP[SEM=(?det + ?pp)] -> Det[SEM=?det] PP[SEM=?pp]
 NP[SEM=(?np + ?pp)] -> NP[SEM=?np] PP[SEM=?pp]
 NP[SEM=(?jj + ?jp)] -> JJ[SEM=?jj] JP[SEM=?jp]
+NP[SEM=(?jj + ?np)] -> JJ[SEM=?jj] NP[SEM=?np]
 NP[SEM=(?t + ?jp)] -> T[SEM=?t] JP[SEM=?jp]
 NP[SEM=(?np1 + ?np2)] -> NP[SEM=?np1] NP[SEM=?np2]
 NP[SEM=(?np1 + ?cc + ?np2)] -> NP[SEM=?np1] CC[SEM=?cc] NP[SEM=?np2]
@@ -1571,9 +1572,9 @@ N[SEM = 'size="8 5"'] -> '8_5'
 N[SEM = 'size="2 m"'] -> '2_m'
 N[SEM = 'size="6 l"'] -> '6_l'
 # SIZE STRING END
-JJ[SEM='size="large"']  -> 'l' | 'large'
-JJ[SEM='size="medium"'] -> 'm' | 'medium' | 'medium-sized'
-JJ[SEM='size="small"']  -> 's' | 'small'
+JJ[SEM='size="large"']  -> 'l' | 'large' 
+JJ[SEM='size="medium"'] -> 'm' | 'medium' | 'medium-sized' 
+JJ[SEM='size="small"']  -> 's' | 'small' 
 JJ[SEM='size="x-large"'] -> 'xl' | 'x-large'
 JJ[SEM='size="xx-large"'] -> 'xxl' | 'xx-large'
 JJ[SEM='size="xxx-large"'] -> 'xxxl' | 'xxx-large'

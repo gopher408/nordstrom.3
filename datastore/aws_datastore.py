@@ -223,6 +223,8 @@ class AWSDataStore(DataStore):
                 return self.locationQuestion(queryData)
             elif 'find store' in queryData['action']:
                 return self.locationSearch(queryData)
+            elif 'find' in queryData['action'] and 'store' in queryData:
+                return self.locationSearch(queryData)
             elif 'need' in queryData['action'] or  \
                 'look' in queryData['action'] or   \
                 'need' in queryData['action'] or   \
@@ -549,6 +551,7 @@ class AWSDataStore(DataStore):
             'sizes': tds.deserialize(response['Item']['sizes']) if 'sizes' in response['Item'] else None,
             'thumbnails': tds.deserialize(response['Item']['thumbnails']) if 'thumbnails' in response['Item'] else None
         }
+        
 
         return queryData
 
@@ -779,7 +782,7 @@ class AWSDataStore(DataStore):
                     should['bool']['should'].append({"range": {"salePrice": {"lte": Decimal(cost[0])}}})
                     should['bool']['should'].append({"range": {"regularPrice": {"lte": Decimal(cost[0])}}})
 
-            queryFields['bool']['should'].append(should)
+            queryFields['bool']['must'].append(should)
 
         if 'lost' in queryData:
             for field in queryData['lost']:
@@ -873,7 +876,7 @@ class AWSDataStore(DataStore):
 
             queryFields['bool']['must'].append(should)
 
-        # fvz other fields, in bd and passed
+        # fvz other fields, in db and passed
 
         print 'AWSDataStore search query:' + str({"query": queryFields})
         res = es.search(index='products', body={"query": queryFields, "size": 12})

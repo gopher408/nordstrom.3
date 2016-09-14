@@ -365,17 +365,17 @@ if __name__ == "__main__":
 # RHS20160827
     query = "Is there a store near me?"
     query = "Is there a store nearby"
-    query = "Is there a Nordstrom in San Francisco?"
-    query = "Where is the nearst Nordstrom in San Francisco?"
+    query = "Is there a Nordstrom in San Francisco?" #FVZ
+    query = "Where is the nearest Nordstrom in San Francisco?"
     query = "Is there any Nordstrom close to San Francisco?"
     query = "Find a Nordstrom store nearby"
     query = "Help to find the closest Nordstrom"
     query = "Help find the closest Nordstrom"
     query = "Can you help me find a Nordstrom in San Francisco"
     query = "Can you help me find a the nearest Nordstrom in San Francisco"  # test bogus word
-    query = "Can I get the direction to a Nordstrom in San Francisco"
+    query = "Can I get the direction to a Nordstrom in San Francisco" #FVZ
     query = "Is there any Nordstrom store close to San Francisco?"
-    query = "How can I get to a Nordstrom in San Francisco"
+    query = "How can I get to a Nordstrom in San Francisco" #FVZ
     query = "How can I find a Nordstrom in San Francisco"
     query = "What is the closest Nordstrom in San Francisco"
     query = "What is the nearest Nordstrom store in Palo Alto?"
@@ -391,7 +391,7 @@ if __name__ == "__main__":
 #    nlu.submit_query() 
 
     query = "What time is Richfield open until?"
-    query = "What time is Alska open until?"
+    query = "What time is Alaska open until?"
     query = "When is Alska open until?"
     query = "what are Richfield's hours today"
     query = "When will Stanford store be close tonight?"
@@ -418,14 +418,14 @@ if __name__ == "__main__":
 
 # RHS20160828
     query = "What time does it open tomorrow?"
-    query = "What time do you open?"
+    query = "What time do you open?" # fvz ask location flow after this does not work
     query = "What time do you close tonight?" # to solve "close to" and "close tonight"
     query = "What time does Palo Alto store open tomorrow?"
     query = "Do you open Monday night?"
     query = "Is Nordstrom Palo Alto open now?"
     query = "How late do you open Tuesday night?"
-    query = "Do you open right now?"
-    query = "Does Palo Alto store open now?"
+    query = "Are you open right now?"
+    query = "Is the Palo Alto store open now?"
     query = "Is there a store open now?"
     query = "Hours?"
     query = "What time is Palo Alto Nordstrom open until?"
