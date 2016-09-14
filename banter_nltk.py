@@ -449,9 +449,10 @@ if __name__ == "__main__":
     query = "Hello"
     query = "Help!"
     query = "No"
-    limits = 3
-    datastore_request = nlu.parse_query(dict, query, test, limits)
-    nlu.submit_query()
+    query = "Yes"
+#    limits = 3
+#    datastore_request = nlu.parse_query(dict, query, test, limits)
+#    nlu.submit_query()
 
     query = "What time does it open tomorrow?"
     query = "I’d like to buy a new dress"
@@ -493,10 +494,10 @@ if __name__ == "__main__":
     query = "I am looking for an oxford short sleeve polo"
     query = "I am looking for tall dress boots like the first one."
     query = "I am looking for more tall dress boots like the third one."
-    query = "I need new white shoes"
-    query = "Size 12 in black"
-    query = "What is the price?" 
-    query = "How expensive is that boot?" 
+#    query = "I need new white shoes"
+#    query = "Size 12 in black"
+#    query = "What is the price?" 
+#    query = "How expensive is that boot?" 
 #    query = "How much is the first one?" 
 #    query = "Between $70 and $100"
 #    query = "Above $100"
@@ -510,8 +511,8 @@ if __name__ == "__main__":
 #    query = "Yellow from $70 to $100 size 12"
 #    query = "Yellow shirt from $70 to $100 size 12"
 #    limits = 3
-#    datastore_request = nlu.parse_query(dict, query, test, limits)
-#    nlu.submit_query()
+    datastore_request = nlu.parse_query(dict, query, test, limits)
+    nlu.submit_query()
 
 # RHS20160827
     query = "I need a dress"

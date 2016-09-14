@@ -237,8 +237,10 @@ class BanterClient:
                             if 'lost' in resultData:
                                 del resultData['lost']
                             self.set_topic(topic)
-                elif 'rownum>limits' in resultData['action'].split(','):
-                    resultData['action'] = 'rownum>limits'
+#                elif 'rownum>limits' in resultData['action'].split(','):
+                elif 'more' in resultData['action'].split(','):
+#                    resultData['action'] = 'rownum>limits'
+                    resultData['action'] = 'more'
                     topic = prev_topic
                     print "Inherit topic: " + topic.upper()
                     if 'lost' in resultData:
