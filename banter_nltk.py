@@ -26,31 +26,6 @@ from communication.echo import Echo
 from datastore.dummy_datastore import DummyDataStore
 import json
 
-shortwords = {'lol': 'laugh out loud', 'btw': 'between', 'cuz': 'cause', 'ttyl': 'talk to you later',
-              'brb': 'be right back', 'l8r': 'later', 'ur': 'your', 'omg': 'oh, my god', 'kinda': 'kind of',
-              'plz': 'please', 'da': 'the', 'idk': "I don't know", 'Np': 'No problem'}
-
-emoticons = {':-)': 'happy', ':-(': 'sad', ';-)': 'wink', '\o/': 'Yay, yay', ':-o': 'surprise', ':-w': 'waiting',
-             ':-D': 'big grin'}
-
-basic_colors = [
-            "black",
-            "blue",
-            "brown",
-            "cyan",
-            "gray",
-            "green",
-            "indigo",
-            "magenta",
-            "orange",
-            "pink",
-            "purple",
-            "red",
-            "violet",
-            "white",
-            "yellow",
-        ]
-
 global_dict = ["ralph lauren", "polo shirt", "6 inch", "old fashion", "old fashioned", "in stock", "zip code", "palo alto", "walnut creek",
         "san bruno", "san mateo", "santa clara", "san jose","san francisco","hewlett packard","microsoft surtfaces","microsoft surface",
         "home theaters", "home theater","remote controllers","remote controller","digital cameras","digital camera", "broadway plaza",
@@ -161,7 +136,6 @@ class BanterThinker:
                   buf = '_'.join(items)
                   text = text.replace(terms, buf)
         self.set_query(text)
-        #        print self.get_query()
         return self.get_query()
 
     def evaluate(self, text):
@@ -180,7 +154,6 @@ class BanterThinker:
         for word in words:
             lword = word
             if lword in abbr:
-#        	print lword, abbr[lword]
                for term in abbr[lword].split():
                    buf.append(term.lower())
             else:
@@ -194,7 +167,6 @@ class BanterThinker:
         for word in words:
             lword = word.lower()
             if lword in neglist:
-                #       print lword, neglist[lword]
                for term in neglist[lword].split():
                    buf.append(term.lower())
             else:
@@ -228,19 +200,12 @@ class BanterThinker:
         if test == True:
            # tokenization of message
            message = self.normalize_message(message)
-#           print message
            message = self.lookup(message,dict)
-#           print message 
            words = self.evaluate(message)
-#           print words
            words = self.convert_abbr(words)
-#           print words
            words = self.convert_neglist(words)
-#           print words
            words = self.check_stopwords(words)
-#	    print words
            words = self.check_endword(words)
-#	    print words
            query = ' '.join(words)
         self.set_query(query)
 
@@ -248,10 +213,8 @@ class BanterThinker:
     def parse_query(self, dict, query, test=False, limits=None):
 	lost = []
         self.reset_datastore_request()
-        print 'INPUT:' + query
         self.performNLP(dict,query,test) 
         query = self.get_query()
-#	print query
         cp = nltk.load_parser(self.banter_config.get_grammer_file())
         try:
             if len(query.split()) == 0:
@@ -267,46 +230,31 @@ class BanterThinker:
             self.set_datastore_request('')
             return {'ERROR_CODE': 'DID_NOT_UNDERSTAND'}
         try:
-            print "Grammar not matched!"
             warning = ''.join(self.trees)
-#            print warning
             if "Error" in warning:
                 words = warning.split('words:')[1:]
-#                print words
                 if words[-1][-1] in exts:
                     words[-1] = words[-1][:-1]
-#		print words
                 missing = ''.join(words)
                 missing = missing.replace('u\"','')
                 missing = missing.replace('u\'', '')
                 missing = missing.replace(',',  '')
-#                missing = missing.replace('".', '')
                 missing = missing.replace('"', '')
                 missing = missing.replace('\'', '')
                 missing = missing[1:]
-		print "Missing words = \"" + missing + "\"" 
    	        self.set_missed(missing)
-#                print self.get_missed()
-		print "Query: " + query
                 words = query.split()
-#	        print words
-#                print missing.split()
                 for word in missing.split():
                     if word in words:
                        words.remove(word)
-#		print words
                 subquery = ' '.join(words)
-		print "Subquery: " + subquery
 	        if subquery != None and len(subquery) > 0:
                    self.parse_query(dict, subquery, test, limits)
                 else:
                    self.datastore_request['lost'] = lost 
                    self.set_datastore_request(self.datastore_request)
-#                   self.reset_missed()
                    return self.get_datastore_request()
         except:
-#            print self.trees[0]
-            print "Grammar matched!"
             temp = None
             try:
                 temp = self.trees[0].label()['SEM']
@@ -315,8 +263,6 @@ class BanterThinker:
             if not isinstance(temp, (list, tuple)):  # hack so this is always a list
                 temp = [temp]
             temp = [s for s in temp if s]
-
-#            print temp
 
             datastore_request = {}
             for field in temp:
@@ -348,15 +294,12 @@ class BanterThinker:
                      datastore_request['action'] = 'ask time'
 	    elif 'datetime' not in datastore_request: 
                if 'store' and 'location' in datastore_request:
-#                  if 'action' not in datastore_request and 'datetime' not in datastore_request:
                   if 'action' not in datastore_request:
                      datastore_request['action'] = 'find store'
             if limits != None:
                 if isinstance(limits, int):
                     datastore_request['LIMIT'] = limits
-                    #           print 'INTENT: ' + datastore_request
             self.set_datastore_request(datastore_request)
-#            print 'INTENT: ' + str(self.get_datastore_request())
             return self.get_datastore_request()
 
         return self.get_datastore_request()
@@ -364,7 +307,7 @@ class BanterThinker:
 
     # This code has to be modified to current settings
     def submit_query(self):
-#        assert self.get_datastore_request(),  'we should have datastore_request data'
+        print '\n***** SEARCH  *****\n'
         if self.datastore_request == None or len(self.get_datastore_request()) == 0:
            print "Datastore_request: " + str(self.get_datastore_request())
            return {'ERROR_CODE': 'DID_NOT_UNDERSTAND'}
@@ -374,20 +317,11 @@ class BanterThinker:
            price = []
            for word in lost:
 	       word = word.replace(',','')
-#               if word[0] in ['>','<']:
-#                  nword = word[1:len(word)]
-#                  if re.search("^\${0,1}\d+(\.\d*){0,1}",nword) != None:
-#                     if is_number(nword):
-#                        nword = '$' + nword
-#                     nword = word[0] + nword
-#                     price.append(nword) 
-#	       else:
                if re.search("^\${0,1}\d+(\.\d*){0,1}",word) != None:
-	    	  if is_number(word):
+	          if is_number(word):
                      price.append('$'+word) 
-                  else:
-		     price.append(word) 
-
+                  elif is_number(word[1:len(word)]):
+	   	     price.append(word) 
            if len(price) > 0:
               self.datastore_request['price'] = price
 	      lost1 = []
@@ -405,25 +339,15 @@ class BanterThinker:
               lost = self.get_missed()
 
         self.datastore_request['lost'] = lost
-
-        '''  RAY is this right, do we want to check if this was an answer or a question
-             the test case for this is 'is there a store near me?  answer: alaska
-        if len(lost) > 0:
-            self.reset_missed()
-            return {'ERROR_CODE': 'UNKNOWN_WORDS', 'lost': lost}
-        '''
-
+   
         answerData = self.datastore.search(self.datastore_request)
-#	answerData = {}
         if 'ERROR_CODE' in answerData:
             return answerData
-            # FVZ is this right? search may not find anything or have an error, do we reset the query
 
         self.reset_missed()
         self.reset_query()
         self.reset_answerData()
 
-        # print 'OUTPUT (NLG): ' + self.get_answer()
         self.set_answerData(answerData)
         return self.get_answerData()
 
@@ -486,10 +410,11 @@ if __name__ == "__main__":
     query = "where to find some old fashioned purple comfort shoes with long white buckle"
     query = "where to find some old fashioned purple comfort shoes with with long white buckel"
     query = "What are Stanford's hours?"
-    limits = 3
-    datastore_request = nlu.parse_query(dict, query, test, limits)
-    nlu.submit_query()
-    exit()
+#    limits = 3
+#    datastore_request = nlu.parse_query(dict, query, test, limits)
+#    nlu.submit_query()
+
+#    exit()
 
 # RHS20160828
     query = "What time does it open tomorrow?"
@@ -571,19 +496,21 @@ if __name__ == "__main__":
     query = "Size 12 in black"
     query = "What is the price?" 
     query = "How expensive is that boot?" 
-    query = "Between $70 and $100"
-    query = "Above $100"
-    query = "Below $100"
-    query = "Less than $100"
-    query = "Yellow Between $70 and $100"
-    query = "Yellow under $70"
-    query = "Yellow under $70 size 12"
-    query = "Yellow between $70 and $100 size 12"
-    query = "Yellow from $70 to $100 size 12"
-    query = "Yellow shirt from $70 to $100 size 12"
-#    limits = 3
-#    datastore_request = nlu.parse_query(dict, query, test, limits)
-#    nlu.submit_query()
+#    query = "How much is the first one?" 
+#    query = "Between $70 and $100"
+#    query = "Above $100"
+#    query = "Below $100"
+#    query = "Under $100"
+#    query = "Less than $100"
+#    query = "Yellow Between $70 and $100"
+#    query = "Yellow under $70"
+#    query = "Yellow under $70 size 12"
+#    query = "Yellow between $70 and $100 size 12"
+#    query = "Yellow from $70 to $100 size 12"
+#    query = "Yellow shirt from $70 to $100 size 12"
+    limits = 3
+    datastore_request = nlu.parse_query(dict, query, test, limits)
+    nlu.submit_query()
 
 # RHS20160827
     query = "I need a dress"

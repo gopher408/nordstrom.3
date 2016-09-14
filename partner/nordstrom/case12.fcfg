@@ -47,6 +47,7 @@ NP[SEM=?det] -> Det[SEM=?det]
 NP[SEM=?tp] -> TP[SEM=?tp]
 NP[SEM=?pp] -> PP[SEM=?pp]
 NP[SEM=?jj] -> JJ[SEM=?jj]
+NP[SEM=?rb] -> RB[SEM=?rb]
 NP[SEM=(?np + ?tp)] -> NP[SEM=np] TP[SEM=?tp]
 PP[SEM=(?p + ?np)] -> P[SEM=?p] NP[SEM=?np]
 PP[SEM=(?p + ?jp)] -> P[SEM=?p] JP[SEM=?jp]
@@ -1570,9 +1571,9 @@ N[SEM = 'size="8 5"'] -> '8_5'
 N[SEM = 'size="2 m"'] -> '2_m'
 N[SEM = 'size="6 l"'] -> '6_l'
 # SIZE STRING END
-JJ[SEM='size="large"'] -> 'large'
-JJ[SEM='size="medium"'] -> 'medium' | 'medium-sized'
-JJ[SEM='size="small"'] -> 'small'
+JJ[SEM='size="large"']  -> 'l' | 'large'
+JJ[SEM='size="medium"'] -> 'm' | 'medium' | 'medium-sized'
+JJ[SEM='size="small"']  -> 's' | 'small'
 JJ[SEM='size="x-large"'] -> 'xl' | 'x-large'
 JJ[SEM='size="xx-large"'] -> 'xxl' | 'xx-large'
 JJ[SEM='size="xxx-large"'] -> 'xxxl' | 'xxx-large'
