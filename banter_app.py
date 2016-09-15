@@ -197,6 +197,8 @@ class BanterClient:
         num_tones = len(hist_tones)
         in_text = self.in_text[-1]
         resultData = self.nlu.parse_query(self.localdict, in_text, False, limits)
+	print " Original resultData: " 
+        print resultData
 
         if 'action' in resultData and 'reset' == resultData['action']:
             self.reset(self.name)
@@ -237,9 +239,7 @@ class BanterClient:
                             if 'lost' in resultData:
                                 del resultData['lost']
                             self.set_topic(topic)
-#                elif 'rownum>limits' in resultData['action'].split(','):
                 elif 'more' in resultData['action'].split(','):
-#                    resultData['action'] = 'rownum>limits'
                     resultData['action'] = 'more'
                     topic = prev_topic
                     print "Inherit topic: " + topic.upper()
@@ -408,6 +408,7 @@ class BanterClient:
         self.set_query(resultData)
         print self.get_query()
         return self.get_query()
+
 
     def converse(self, message, limits=None):
         self.preprocess(message)
@@ -1254,15 +1255,15 @@ if __name__ == '__main__':
 #    text = "Do you have that in scarlet"
 #    text = "Do you have that in size 4"
     text = "How much is the first one"
-    #    text = "How much for the gucci"
-    #    text = "Do you have the second one in a large"
-    #    text = "Do you have the gucci in size 4"
-    #    text = "Do you have that in stock"
-    #    text = "Do you have it in black"
-    #    text = "Do you have that in a large"
-    #    text = "Do you have that in red"
-    #    text = "Do you have that in scarlet"
-    #    text = "Do you have that in size 4"
+#    text = "How much for the gucci"
+#    text = "Do you have the second one in a large"
+#    text = "Do you have the gucci in size 4"
+#    text = "Do you have that in stock"
+#    text = "Do you have it in black"
+#    text = "Do you have that in a large"
+#    text = "Do you have that in red"
+#    text = "Do you have that in scarlet"
+#    text = "Do you have that in size 4"
     customer.question(text)
 
     # agent sends the product information of customer's products
