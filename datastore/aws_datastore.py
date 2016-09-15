@@ -551,7 +551,6 @@ class AWSDataStore(DataStore):
             'sizes': tds.deserialize(response['Item']['sizes']) if 'sizes' in response['Item'] else None,
             'thumbnails': tds.deserialize(response['Item']['thumbnails']) if 'thumbnails' in response['Item'] else None
         }
-        
 
         return queryData
 

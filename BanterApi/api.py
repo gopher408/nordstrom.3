@@ -38,7 +38,7 @@ def send(request):
         cacheClients[conversationID] = {
             'grammerConfig': grammerConfig,
             'partner': partner,
-            'agent': BanterClient(name, grammerConfig, Chat(), AWSDataStore(partner, None)),
+                    'agent': BanterClient(name, grammerConfig, Chat(), AWSDataStore(partner, None)),
             'customer': BanterClient(None, grammerConfig, Chat(), None)
         }
 
@@ -121,12 +121,16 @@ def sendSMS(request):
     if not cacheClients.has_key(conversationID):
         #+18312268370
         #+18312268372
+        #+16506678411
 
         partner = 'nordstrom'
         name = "Nordstrom"
         if smsto == '+18312268372':
             partner = 'nordstrom'
             name = 'Nordstrom'
+        elif smsto == '+16506678411':
+            partner = 'bestbuy'
+            name = 'Best Buy'
         else:
             partner = 'nordstrom'
             name = 'Nordstrom'
