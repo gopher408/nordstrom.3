@@ -196,9 +196,9 @@ class BanterClient:
         hist_tones = self.get_tones()
         num_tones = len(hist_tones)
         in_text = self.in_text[-1]
-
-        prevQuery = self.get_query()
         resultData = self.nlu.parse_query(self.localdict, in_text, False, limits)
+	print " Original resultData: " 
+        print resultData
 
         if 'action' in resultData and 'reset' == resultData['action']:
             self.reset(self.name)
@@ -239,8 +239,8 @@ class BanterClient:
                             if 'lost' in resultData:
                                 del resultData['lost']
                             self.set_topic(topic)
-                elif 'rownum>limits' in resultData['action'].split(','):
-                    resultData['action'] = 'rownum>limits'
+                elif 'more' in resultData['action'].split(','):
+                    resultData['action'] = 'more'
                     topic = prev_topic
                     print "Inherit topic: " + topic.upper()
                     if 'lost' in resultData:
@@ -408,6 +408,7 @@ class BanterClient:
         self.set_query(resultData)
         print self.get_query()
         return self.get_query()
+
 
     def converse(self, message, limits=None):
         self.preprocess(message)
@@ -1209,7 +1210,7 @@ if __name__ == '__main__':
 
     # customer confirms/rejects the refined question
     text = "Yes"
-    #    text = "No"
+    text = "No"
     customer.answer(text)
 
     # agent responds to the order
@@ -1220,7 +1221,7 @@ if __name__ == '__main__':
     ##### case 9: customer likes to see some more products
     print "\n***** CASE 9 *****\n"
 
-    text = "I am looking for black boots size 6"
+    text = "I am looking for gold sandals size 4"
     customer.question(text)
 
     # agent sends the information of customer's products
@@ -1243,16 +1244,26 @@ if __name__ == '__main__':
 
     ##### case 10: customer asks specific question
     print "\n***** CASE 10 *****\n"
+    text = "Do you have that in stock"
+#    text = "How much is the first one"
+#    text = "How much for the gucci"
+#    text = "Do you have the second one in a large"
+#    text = "Do you have the gucci in size 4"
+#    text = "Do you have it in black"
+#    text = "Do you have that in a large"
+#    text = "Do you have that in red"
+#    text = "Do you have that in scarlet"
+#    text = "Do you have that in size 4"
     text = "How much is the first one"
-    #    text = "How much for the gucci"
-    #    text = "Do you have the second one in a large"
-    #    text = "Do you have the gucci in size 4"
-    #    text = "Do you have that in stock"
-    #    text = "Do you have it in black"
-    #    text = "Do you have that in a large"
-    #    text = "Do you have that in red"
-    #    text = "Do you have that in scarlet"
-    #    text = "Do you have that in size 4"
+#    text = "How much for the gucci"
+#    text = "Do you have the second one in a large"
+#    text = "Do you have the gucci in size 4"
+#    text = "Do you have that in stock"
+#    text = "Do you have it in black"
+#    text = "Do you have that in a large"
+#    text = "Do you have that in red"
+#    text = "Do you have that in scarlet"
+#    text = "Do you have that in size 4"
     customer.question(text)
 
     # agent sends the product information of customer's products
@@ -1264,6 +1275,13 @@ if __name__ == '__main__':
 
     ##### case 11: customer has additional questions (more sophisticated)
     print "\n***** CASE 11 *****\n"
+#    text = "Do you have the leather one?"
+#    text = "Do you have that in red?"
+#    text = "Can I see more?"
+#    text = "Can I see the gucci?"
+#    text = "Can I see the leather boot"
+#    text = "I am looking for the ralph lauren white polo shirt"
+    text = "I am also looking for a gucci handbag"
     text = "Do you have that in red?"
     #    text = "Can I see more?"
     #    text = "Can I see the gucci?"

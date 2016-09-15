@@ -222,25 +222,25 @@ class AWSDataStore(DataStore):
             if 'ask time' in queryData['action']:
                 return self.locationQuestion(queryData)
             elif 'find store' in queryData['action']:
-                return self.locationSearch(queryData)
+                 return self.locationSearch(queryData)
             elif 'find' in queryData['action'] and 'store' in queryData:
-                return self.locationSearch(queryData)
-            elif 'need' in queryData['action'] or  \
-                'look' in queryData['action'] or   \
-                'need' in queryData['action'] or   \
-                'find' in queryData['action'] or   \
-                'buy' in queryData['action'] or    \
-                'like' in queryData['action'] or   \
-                'want' in queryData['action']:
-                if 'rownum' in queryData and 'datastore_products' in queryData:
-                    return self.productQuestion(queryData)
-                else:
-                    return self.productSearch(queryData)
-            elif 'ask price' in queryData['action'] or  \
-                'ask color' in queryData['action'] or   \
-                'ask size' in queryData['action'] or   \
-                'ask product' in queryData['action']:
-                return self.productQuestion(queryData);
+                 return self.locationSearch(queryData)
+            elif 'need' in queryData['action'] or \
+                 'look' in queryData['action'] or \
+                 'need' in queryData['action'] or \
+                 'find' in queryData['action'] or \
+                 'buy'  in queryData['action'] or \
+                 'like' in queryData['action'] or \
+                 'want' in queryData['action']:
+                 if 'rownum' in queryData and 'datastore_products' in queryData:
+                     return self.productQuestion(queryData)
+                 else:
+                     return self.productSearch(queryData)
+            elif 'ask price' in queryData['action'] or \
+                 'ask color' in queryData['action'] or \
+                 'ask size' in queryData['action']  or \
+                 'ask product' in queryData['action']:
+                 return self.productQuestion(queryData);
 
             elif 'see descriptor' in queryData['action'] and 'descriptor' in queryData and 'business hours' in queryData['descriptor']:
                 return self.locationQuestion(queryData)
@@ -272,6 +272,7 @@ class AWSDataStore(DataStore):
             queryData['ERROR_CODE'] = 'DID_NOT_UNDERSTAND'
 
         return queryData
+
 
     def locationQuestion(self, queryData):
         print 'AWSDataStore.locationQuestion:' + str(queryData)
@@ -310,6 +311,7 @@ class AWSDataStore(DataStore):
         }
 
         return queryData
+
 
     def locationSearch(self, queryData):
         print 'AWSDataStore.locationSearch:' + str(queryData)
@@ -440,6 +442,7 @@ class AWSDataStore(DataStore):
 
         return queryData
 
+
     def findProduct(self, queryData):
         print 'AWSDataStore.findProduct' + str(queryData)
 
@@ -553,6 +556,7 @@ class AWSDataStore(DataStore):
         }
 
         return queryData
+
 
     def productSearch(self, queryData):
         print 'AWSDataStore.productSearch' + str(queryData)
@@ -901,6 +905,7 @@ class AWSDataStore(DataStore):
 
         return queryData
 
+
     def cleanData(self, str, blacklist, parseString=True):
 
         cleaned = set([])
@@ -920,6 +925,7 @@ class AWSDataStore(DataStore):
                         cleaned.add(field)
 
         return cleaned
+
 
     def getMulti(self, ids):
         print 'AWSDataStore getMulti'
@@ -970,6 +976,7 @@ class AWSDataStore(DataStore):
 
         return products
 
+
     def getColors(self, productID):
         print 'AWSDataStore getColors' + str(productID)
 
@@ -1018,6 +1025,7 @@ class AWSDataStore(DataStore):
             Item=data
         )
 
+
     def addProduct(self, partner, data):
         logging.warning('addProduct')
         logging.warning(partner)
@@ -1037,6 +1045,7 @@ class AWSDataStore(DataStore):
         response = table.put_item(
             Item=data
         )
+
 
     def getAllProductAttibutes(self):
         dynamodb = boto3.client('dynamodb', region_name='us-west-2')
@@ -1159,6 +1168,7 @@ class AWSDataStore(DataStore):
 
         return data
 
+
     def getAllLocationAttibutes(self):
         dynamodb = boto3.client('dynamodb', region_name='us-west-2')
 
@@ -1195,8 +1205,6 @@ class AWSDataStore(DataStore):
                 field = tds.deserialize(itemDB['city'])
                 data['locations'].update(self.cleanData(field, [], False))
 
-
-
         while 'LastEvaluatedKey' in response:
             response = dynamodb.scan(
                 TableName='products',
@@ -1220,6 +1228,7 @@ class AWSDataStore(DataStore):
                 data['brands'].update(self.cleanData(field, []))
 
         return data
+
 
     def normalizeName(self, name, city):
         items = []

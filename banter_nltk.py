@@ -178,7 +178,7 @@ class BanterThinker:
         buf = []
         for word in words:
             if word in stopwords:
-               if word in ['under','less','more','the','that','it']:
+               if word in ['under','less','more','the','that','it','no','nor','not']:
                   buf.append(word)
             elif word not in stopwords:
                   buf.append(word)
@@ -448,6 +448,8 @@ if __name__ == "__main__":
     query = "Hi"
     query = "Hello"
     query = "Help!"
+    query = "No"
+    query = "Yes"
 #    limits = 3
 #    datastore_request = nlu.parse_query(dict, query, test, limits)
 #    nlu.submit_query()
@@ -492,10 +494,10 @@ if __name__ == "__main__":
     query = "I am looking for an oxford short sleeve polo"
     query = "I am looking for tall dress boots like the first one."
     query = "I am looking for more tall dress boots like the third one."
-    query = "I need new white shoes"
-    query = "Size 12 in black"
-    query = "What is the price?" 
-    query = "How expensive is that boot?" 
+#    query = "I need new white shoes"
+#    query = "Size 12 in black"
+#    query = "What is the price?" 
+#    query = "How expensive is that boot?" 
 #    query = "How much is the first one?" 
 #    query = "Between $70 and $100"
 #    query = "Above $100"
@@ -508,7 +510,7 @@ if __name__ == "__main__":
 #    query = "Yellow between $70 and $100 size 12"
 #    query = "Yellow from $70 to $100 size 12"
 #    query = "Yellow shirt from $70 to $100 size 12"
-    limits = 3
+#    limits = 3
     datastore_request = nlu.parse_query(dict, query, test, limits)
     nlu.submit_query()
 
