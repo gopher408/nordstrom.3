@@ -278,6 +278,13 @@ class BanterClient:
                         del resultData['lost']
                     self.set_topic(topic)
 
+        elif 'occasion' in resultData:
+            topic = prev_topic
+            print "Inherit topic: " + topic.upper()
+            if 'lost' in resultData:
+                del resultData['lost']
+            self.set_topic(topic)
+
         elif 'color' in resultData:
             topic = prev_topic
             print "Inherit topic: " + topic.upper()
@@ -389,6 +396,8 @@ class BanterClient:
             elif 'location' in resultData and resultData['location'] != None:
                 resultData['action'] = 'find store'
             elif 'goods' in resultData and resultData['goods'] != None:
+                resultData['action'] = 'find'
+            elif 'occasion' in resultData and resultData['occasion'] != None:
                 resultData['action'] = 'find'
             elif 'color' in resultData and resultData['color'] != None:
                 resultData['action'] = 'find'
@@ -569,25 +578,112 @@ class BanterClient:
             elif intent['ERROR_CODE'] == 'TOO_MANY':
                 if 'goods' in intent and 'dress' in intent['goods']:
                     tmp = []
+                    filtermore = []
+                    pricedesc = ''
                     if 'style' in intent:
                         tmp += intent['style'].split(',')
+                    else:
+                        filtermore.append('style')
                     if 'color' in intent:
                         tmp += intent['color'].split(',')
+                    else:
+                        filtermore.append('color')
+                    if 'occasion' in intent:
+                        tmp += intent['occasion'].split(',')
+                    else:
+                        filtermore.append('occasion')
+                    if 'size' in intent:
+                        tmp.append('size '+intent['size'])
+                    else:
+                        filtermore.append('size')
+                    if 'price' in intent:
+                        (str(intent['price']) if 'price' in intent else '')
+                        if 'lost' in intent and 'under' in intent['lost']:
+                            pricedesc = 'under ' + intent['price'][len(intent['price'])-1]
 
-                    tmp = 'I can help you with that. We\'ve got a wide selection of ' + ','.join(
-                        tmp) + ' dresses. Can you help me narrow it down a bit more by specifying a color, brand, price or size?'
+                        elif 'lost' in intent and 'over' in intent['lost']:
+                            pricedesc = 'over ' + intent['price'][len(intent['price']) - 1]
+
+                        else:
+                            pricedesc = 'under ' + intent['price'][len(intent['price']) - 1]
+                    else:
+                        filtermore.append('price')
+                    if 'brand' in intent:
+                        tmp += intent['brand'].split(',')
+                    else:
+                        filtermore.append('brand')
+
+                    if len(filtermore) <= 0:
+                        filtermore.append('style')
+
+                    expandedFilterMore = ''
+                    for x in filtermore:
+                        if len(expandedFilterMore):
+                            if x == filtermore[len(filtermore)-1]:
+                                expandedFilterMore += ' or ' + x
+                            else:
+                                expandedFilterMore += ', ' + x
+                        else:
+                            expandedFilterMore +=  x
+
+
+                    tmp = 'I can help you with that. We\'ve got a wide selection of ' + ', '.join(
+                        tmp) + ' dresses'+pricedesc+'. Can you help me narrow it down a bit more by specifying a '+expandedFilterMore+'?'
                     self.set_response_text(intent, tmp.replace('  ', ' ').strip())
                     record = self.set_data(intent, states[2])
 
                 elif 'goods' in intent and 'polo' in intent['goods']:
                     tmp = []
+                    filtermore = []
+                    pricedesc = ''
                     if 'style' in intent:
                         tmp += intent['style'].split(',')
+                    else:
+                        filtermore.append('style')
                     if 'color' in intent:
                         tmp += intent['color'].split(',')
+                    else:
+                        filtermore.append('color')
+                    if 'occasion' in intent:
+                        tmp += intent['occasion'].split(',')
+                    else:
+                        pass; #filtermore.append('occasion')
+                    if 'size' in intent:
+                        tmp.append('size ' + intent['size'])
+                    else:
+                        filtermore.append('size')
+                    if 'price' in intent:
+                        (str(intent['price']) if 'price' in intent else '')
+                        if 'lost' in intent and 'under' in intent['lost']:
+                            pricedesc = ' under ' + intent['price'][len(intent['price']) - 1]
 
-                    tmp = 'I can help you with that. We\'ve got a wide selection of ' + ','.join(
-                        tmp) + ' polos. Can you help me narrow it down a bit more by specifying a color, brand, price or size?'
+                        elif 'lost' in intent and 'over' in intent['lost']:
+                            pricedesc = ' over ' + intent['price'][len(intent['price']) - 1]
+
+                        else:
+                            pricedesc = ' under ' + intent['price'][len(intent['price']) - 1]
+                    else:
+                        filtermore.append('price')
+                    if 'brand' in intent:
+                        tmp += intent['brand'].split(',')
+                    else:
+                        filtermore.append('brand')
+
+                    if len(filtermore) <= 0:
+                        filtermore.append('style')
+
+                    expandedFilterMore = ''
+                    for x in filtermore:
+                        if len(expandedFilterMore):
+                            if x == filtermore[len(filtermore) - 1]:
+                                expandedFilterMore += ' or ' + x
+                            else:
+                                expandedFilterMore += ', ' + x
+                        else:
+                            expandedFilterMore += x
+
+                    tmp = 'I can help you with that. We\'ve got a wide selection of ' + ', '.join(
+                        tmp) + ' polos'+pricedesc+'. Can you help me narrow it down a bit more by specifying a '+expandedFilterMore+'?'
                     self.set_response_text(intent, tmp.replace('  ', ' ').strip())
                     record = self.set_data(intent, states[2])
 
@@ -596,10 +692,53 @@ class BanterClient:
                                     'shoe' in intent['goods'] or 'flats' in intent['goods'] or 'heels' in intent[
                             'goods'] or 'boots' in intent['goods'] or 'sneaker' in intent['goods']):
                     tmp = []
+                    filtermore = []
+                    pricedesc = ''
                     if 'style' in intent:
                         tmp += intent['style'].split(',')
+                    else:
+                        filtermore.append('style')
                     if 'color' in intent:
                         tmp += intent['color'].split(',')
+                    else:
+                        filtermore.append('color')
+                    if 'occasion' in intent:
+                        tmp += intent['occasion'].split(',')
+                    else:
+                        filtermore.append('occasion')
+                    if 'size' in intent:
+                        tmp.append('size ' + intent['size'])
+                    else:
+                        filtermore.append('size')
+                    if 'price' in intent:
+                        (str(intent['price']) if 'price' in intent else '')
+                        if 'lost' in intent and 'under' in intent['lost']:
+                            pricedesc = ' under ' + intent['price'][len(intent['price']) - 1]
+
+                        elif 'lost' in intent and 'over' in intent['lost']:
+                            pricedesc = ' over ' + intent['price'][len(intent['price']) - 1]
+
+                        else:
+                            pricedesc = ' under ' + intent['price'][len(intent['price']) - 1]
+                    else:
+                        filtermore.append('price')
+                    if 'brand' in intent:
+                        tmp += intent['brand'].split(',')
+                    else:
+                        filtermore.append('brand')
+
+                    if len(filtermore) <= 0:
+                        filtermore.append('style')
+
+                    expandedFilterMore = ''
+                    for x in filtermore:
+                        if len(expandedFilterMore):
+                            if x == filtermore[len(filtermore) - 1]:
+                                expandedFilterMore += ' or ' + x
+                            else:
+                                expandedFilterMore += ', ' + x
+                        else:
+                            expandedFilterMore += x
 
                     type = 'shoes'
                     if 'flats' in intent['goods']:
@@ -611,20 +750,64 @@ class BanterClient:
                     elif 'sneaker' in intent['goods']:
                         type = 'sneakers'
 
-                    tmp = 'I can help you with that. We\'ve got a wide variety of ' + ','.join(
-                        tmp) + ' ' + type + '. Can you help me narrow it down a bit by specifying a type of shoe, color, brand, price or size?'
+
+                    tmp = 'I can help you with that. We\'ve got a wide variety of ' + ', '.join(
+                        tmp) + ' ' + type +pricedesc+'. Can you help me narrow it down a bit by specifying a '+expandedFilterMore+'?'
                     self.set_response_text(intent, tmp.replace('  ', ' ').strip())
                     record = self.set_data(intent, states[2])
 
                 elif 'goods' in intent and 'shirt' in intent['goods']:
                     tmp = []
+                    filtermore = []
+                    pricedesc = ''
                     if 'style' in intent:
                         tmp += intent['style'].split(',')
+                    else:
+                        filtermore.append('style')
                     if 'color' in intent:
                         tmp += intent['color'].split(',')
+                    else:
+                        filtermore.append('color')
+                    if 'occasion' in intent:
+                        tmp += intent['occasion'].split(',')
+                    else:
+                        pass #filtermore.append('occasion')
+                    if 'size' in intent:
+                        tmp.append('size ' + intent['size'])
+                    else:
+                        filtermore.append('size')
+                    if 'price' in intent:
+                        (str(intent['price']) if 'price' in intent else '')
+                        if 'lost' in intent and 'under' in intent['lost']:
+                            pricedesc = ' under ' + intent['price'][len(intent['price']) - 1]
 
-                    tmp = 'I can help you with that. We\'ve got a wide variety of ' + ','.join(
-                        tmp) + ' shirts. Is there a particular color, size, type, brand or price range?'
+                        elif 'lost' in intent and 'over' in intent['lost']:
+                            pricedesc = ' over ' + intent['price'][len(intent['price']) - 1]
+
+                        else:
+                            pricedesc = ' under ' + intent['price'][len(intent['price']) - 1]
+                    else:
+                        filtermore.append('price')
+                    if 'brand' in intent:
+                        tmp += intent['brand'].split(',')
+                    else:
+                        filtermore.append('brand')
+
+                    if len(filtermore) <= 0:
+                        filtermore.append('style')
+
+                    expandedFilterMore = ''
+                    for x in filtermore:
+                        if len(expandedFilterMore):
+                            if x == filtermore[len(filtermore) - 1]:
+                                expandedFilterMore += ' or ' + x
+                            else:
+                                expandedFilterMore += ', ' + x
+                        else:
+                            expandedFilterMore += x
+
+                    tmp = 'I can help you with that. We\'ve got a wide variety of ' + ', '.join(
+                        tmp) + ' shirts'+pricedesc+'. Is there a particular '+expandedFilterMore+'?'
                     self.set_response_text(intent, tmp.replace('  ', ' ').strip())
                     record = self.set_data(intent, states[2])
 

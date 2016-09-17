@@ -60,6 +60,22 @@ def updatePartnerFile(partner):
 
             content = content.replace(oldStr[0][0] + oldStr[0][1] + oldStr[0][2], oldStr[0][0] + newStr + oldStr[0][2])
 
+        print '->OCCASION'
+        oldStr = re.findall('(# OCCASION BEGIN)(.*?)(# OCCASION END)', content, re.DOTALL)
+        if oldStr:
+            newStr = '\n'
+
+            # sort by len
+            strList = list(productInfo['occasion'])
+            strList.sort(key=lambda s: len(s), reverse=True)
+
+            for tmp in strList:
+                if tmp and len(tmp) >= 3 and not tmp in ds.globalBlackList:
+                    newStr += "N[SEM = 'occasion=\"" + tmp + "\"'] -> '" + tmp.replace(' ', '_') + "'" + '\n'
+                    words.append(tmp)
+
+            content = content.replace(oldStr[0][0] + oldStr[0][1] + oldStr[0][2], oldStr[0][0] + newStr + oldStr[0][2])
+
         print '->PRODUCT'
         oldStr = re.findall('(# PRODUCT BEGIN)(.*?)(# PRODUCT END)', content, re.DOTALL)
         if oldStr:

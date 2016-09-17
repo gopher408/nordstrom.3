@@ -104,16 +104,6 @@ class AWSDataStore(DataStore):
             'Mid-Length',
             'Long',
 
-            'Wedding Guest',
-            'Cocktail & Party',
-            'Mother of the Bride',
-            'Formal',
-            'Work',
-            'Casual',
-            'Homecoming',
-            'Night Out',
-            'Bridesmaid',
-
             'Summer',
             'Off - the - Shoulder',
             'Jumpsuits & Rompers',
@@ -153,6 +143,18 @@ class AWSDataStore(DataStore):
             'Medium Heel',
             'High Heel',
             'Ultra High Heel', 'LED', 'OLED', 'Curved', 'plasma', 'Mac', 'Windows', 'chrome']
+
+        self.hackedoccasion = [
+            'Wedding Guest',
+            'Cocktail & Party',
+            'Mother of the Bride',
+            'Formal',
+            'Work',
+            'Casual',
+            'Homecoming',
+            'Night Out',
+            'Bridesmaid',
+        ]
 
         self.hackedproducts = []
 
@@ -201,7 +203,7 @@ class AWSDataStore(DataStore):
                                 "pink", 'little black', 'little white',
                                 "black", 'little', 'big', 'at',
                                 "blue", "in", "south", 'shops',
-                                "brown",
+                                "brown", 'out', 'night', 'day', 'evening', 'late'
                                 "green",
                                 "orange",
                                 "pink",
@@ -742,6 +744,26 @@ class AWSDataStore(DataStore):
 
             queryFields['bool']['must'].append(should)
 
+        if 'occasion' in queryData:
+            should = {
+                'bool': {
+                    'should': []
+                }
+            }
+
+            fields = queryData['occasion'].split(',')
+            for field in fields:
+
+                should['bool']['should'].append({"match": {"title": {"query": field}}})
+                should['bool']['should'].append({"match": {"description": {"query": field}}})
+                should['bool']['should'].append({"match": {"categories": {"query": field}}})
+                should['bool']['should'].append({"match": {"details": {"query": field}}})
+                should['bool']['should'].append({"match": {"features": {"query": field}}})
+                should['bool']['should'].append({"match": {"sizes": {"query": field}}})
+                should['bool']['should'].append({"match": {"color": {"query": field}}})
+                should['bool']['should'].append({"match": {"colors": {"query": field}}})
+
+            queryFields['bool']['must'].append(should)
 
         if 'price' in queryData:
             # price is [$555], [$100,$222], look at lost for under or over
@@ -1065,6 +1087,7 @@ class AWSDataStore(DataStore):
         data['products'] = set([])
         data['sizes'] = set([])
         data['description'] = set([])
+        data['occasion'] = set([])
 
         response = dynamodb.scan(
             TableName='products',
@@ -1106,6 +1129,9 @@ class AWSDataStore(DataStore):
 
             for field in self.hackedstyles:
                 data['styles'].update(self.cleanData(field, []))
+
+            for field in self.hackedoccasion:
+                data['occasion'].update(self.cleanData(field, []))
 
             if 'sizes' in itemDB:
                 fields = tds.deserialize(itemDB['sizes'])
@@ -1157,6 +1183,9 @@ class AWSDataStore(DataStore):
 
                 for field in self.hackedstyles:
                     data['styles'].update(self.cleanData(field, []))
+
+                for field in self.hackedoccasion:
+                    data['occasion'].update(self.cleanData(field, []))
 
                 if 'sizes' in itemDB:
                     fields = tds.deserialize(itemDB['sizes'])

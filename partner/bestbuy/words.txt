@@ -3,156 +3,142 @@ computers and tablets
 refurbished laptops
 3 4 and long sleeve
 so mht pilot 45 100
-mother of the bride
 tv and home theater
 all flat panel tvs
 so large tv 46 ups
-cocktail and party
 embedded notebooks
 other android wifi
 mp home solutions
 mht flat panel tv
 so gaming laptops
-so tv mids 32 42
 sweater and knit
 so tv mids 41 45
+so tv mids 32 42
 off the shoulder
 mobile computing
 so ups 30 44 tvs
 so comm laptops
 4k ultra hd tvs
-check and plaid
 ultra high heel
 so rfrb laptops
 dress separates
 small fptv 0 31
+check and plaid
 mht 61 100 tv s
 extra trim fit
-mht 51 60 tv s
 gaming laptops
+mht 51 60 tv s
 so chromebooks
 mid fptv 32 45
 4g lte laptops
 cold shoulder
 fit and flare
 mid 40 45 lcd
-wedding guest
 large fptv 46
 mp exclusives
 contemporary
-so tablet pc
 empire waist
+so tablet pc
 one shoulder
 short sleeve
-chromebooks
 outdoor tvs
 classic fit
 regular fit
 medium heel
+long sleeve
 all tablets
 all laptops
 convertible
+chromebooks
 knee length
-long sleeve
 name brands
 61 100 tv s
 shirtdress
-homecoming
 51 60 tv s
-bridesmaid
+so laptops
 sleeveless
 drop waist
 pc laptops
 45 50 tv s
 burst skus
 mid length
-so laptops
 mid 32 lcd
+separates
+notebooks
 polka dot
 mht 30 50
 slipdress
+moccasins
 jumpsuits
 flat heel
 small lcd
-mp hom tv
 geometric
-moccasins
 shoe care
-notebooks
 two piece
-night out
-separates
 google os
+mp hom tv
 strapless
 high heel
 athletic
 shoulder
+ballgown
 macbooks
 body con
 low heel
-ballgown
 trim fit
 best buy
 slip ons
 designer
-cocktail
 high low
 novelty
 tablets
 popover
-wedding
 striped
 rompers
 oxfords
-insoles
 sweater
 trapeze
+insoles
 mermaid
 flowers
 classic
 regular
 windows
 summer
-halter
-formal
+tablet
 plasma
 skater
 sleeve
 a line
 empire
-tablet
-dinner
 chrome
 length
 medium
 modern
 curved
 sheath
-casual
+dinner
+halter
 peplum
-mother
-mules
-night
 trend
 flare
 ultra
 shift
 apple
 extra
-guest
 polka
 short
+mules
 plaid
 solid
-bride
 piece
 check
 clogs
-party
 waist
 lace
 cold
 drop
+oled
 body
 knit
 care
@@ -163,25 +149,37 @@ long
 flat
 line
 tank
-work
-oled
 trim
 high
 slip
 maxi
 knee
-fit
+mid
 tvs
-out
 led
+fit
+mac
 one
 ons
 two
 low
-mid
-mac
 off
 dot
+mother of the bride
+cocktail and party
+wedding guest
+bridesmaid
+homecoming
+night out
+cocktail
+wedding
+mother
+casual
+formal
+guest
+bride
+party
+work
 tv:tv
 westinghouse
 cyberpowerpc

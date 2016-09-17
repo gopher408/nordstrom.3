@@ -148,10 +148,6 @@ JJ[SEM='color="xanadu"'] -> 'xanadu'
 JJ[SEM='color="yellow"'] -> 'yellow'
 JJ[SEM='color="zaffre"'] -> 'zaffer'
 JJ[SEM='color="zomp"'] -> 'zomp'
-JJ[SEM='color="spring"'] -> 'spring'
-JJ[SEM='color="summer"'] -> 'summer'
-JJ[SEM='color="autumn"'] -> 'autumn'
-JJ[SEM='color="winter"'] -> 'winter'
 
 
 # SELECTION BEGIN
@@ -254,22 +250,37 @@ N[SEM='size="85"'] -> '85'
 N[SEM=''] -> 'inches' | 'inch' | 'in.' | 'in'
 
 
+# OCCASION BEGIN
+# OCCASION END
+N[SEM='occasion="wedding"'] -> 'wedding'
+N[SEM='occasion="picnic"'] -> 'picnic'
+N[SEM='occasion="cocktail"'] -> 'cocktail'
+N[SEM='occasion="spring"'] -> 'spring'
+N[SEM='occasion="summer"'] -> 'summer'
+N[SEM='occasion="autumn"'] -> 'autumn'
+N[SEM='occasion="winter"'] -> 'winter'
+N[SEM='occasion="party"'] -> 'party'
+N[SEM='occasion="bride"'] -> 'bride' | 'bridal'
+N[SEM='occasion="work"'] -> 'work'
+N[SEM='occasion="casual"'] -> 'casual'
+N[SEM='occasion="homecoming"'] -> 'homecoming'
+N[SEM='occasion="night out"'] -> 'night_out'
+N[SEM='occasion="bridesmaid"'] -> 'bridesmaid'
+N[SEM='occasion="formal"'] -> 'formal'
+
+
 # DESCRIPTION BEGIN
 # DESCRIPTION END
 N[SEM='descriptor="old fashion"'] -> 'old_fashion' | 'old-fashion'
 N[SEM='descriptor="6 inch"'] -> '6_inch'
 #how to distinct if it is goods or  just a descriptor 
 N[SEM='goods="accessory:buckle"'] -> 'buckle'
-N[SEM='descriptor="wedding"'] -> 'wedding'
-N[SEM='descriptor="picnic"'] -> 'picnic'
-N[SEM='descriptor="cocktail"'] -> 'cocktail'
 N[SEM='descriptor="dinner"'] -> 'dinner'
 N[SEM='descriptor="sport"'] -> 'sport'
 JJ[SEM=''] -> 'new'
 JJ[SEM='descriptor="lace"'] -> 'lacy' 
 JJ[SEM='style="used"'] -> 'used'
 JJ[SEM='style="comfort"'] -> 'comfort'
-JJ[SEM='style="formal"'] -> 'formal'
 JJ[SEM='style="old fashion"'] -> 'old_fashioned' | 'old-fashioned'
 JJ[SEM='style="long sleeve"'] -> 'long_sleeve' | 'long-sleeve'
 JJ[SEM='style="short sleeve"'] -> 'short_sleeve' | 'short-sleeve'
