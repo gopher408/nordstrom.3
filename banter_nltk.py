@@ -331,7 +331,7 @@ class BanterThinker:
               if word.lower() in ['less','below','under']:
                  lost[lost.index(word.lower())] = 'under'
               elif word.lower() in ['more','above','over']:
-                 lost[lost.index(word.lower())] = 'more'
+                 lost[lost.index(word.lower())] = 'over'
         self.datastore_request['lost'] = lost
 
         return self.get_datastore_request()

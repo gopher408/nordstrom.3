@@ -1359,7 +1359,10 @@ if __name__ == '__main__':
 #    text = "$150, size 6"
 #    text = "150, gold, Gucci"
 #    text = "below 1000, size 6"
-    text = "below 1000, black"
+#    text = "below 1000, black"
+    text = "above 500, black"
+#    text = "Between 500 and 1000, black"
+#    text = "From 500 to 1000, black"
     customer.question(text)
 
     # agent sends the information of customer's products
