@@ -8,7 +8,7 @@ from decimal import *
 file_folder = os.path.dirname(os.path.realpath(__file__))
 sys.path.insert(0, os.path.join(file_folder, '..'))
 
-from BanterApi.datastore.aws_datastore import AWSDataStore
+from datastore.aws_datastore import AWSDataStore
 
 
 def main(args=None):
@@ -18,7 +18,6 @@ def main(args=None):
 
     ds = AWSDataStore(partner, 'startup8-server')
 
-    '''
     fileLocation = os.path.join('/Users', 'fvanzile', 'Downloads', 'products.json')
     jsonFiles = glob.glob(os.path.join(fileLocation, '*.json'))
 
@@ -41,6 +40,7 @@ def main(args=None):
                 print product
 
                 ds.addProduct(partner, {
+                    'businessID': 'bestbuy',
                     'categories': categories,
                     'brand': product['manufacturer'],
                     'businessProductID': str(product['productId']),
@@ -71,6 +71,7 @@ def main(args=None):
                 print product
 
                 ds.addProduct(partner, {
+                    'businessID': 'bestbuy',
                     'categories': categories,
                     'brand': product['manufacturer'],
                     'businessProductID': str(product['productId']),
@@ -93,8 +94,8 @@ def main(args=None):
                     'details': product['details'],
                     'features': product['features']
                 })
-    '''
 
+    '''
     json_data = open(os.path.join('/Users','fvanzile','Downloads','stores_0001_1000_to_953.json')).read()
 
     stores = json.loads(json_data)
@@ -133,7 +134,7 @@ def main(args=None):
                 'zipCode': store['postalCode'],
                 'services': services
             })
-
+    '''
 
     print 'Done'
 
