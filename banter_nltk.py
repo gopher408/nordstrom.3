@@ -178,7 +178,7 @@ class BanterThinker:
         buf = []
         for word in words:
             if word in stopwords:
-               if word in ['under','less','more','the','that','it','no','nor','not']:
+               if word in ['under','less','more','below','above','under','over','the','that','it','no','nor','not']:
                   buf.append(word)
             elif word not in stopwords:
                   buf.append(word)
@@ -211,10 +211,12 @@ class BanterThinker:
 
 
     def parse_query(self, dict, query, test=False, limits=None):
+        print "INPUT: " + query
 	lost = []
         self.reset_datastore_request()
         self.performNLP(dict,query,test) 
         query = self.get_query()
+        print "NLP: " + query
         cp = nltk.load_parser(self.banter_config.get_grammer_file())
         try:
             if len(query.split()) == 0:
@@ -242,12 +244,15 @@ class BanterThinker:
                 missing = missing.replace('"', '')
                 missing = missing.replace('\'', '')
                 missing = missing[1:]
+		print "MISSING: " + missing
    	        self.set_missed(missing)
+                print "QUERY: " + query
                 words = query.split()
                 for word in missing.split():
                     if word in words:
                        words.remove(word)
                 subquery = ' '.join(words)
+                print "SUBQUERY: " + subquery
 	        if subquery != None and len(subquery) > 0:
                    self.parse_query(dict, subquery, test, limits)
                 else:
@@ -303,6 +308,7 @@ class BanterThinker:
             return self.get_datastore_request()
 
         lost = self.get_missed()
+	print "LOST: " + ' '.join(lost)
         if len(lost) > 0:
            price = []
            for word in lost:
@@ -310,8 +316,12 @@ class BanterThinker:
                if re.search("^\${0,1}\d+(\.\d*){0,1}",word) != None:
                   if is_number(word):
                      price.append('$'+word)
-                  elif is_number(word[1:len(word)]):
+#                  elif is_number(word[1:len(word)]):
+		  else:
                      price.append(word)
+#	       else:
+#                  price.append(word)
+	   print "PRICE: " + ' '.join(price)
            if len(price) > 0:
               self.datastore_request['price'] = price
               lost1 = []
@@ -319,14 +329,22 @@ class BanterThinker:
                   item1 = item.replace(',','')
                   item1 = item1.replace('$','')
                   lost1.append(item1)
+#	      print "LOST 1: " + ' '.join(lost1)
               price1 = []
               for item in price:
                   item1 = item.replace(',','')
                   item1 = item1.replace('$','')
                   price1.append(item1)
+	      print "PRICE 1: " + ' '.join(price1)
               lost = list(set(lost1)-set(price1))
               self.set_missed(' '.join(lost))
               lost = self.get_missed()
+           for word in lost:
+              if word.lower() in ['less','below','under']:
+                 lost[lost.index(word.lower())] = 'under'
+              elif word.lower() in ['more','above','over']:
+                 lost[lost.index(word.lower())] = 'more'
+	print "NEW LOST: " + ' '.join(lost)
         self.datastore_request['lost'] = lost
 
         return self.get_datastore_request()

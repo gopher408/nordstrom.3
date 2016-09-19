@@ -218,16 +218,18 @@ class BanterClient:
                 topic = 'location'
                 if topic != prev_topic:
                     print "Change topic: Resetting to " + topic.upper()
-                    if 'lost' in resultData:
+                    if 'lost' in resultData and 'price' not in resultData:
                         del resultData['lost']
                     self.set_topic(topic)
+
             elif resultData['action'] == 'ask time':
                 topic = 'datetime'
                 if topic != prev_topic:
                     print "Change topic: Resetting to " + topic.upper()
-                    if 'lost' in resultData:
+                    if 'lost' in resultData and 'price' not in resultData:
                         del resultData['lost']
                     self.set_topic(topic)
+
             elif resultData['action'] in ['ask price', 'ask size', 'ask color', 'ask product']:
 		if 'goods' in resultData:
                     goods = resultData['goods'].split(':')
@@ -242,9 +244,18 @@ class BanterClient:
 		else:
 		   topic = prev_topic
                    print "Inherit topic: " + topic.upper()
-                if 'lost' in resultData:
+                if 'lost' in resultData and 'price' not in resultData:
                     del resultData['lost']
                     self.set_topic(topic)
+
+	    elif 'more' in resultData['action'].split(','):
+                    resultData['action'] = 'more'
+                    topic = prev_topic
+                    print "Inherit topic: " + topic.upper()
+                    if 'lost' in resultData and 'price' not in resultData:
+                        del resultData['lost']
+                    self.set_topic(topic)
+
             else:
                 if 'goods' in resultData:
                     goods = resultData['goods'].split(':')
@@ -252,22 +263,22 @@ class BanterClient:
                         topic = goods[0]
                         if topic != prev_topic:
                             print "Change topic: Resetting to " + topic.upper()
-                            if 'lost' in resultData:
+                            if 'lost' in resultData and 'price' not in resultData:
                                 del resultData['lost']
                             self.set_topic(topic)
-                elif 'more' in resultData['action'].split(','):
-                    resultData['action'] = 'more'
-                    topic = prev_topic
-                    print "Inherit topic: " + topic.upper()
-                    if 'lost' in resultData:
-                        del resultData['lost']
-                    self.set_topic(topic)
+#                elif 'more' in resultData['action'].split(','):
+#                    resultData['action'] = 'more'
+#                    topic = prev_topic
+#                    print "Inherit topic: " + topic.upper()
+#                    if 'lost' in resultData and 'price' not in resultData:
+#                        del resultData['lost']
+#                    self.set_topic(topic)
 
         elif 'datetime' in resultData or ('descriptor' in resultData and resultData['descriptor'] in ['open', 'close']):
             topic = 'datetime'
             if topic != prev_topic:
                 print "Change topic: Resetting to " + topic.upper()
-                if 'lost' in resultData:
+                if 'lost' in resultData and 'price' not in resultData:
                     del resultData['lost']
                 self.set_topic(topic)
             if 'action' not in resultData:
@@ -277,7 +288,7 @@ class BanterClient:
             topic = 'location'
             if topic != prev_topic:
                 print "Change topic: Resetting to " + topic.upper()
-                if 'lost' in resultData:
+                if 'lost' in resultData and 'price' not in resultData:
                     del resultData['lost']
                 self.set_topic(topic)
             if 'action' not in resultData:
@@ -290,21 +301,21 @@ class BanterClient:
                 print "GOODS: " + topic
                 if topic != prev_topic:
                     print "Change topic: Resetting to " + topic.upper()
-                    if 'lost' in resultData:
+                    if 'lost' in resultData and 'price' not in resultData:
                         del resultData['lost']
                     self.set_topic(topic)
 
         elif 'occasion' in resultData:
             topic = prev_topic
             print "Inherit topic: " + topic.upper()
-            if 'lost' in resultData:
+            if 'lost' in resultData and 'price' not in resultData:
                 del resultData['lost']
             self.set_topic(topic)
 
         elif 'color' in resultData:
             topic = prev_topic
             print "Inherit topic: " + topic.upper()
-            if 'lost' in resultData:
+            if 'lost' in resultData and 'price' not in resultData:
                 del resultData['lost']
             self.set_topic(topic)
 
@@ -314,39 +325,39 @@ class BanterClient:
                 del resultData['size']
             topic = prev_topic
             print "Inherit topic: " + topic.upper()
-            if 'lost' in resultData:
+            if 'lost' in resultData and 'price' not in resultData:
                 del resultData['lost']
             self.set_topic(topic)
 
         elif 'brand' in resultData:
             topic = prev_topic
             print "Inherit topic: " + topic.upper()
-            if 'lost' in resultData:
+            if 'lost' in resultData and 'price' not in resultData:
                 del resultData['lost']
             self.set_topic(topic)
 
         elif 'price' in resultData:
             topic = prev_topic
             print "Inherit topic: " + topic.upper()
-            if 'lost' in resultData:
+            if 'lost' in resultData and 'price' not in resultData:
                 del resultData['lost']
             self.set_topic(topic)
 
         elif 'descriptor' in resultData:
             topic = prev_topic
             print "Inherit topic: " + topic.upper()
-            if 'lost' in resultData:
+            if 'lost' in resultData and 'price' not in resultData:
                 del resultData['lost']
             self.set_topic(topic)
 
         elif len(prev_topic) > 0:
-            if 'lost' in resultData:
+            if 'lost' in resultData and 'price' not in resultData:
                 del resultData['lost']
             topic = prev_topic
             self.set_topic(topic)
 
         else:
-            if 'lost' in resultData:
+            if 'lost' in resultData and 'price' not in resultData:
                 del resultData['lost']
             topic = "others"
             self.set_topic(topic)
@@ -1315,8 +1326,11 @@ if __name__ == '__main__':
     print "\n***** CASE 4 *****\n"
 #    text = "I'm looking for some red boots."
 #    text = "I'm looking for some red shoes"
+#    text = "I'm looking for some handbags"
+#    text = "I'm looking for some gucci"
 #    text = "I'm looking for some gucci handbags"
-    text = "I'm looking for some handbags"
+#    text = "I'm looking for some gucci boots"
+    text = "I'm looking for some gucci shoes"
 #    text = "I'm looking for some redd botts." # to test missing words
 #    text = "I'm looking in for some red boots." # to test bogus words
 #    text = "How much I'm looking for some red boots." # to test variation
@@ -1343,7 +1357,9 @@ if __name__ == '__main__':
 #    text = "1$50"
 #    text = "150"
 #    text = "$150, size 6"
-    text = "150, gold, Gucci"
+#    text = "150, gold, Gucci"
+#    text = "below 1000, size 6"
+    text = "below 1000, black"
     customer.question(text)
 
     # agent sends the information of customer's products
@@ -1527,8 +1543,8 @@ if __name__ == '__main__':
 
     ##### case 13: product information
     print "\n***** CASE 13 *****\n"
-    text = "Do you have that in size 6?"
-#    text = "Yellow polo under $100 size S"
+#    text = "Do you have that in size 6?"
+    text = "Yellow polo under $100 size S"
 #    text = "Yellow polo from $70 to $100 size L"
 #    text = "Blue polo from $20 to $50 size XL"
     customer.question(text)
