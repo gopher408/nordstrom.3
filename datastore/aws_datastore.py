@@ -238,7 +238,7 @@ class AWSDataStore(DataStore):
                      return self.productSearch(queryData)
             elif 'ask price' in queryData['action'] or \
                  'ask color' in queryData['action'] or \
-                 'ask size' in queryData['action']  or \
+                 'ask size'  in queryData['action'] or \
                  'ask product' in queryData['action']:
                  return self.productQuestion(queryData);
 
@@ -750,8 +750,6 @@ class AWSDataStore(DataStore):
                     'should': []
                 }
             }
-
-            print queryData['price']
 
             if len(queryData['price']) == 2:
                 locost = re.findall(r'\d+', queryData['price'][0])

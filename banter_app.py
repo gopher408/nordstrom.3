@@ -33,16 +33,17 @@ weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 
 
 states = ['closing', 'opening', 'question', 'answer', 'thanks']
 
-thanks = ["Thank you for contacting us",
+thanks = [#"Thank you for contacting us",
           "I’m happy that I was able to assist you today",
-          "It’s been a pleasure...",
+#          "It’s been a pleasure...",
           #         "You’ve been a pleasure to talk with. Have a wonderful day",
           #         "Thank you for being a great customer. We value your relationship",
           #         "Your satisfaction is a great compliment to us",
-          "Is there anything else I can help you with?",
+#          "Is there anything else I can help you with?",
           #         "Certainly, I’d be happy to assist you with that today",
-          "I would be more than happy to assist you today",
-          "Please let me know if I can provide any other additional support"]
+#          "I would be more than happy to assist you today",
+#          "Please let me know if I can provide any other additional support"]
+	 ]
 
 exts = ['.', '!', '?']
 
@@ -153,6 +154,11 @@ class BanterClient:
     def update_tone(self, words):
         prev_tone = self.get_tone()
         prev_state = self.get_state()
+     	print "\n***** PRIOR STATUS *****\n"
+        tmp = "Prior tone: " + str(prev_tone)
+        print tmp
+        top = "Prior state: " + str(prev_state)
+        print top
         if len(words) > 0:
             if words[-1][-1] == '?':
                 curr_tone = states[2]
@@ -185,11 +191,6 @@ class BanterClient:
                 curr_tone = states[0]
         self.set_tone(curr_tone)
 
-        print "\n***** PRIOR STATUS *****\n"
-        tmp = "Prior state: " + str(prev_tone)
-        print tmp
-        top = "Prior topic: " + str(prev_state)
-        print top
 
     def verify_dialog(self, limits=None):
         curr_tone = self.get_tone()
@@ -197,8 +198,6 @@ class BanterClient:
         num_tones = len(hist_tones)
         in_text = self.in_text[-1]
         resultData = self.nlu.parse_query(self.localdict, in_text, False, limits)
-	print " Original resultData: " 
-        print resultData
 
         if 'action' in resultData and 'reset' == resultData['action']:
             self.reset(self.name)
@@ -211,8 +210,8 @@ class BanterClient:
             return resultData
 
         prev_topic = self.get_topic()
+        print "Prior topic: " + prev_topic
         topic = ''
-
         # this handles switching between goods or retrieving previous goods
         if 'action' in resultData:
             if resultData['action'] == 'find store':
@@ -228,6 +227,23 @@ class BanterClient:
                     print "Change topic: Resetting to " + topic.upper()
                     if 'lost' in resultData:
                         del resultData['lost']
+                    self.set_topic(topic)
+            elif resultData['action'] in ['ask price', 'ask size', 'ask color', 'ask product']:
+		if 'goods' in resultData:
+                    goods = resultData['goods'].split(':')
+                    if len(goods) > 0:
+                        topic = goods[0]
+                        if topic != prev_topic:
+                            print "Change topic: Resetting to " + topic.upper()
+                elif 'more' in resultData['action'].split(','):
+                    resultData['action'] = 'more'
+                    topic = prev_topic
+                    print "Inherit topic: " + topic.upper()
+		else:
+		   topic = prev_topic
+                   print "Inherit topic: " + topic.upper()
+                if 'lost' in resultData:
+                    del resultData['lost']
                     self.set_topic(topic)
             else:
                 if 'goods' in resultData:
@@ -328,7 +344,7 @@ class BanterClient:
             topic = "others"
             self.set_topic(topic)
 
-        prev_tone = hist_tones[num_tones - 2]
+        prev_tone = hist_tones[num_tones-2]
         if (topic == prev_topic) or 'prior_subject' in resultData and resultData['prior_subject'] == '1':
             prev_data = self.get_query()
 
@@ -494,7 +510,8 @@ class BanterClient:
         record = {}
         record['speaker'] = self.name
         record['mesg_id'] = self.MesgId
-        record['message'] = data['text'] if 'text' in data else None
+        data['text'] = data['text'].decode('utf-8').replace(u"\u2019", "'") if 'text' in data and data['text'] != None else None
+        record['message'] = data['text']
         record['link'] = data['link'] if 'link' in data else None
         record['data'] = data
         record['datetime'] = get_timestamp()
@@ -679,9 +696,9 @@ class BanterClient:
                         record = self.set_data(intent, states[2])
 
                     elif 'ask price' in intent['action'] or \
-                                    'ask color' in intent['action'] or \
-                                    'ask size' in intent['action'] or \
-                                    'ask product' in intent['action']:
+                         'ask color' in intent['action'] or \
+                         'ask size' in intent['action'] or \
+                         'ask product' in intent['action']:
 
                         self.set_response_text(intent,
                                                "Sorry, I could not find that. Can you please try again?")
@@ -1001,8 +1018,8 @@ if __name__ == '__main__':
     ##### case 1: store locations
     print "\n***** CASE 1.a *****\n"
     text = "Is there a store near me?"
-    #    text = "Is there a store nearby"
-    #    text = "Is there a BestBuy nearby"
+#    text = "Is there a store nearby"
+#    text = "Is there a BestBuy nearby"
 
     customer.question(text)
 
@@ -1011,8 +1028,8 @@ if __name__ == '__main__':
     agent.converse(text)
 
     # agent starts the greeting message
-    #   text = "Thank you for contacting Nordstrom."
-    #   agent.start(text)
+#    text = "Thank you for contacting Nordstrom."
+#    agent.start(text)
 
     # agent verifies the question
     # agent will respond given dummyDataStore.setReturnError above # text = "Where are you located?"
@@ -1022,12 +1039,10 @@ if __name__ == '__main__':
     print "\n***** CASE 1.b *****\n"
     # customer replies the location
     text = "Palo Alto"
-    #    text = "94301"
-    #    text = "SF"
-    #    text = "San Francisco Central"
-    #    text = "San Francisco CBD East"
-    #    text = "Richfield"
-    #    text = "Juno, Alaska"
+#    text = "94301"
+#    text = "SF"
+#    text = "San Francisco Central"
+#    text = "San Francisco CBD East"
     customer.answer(text)
 
     # agent should links this information with previous query to search for the result
@@ -1049,10 +1064,10 @@ if __name__ == '__main__':
     ##### case 2: store hours
     print "\n***** CASE 2.a *****\n"
     text = "What are Stanford's hours?"
-    #    text = "What are Stanford's hours this week?"
-    #    text = "What time does the stanford store close?"
-    #    text = "What time does the Stanford store close?"
-    #    text = "What time is Richfield open until?"
+#    text = "What are Stanford's hours this week?"
+#    text = "What time does the stanford store close?"
+#    text = "What time does the Stanford store close?"
+#    text = "What time is Richfield open until?"
     customer.question(text)
 
     # agent should reply something like:
@@ -1062,17 +1077,17 @@ if __name__ == '__main__':
     print "\n***** CASE 2.b *****\n"
     # customer asks when the store will open tomorrow
     text = "What time does it open tomorrow?"
-    #    text = "what time does the Stanford store open tomorrow"
-    #    text = "what are Richfield's hours today"
-    #    text = "what are Richfield's hours tomorrow"
-    #    text = "How late will Richfield store be open today"
-    #    text = "How late does Richfield store open today"
-    #    text = "How late will the store be open today"
-    #    text = "How late will Richfield store be open today"
-    #    text = "How late will the Richfield store be open today"
-    #    text = "How late does the Richfield store open today"
-    #    text = "How late does Richfield store open today"
-    #    text = "How late does the store open today"
+#    text = "what time does the Stanford store open tomorrow"
+#    text = "what are Richfield's hours today"
+#    text = "what are Richfield's hours tomorrow"
+#    text = "How late will Richfield store be open today"
+#    text = "How late does Richfield store open today"
+#    text = "How late will the store be open today"
+#    text = "How late will Richfield store be open today"
+#    text = "How late will the Richfield store be open today"
+#    text = "How late does the Richfield store open today"
+#    text = "How late does Richfield store open today"
+#    text = "How late does the store open today"
 
     customer.question(text)
 
@@ -1080,29 +1095,29 @@ if __name__ == '__main__':
     # "Nordstrom Stanford Shopping Center opens at 10:00 AM tomorrow."
     agent.converse(text)
 
-    #    exit()
+#    exit()
 
     ##### case 3: customer requests for service - women's shoes
     print "\n***** CASE 3 *****\n"
-    #    text = "I'm looking for a new TV"
-    #    text = "I'm looking for a new 24\" TV"
-    #    text = "I need someone to trouble shoot my new 24\" TV"
-    #    text = "I need someone to troubleshoot my new 24\" TV"
-    #    text = "I'm looking for a 55\" Vizio HDTV"
-    #    text = "I'm looking for a 55\" TV"
-    #    text = "55\" Vizio"
-    #    text = "Macbook"
-    #    text = "Mac"
-    #    text = "I like the HP 13\""
-    #    text = "I'm looking for a new laptop"
-    #    text = "I'm looking for some red boots."
-    #    text = "I am looking for boots"
-    #    text = "I need some black boots"
-    #    text = "I need black boots"
-    #    text = "Do you have any black boots?"
-    #    text = "Do you have black boots?"
-    #    text = "I'm looking for tall dress boots"
-    #    text = "I'd like to buy a new dress"
+#    text = "I'm looking for a new TV"
+#    text = "I'm looking for a new 24\" TV"
+#    text = "I need someone to trouble shoot my new 24\" TV"
+#    text = "I need someone to troubleshoot my new 24\" TV"
+#    text = "I'm looking for a 55\" Vizio HDTV"
+#    text = "I'm looking for a 55\" TV"
+#    text = "55\" Vizio"
+#    text = "Macbook"
+#    text = "Mac"
+#    text = "I like the HP 13\""
+#    text = "I'm looking for a new laptop"
+#    text = "I'm looking for some red boots."
+#    text = "I am looking for boots"
+#    text = "I need some black boots"
+#    text = "I need black boots"
+#    text = "Do you have any black boots?"
+#    text = "Do you have black boots?"
+#    text = "I'm looking for tall dress boots"
+#    text = "I'd like to buy a new dress"
     text = "I need new red boots with size 6"
     customer.question(text)
 
@@ -1111,31 +1126,23 @@ if __name__ == '__main__':
     # product info should be attached to the end of text
     agent.converse(text)
 
-    #    exit()
+#    exit()
 
     ##### case 4: to test bad sentences
     print "\n***** CASE 4 *****\n"
-    #    text = "I'm looking for some red boots."
-    text = "I'm looking for some red shoes"
-    #    text = "I'm looking for some redd botts." # to test missing words
-    #    text = "I'm looking in for some red boots." # to test bogus words
-    #    text = "How much I'm looking for some red boots." # to test variation
-    #    text = "I am looking for red boots with a" # to test incomplete sentence
-    # FVZ text = "I shot an elephant in my pajamas."
-    # FVZ customer.question(text)
-    #    text = "I shot an elephant in my pajamas."
-    #    text = "I need some pajamas for my elephant."
-    #    text = " I don't like red boots."
-    #    text = " I don't like red color boots."
-    #    text = " I don't like red colored boots."
-    #   Try not use negative question
-    #    text = "Don't you need some new red shoes."
-    #    text = "Do you have OLED one"
-    #    text = "Reset"
-    text = "Red"
-    #    text = "White"
-    #    text = "Reset"
-    text = "50"
+#    text = "I'm looking for some red boots."
+#    text = "I'm looking for some red shoes"
+#    text = "I'm looking for some gucci handbags"
+    text = "I'm looking for some handbags"
+#    text = "I'm looking for some redd botts." # to test missing words
+#    text = "I'm looking in for some red boots." # to test bogus words
+#    text = "How much I'm looking for some red boots." # to test variation
+#    text = "I am looking for red boots with a" # to test incomplete sentence
+#    text = "I shot an elephant in my pajamas."
+#    text = "I need some pajamas for my elephant."
+#    text = " I don't like red boots."
+#    text = " I don't like red color boots."
+#    text = " I don't like red colored boots."
     customer.question(text)
 
     # agent sends the information of customer's products
@@ -1143,18 +1150,36 @@ if __name__ == '__main__':
     # product info should be attached to the end of text
     agent.converse(text)
 
-    #    exit()
+#   Try not use negative question
+#    text = "Don't you need some new red shoes."
+#    text = "Do you have OLED one"
+#    text = "Reset"
+#    text = "Red"
+#    text = "White"
+#    text = "Reset"
+#    text = "1$50"
+#    text = "150"
+#    text = "$150, size 6"
+    text = "150, gold, Gucci"
+    customer.question(text)
+
+    # agent sends the information of customer's products
+    # text = 'Below is the information for you.'
+    # product info should be attached to the end of text
+    agent.converse(text)
+
+    exit()
 
     ##### case 5: customer requests for service -- women's dresses
     print "\n***** CASE 5 *****\n"
-    #    text = "I need a blue polo shirt"
+#    text = "I need a blue polo shirt"
     text = "I need a new dress for picnic"
-    #    text = "I need a new dress for a wedding"
-    #    text = "I need a new dress for old fashioned day"
-    #    text = "I'm looking for some old fashioned dresses"
-    #    text = "Do you have any pink dress with buckle"
-    #    text = "I need some blue comfort shoes"
-    #    text = "I need some old fashioned purple comfort shoes with buckle"
+#    text = "I need a new dress for a wedding"
+#    text = "I need a new dress for old fashioned day"
+#    text = "I'm looking for some old fashioned dresses"
+#    text = "Do you have any pink dress with buckle"
+#    text = "I need some blue comfort shoes"
+#    text = "I need some old fashioned purple comfort shoes with buckle"
     customer.question(text)
 
     # agent sends the information of customer's products
@@ -1162,24 +1187,24 @@ if __name__ == '__main__':
     # product info should be attached to the end of text
     agent.converse(text)
 
-    #    exit()
+#    exit()
 
     ##### case 6: customer requests for service -- men's shirts/t-shirts
     print "\n***** CASE 6 *****\n"
     text = "Purple under $70"
-    #    text = "Below $100"
-    #    text = "Less than $100"
-    #    text = "Less than 100"
-    #    text = "Above $100"
-    #    text = "More than 100"
-    #    text = "Between $70 and $100"
-    #    text = "Black dresses between $100 and $200"
-    #    text = "I want the dress of size 7"
-    #    text = "I want a t-shirt of size 7"
-    #    text = "Do you have pink shirts?"
-    #    text = "I like to buy a white shirt"
-    #    text = "I'm looking for some blue skirts"
-    #    text = "I am looking for black dinner dress under $500 with lace"
+#    text = "Below $100"
+#    text = "Less than $100"
+#    text = "Less than 100"
+#    text = "Above $100"
+#    text = "More than 100"
+#    text = "Between $70 and $100"
+#    text = "Black dresses between $100 and $200"
+#    text = "I want the dress of size 7"
+#    text = "I want a t-shirt of size 7"
+#    text = "Do you have pink shirts?"
+#    text = "I like to buy a white shirt"
+#    text = "I'm looking for some blue skirts"
+#    text = "I am looking for black dinner dress under $500 with lace"
     customer.question(text)
 
     # agent sends the information of customer's products
@@ -1187,12 +1212,12 @@ if __name__ == '__main__':
     # product info should be attached to the end of text
     agent.converse(text)
 
-    #    exit()
+#    exit()
 
     ##### case 7: customer specifies questions
     print "\n***** CASE 7 *****\n"
-    #    text = "Do you have the French Connection in size 4"
-    #    text = "Do you have the second one in a large"
+#    text = "Do you have the French Connection in size 4"
+#    text = "Do you have the second one in a large"
     text = "Do you have the second one in size XL"
     customer.question(text)
 
@@ -1201,7 +1226,7 @@ if __name__ == '__main__':
     # product info should be attached to the end of text
     agent.converse(text)
 
-    #    exit()
+#    exit()
 
     ##### case 8: agent verifies the question
     print "\n***** CASE 8 *****\n"
@@ -1210,13 +1235,13 @@ if __name__ == '__main__':
 
     # customer confirms/rejects the refined question
     text = "Yes"
-    text = "No"
+#    text = "No"
     customer.answer(text)
 
     # agent responds to the order
     agent.converse(text)
 
-    #    exit()
+#    exit()
 
     ##### case 9: customer likes to see some more products
     print "\n***** CASE 9 *****\n"
@@ -1229,22 +1254,24 @@ if __name__ == '__main__':
     # product info should be attached to the end of text
     agent.converse(text)
 
-    #    text = "Can I see more like the first one"
-    #    text = "Do you have more like the first one?"
-    #    text = "I'm looking for tall dress boots like the first one"
-    text = "I am looking for more tall boots like the third one"
-    customer.question(text)
+#    text = "Can I see more like the first one"
+#    text = "Do you have more like the first one?"
+#    text = "I'm looking for tall dress boots like the first one"
+#    text = "I am looking for more tall boots like the third one"
+#    text = "I am looking for more like the third one"
+#    text = "May I see that?"
+#    customer.question(text)
 
     # agent sends the information of customer's products
     # text = 'Below is the information for you.'
     # product info should be attached to the end of text
-    agent.converse(text)
+#    agent.converse(text)
 
-    #    exit()
+#    exit()
 
     ##### case 10: customer asks specific question
     print "\n***** CASE 10 *****\n"
-    text = "Do you have that in stock"
+#    text = "Do you have that in stock"
 #    text = "How much is the first one"
 #    text = "How much for the gucci"
 #    text = "Do you have the second one in a large"
@@ -1271,7 +1298,7 @@ if __name__ == '__main__':
     # product info should be attached to the end of text
     agent.converse(text)
 
-    #    exit()
+#    exit()
 
     ##### case 11: customer has additional questions (more sophisticated)
     print "\n***** CASE 11 *****\n"
@@ -1281,13 +1308,13 @@ if __name__ == '__main__':
 #    text = "Can I see the gucci?"
 #    text = "Can I see the leather boot"
 #    text = "I am looking for the ralph lauren white polo shirt"
-    text = "I am also looking for a gucci handbag"
+#    text = "I am also looking for a gucci handbag"
     text = "Do you have that in red?"
-    #    text = "Can I see more?"
-    #    text = "Can I see the gucci?"
-    #    text = "Can I see the leather boot"
-    #    text = "I am looking for the ralph lauren white polo shirt"
-    #    text = "I am looking for a gucci handbag"
+#    text = "Can I see more?"
+#    text = "Can I see the gucci?"
+#    text = "Can I see the leather boot"
+#    text = "I am looking for the ralph lauren white polo shirt"
+#    text = "I am looking for a gucci handbag"
     customer.question(text)
 
     # agent sends the product information of customer's products
@@ -1295,16 +1322,16 @@ if __name__ == '__main__':
     # product info should be attached to the end of text
     agent.converse(text)
 
-    #    exit()
+#    exit()
 
     ##### case 12 for V2: more sophisticated questions
     print "\n***** CASE 12 *****\n"
-    #    text = "Do you have something like the gucci in black"
-    #    text = "What about something in a 6 inch heel"
-    #    text = "Like to see some red boots" # to test not understandable sentence (grammar can handle this sentence now)
-    #    text = "I need some old fashioned purple comfort shoes with with buckle" # to test bogus word
-    #    text = "I need some old fashioned purple comfort shoes with with long white buckle" # to test bogus word
-    #    text = "need some old fashioned purple comfort shoes with with long white buckle" # to test bogus word
+#    text = "Do you have something like the gucci in black"
+#    text = "What about something in a 6 inch heel"
+#    text = "Like to see some red boots" # to test not understandable sentence (grammar can handle this sentence now)
+#    text = "I need some old fashioned purple comfort shoes with with buckle" # to test bogus word
+#    text = "I need some old fashioned purple comfort shoes with with long white buckle" # to test bogus word
+#    text = "need some old fashioned purple comfort shoes with with long white buckle" # to test bogus word
     text = "where to find some old fashioned purple comfort shoes with with long white buckel"  # to test misspelled word "buckel"
     customer.question(text)
 
@@ -1313,14 +1340,14 @@ if __name__ == '__main__':
     # product info should be attached to the end of text
     agent.converse(text)
 
-    #    exit()
+#    exit()
 
     ##### case 13: product information
     print "\n***** CASE 13 *****\n"
     text = "Do you have that in size 6?"
-    #    text = "Yellow polo under $100 size S"
-    #    text = "Yellow polo from $70 to $100 size L"
-    #    text = "Blue polo from $20 to $50 size XL"
+#    text = "Yellow polo under $100 size S"
+#    text = "Yellow polo from $70 to $100 size L"
+#    text = "Blue polo from $20 to $50 size XL"
     customer.question(text)
 
     # agent sends the product information of customer's products
@@ -1328,7 +1355,7 @@ if __name__ == '__main__':
     # product info should be attached to the end of text
     agent.converse(text)
 
-    #    exit()
+#    exit()
 
     ##### case 14: customer sends a "thank you" message
     print "\n***** CASE 14 *****\n"
@@ -1338,11 +1365,11 @@ if __name__ == '__main__':
     # agent sends thanks
     agent.converse(text)
 
-    #    exit()
+#    exit()
 
     ##### case 15: # automatically close the conversation on both sides
     print "\n***** CASE 15 *****\n"
-    # text = "Bye, bye now"
+#    text = "Bye, bye now"
     text = ""
     customer.close(text, comm_dump)
 

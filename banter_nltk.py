@@ -302,6 +302,33 @@ class BanterThinker:
             self.set_datastore_request(datastore_request)
             return self.get_datastore_request()
 
+        lost = self.get_missed()
+        if len(lost) > 0:
+           price = []
+           for word in lost:
+               word = word.replace(',','')
+               if re.search("^\${0,1}\d+(\.\d*){0,1}",word) != None:
+                  if is_number(word):
+                     price.append('$'+word)
+                  elif is_number(word[1:len(word)]):
+                     price.append(word)
+           if len(price) > 0:
+              self.datastore_request['price'] = price
+              lost1 = []
+              for item in lost:
+                  item1 = item.replace(',','')
+                  item1 = item1.replace('$','')
+                  lost1.append(item1)
+              price1 = []
+              for item in price:
+                  item1 = item.replace(',','')
+                  item1 = item1.replace('$','')
+                  price1.append(item1)
+              lost = list(set(lost1)-set(price1))
+              self.set_missed(' '.join(lost))
+              lost = self.get_missed()
+        self.datastore_request['lost'] = lost
+
         return self.get_datastore_request()
 
 
@@ -312,34 +339,6 @@ class BanterThinker:
            print "Datastore_request: " + str(self.get_datastore_request())
            return {'ERROR_CODE': 'DID_NOT_UNDERSTAND'}
 
-        lost = self.get_missed()
-        if len(lost) > 0:
-           price = []
-           for word in lost:
-	       word = word.replace(',','')
-               if re.search("^\${0,1}\d+(\.\d*){0,1}",word) != None:
-	          if is_number(word):
-                     price.append('$'+word) 
-                  elif is_number(word[1:len(word)]):
-	   	     price.append(word) 
-           if len(price) > 0:
-              self.datastore_request['price'] = price
-	      lost1 = []
-              for item in lost:
-                  item1 = item.replace(',','')
-                  item1 = item1.replace('$','')
-	          lost1.append(item1)
-	      price1 = []
-              for item in price:
-                  item1 = item.replace(',','')
-                  item1 = item1.replace('$','')
-                  price1.append(item1)                 
-              lost = list(set(lost1)-set(price1))
-              self.set_missed(' '.join(lost))
-              lost = self.get_missed()
-
-        self.datastore_request['lost'] = lost
-   
         answerData = self.datastore.search(self.datastore_request)
         if 'ERROR_CODE' in answerData:
             return answerData
@@ -494,7 +493,8 @@ if __name__ == "__main__":
     query = "I am looking for an oxford short sleeve polo"
     query = "I am looking for tall dress boots like the first one."
     query = "I am looking for more tall dress boots like the third one."
-#    query = "I need new white shoes"
+    query = "I need new white shoes"
+    query = "150, Size 6"
 #    query = "Size 12 in black"
 #    query = "What is the price?" 
 #    query = "How expensive is that boot?" 
