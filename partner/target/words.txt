@@ -1,16 +1,13 @@
 jumpsuits and rompers
 tvs and home theater
 3 4 and long sleeve
-mother of the bride
-cocktail and party
 off the shoulder
 sweater and knit
 dress separates
-ultra high heel
 check and plaid
+ultra high heel
 extra trim fit
 cold shoulder
-wedding guest
 personal care
 fit and flare
 contemporary
@@ -28,19 +25,16 @@ toothpaste
 sleeveless
 shirtdress
 drop waist
-bridesmaid
 mid length
-homecoming
-separates
 high heel
+separates
 slipdress
-moccasins
 flat heel
 jumpsuits
 strapless
 polka dot
 geometric
-night out
+moccasins
 shoe care
 two piece
 oral care
@@ -49,30 +43,27 @@ low heel
 ballgown
 shoulder
 slip ons
-cocktail
 designer
 trim fit
 body con
 high low
+insoles
 striped
 trapeze
 mermaid
-wedding
 flowers
+windows
 classic
 rompers
 novelty
 popover
 regular
-windows
 oxfords
-insoles
 sweater
 chrome
 plasma
 medium
 dinner
-formal
 target
 sleeve
 modern
@@ -80,27 +71,21 @@ summer
 a line
 sheath
 empire
-casual
 skater
 halter
 curved
 peplum
 length
-mother
 extra
-guest
-night
 polka
 plaid
 solid
-bride
 piece
 trend
 ultra
 shift
 check
 flare
-party
 short
 waist
 clogs
@@ -114,12 +99,11 @@ boat
 long
 flat
 line
-high
 tank
 drop
 oled
-work
 slip
+high
 maxi
 body
 knit
@@ -132,11 +116,25 @@ two
 low
 tvs
 mid
-out
 led
 off
 mac
 dot
+mother of the bride
+cocktail and party
+wedding guest
+bridesmaid
+homecoming
+night out
+cocktail
+wedding
+mother
+casual
+formal
+guest
+bride
+party
+work
 tv:tv
 vizio smartcast e series 43 class ultra hd home theater display black e43u d2
 crest pro health advanced extra whitening power freshness toothpaste 5 1 oz
