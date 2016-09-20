@@ -198,6 +198,8 @@ class BanterClient:
         num_tones = len(hist_tones)
         in_text = self.in_text[-1]
         resultData = self.nlu.parse_query(self.localdict, in_text, False, limits)
+	print "Original resultData: " 
+        print resultData
 
         if 'action' in resultData and 'reset' == resultData['action']:
             self.reset(self.name)
@@ -417,7 +419,10 @@ class BanterClient:
                 else:
                     resultData['action'] = states[3]  # 'answer'
 
-        if 'action' not in resultData or resultData['state'] in (states[2], states[3]):
+        print "resultData 2:"
+        print resultData
+        print 'action' not in resultData
+        if 'action' not in resultData: # or resultData['state'] in (states[2], states[3]):
             if 'datetime' in resultData and resultData['datetime'] != None:
                 resultData['action'] = 'ask time'
             elif 'location' in resultData and resultData['location'] != None:
@@ -436,6 +441,9 @@ class BanterClient:
                 resultData['action'] = 'find'
             elif 'descriptor' in resultData and resultData['descriptor'] != None:
                 resultData['action'] = 'find'
+
+        print "resultData 3:"
+        print resultData
 
         self.nlu.set_datastore_request(resultData)
         resultData = self.nlu.submit_query()
@@ -1232,8 +1240,9 @@ if __name__ == '__main__':
 
     print "\n***** CASE 1.b *****\n"
     # customer replies the location
-    text = "New York"
-#    text = "Palo Alto"
+    text = "Seattle"
+#    text = "New York"
+    text = "Palo Alto"
 #    text = "94301"
 #    text = "SF"
 #    text = "San Francisco Central"
@@ -1263,6 +1272,7 @@ if __name__ == '__main__':
 #    text = "What time does the stanford store close?"
 #    text = "What time does the Stanford store close?"
 #    text = "What time is Richfield open until?"
+#    text = "What time is Seattle store open until?"
     customer.question(text)
 
     # agent should reply something like:
@@ -1271,7 +1281,10 @@ if __name__ == '__main__':
 
     print "\n***** CASE 2.b *****\n"
     # customer asks when the store will open tomorrow
-    text = "What time does it open tomorrow?"
+    text = "What time does it close?"
+    text = "What time does Stanford close?"
+#    text = "What time does the store close?"
+#    text = "What time does it open tomorrow?"
 #    text = "what time does the Stanford store open tomorrow"
 #    text = "what are Richfield's hours today"
 #    text = "what are Richfield's hours tomorrow"
@@ -1283,14 +1296,13 @@ if __name__ == '__main__':
 #    text = "How late does the Richfield store open today"
 #    text = "How late does Richfield store open today"
 #    text = "How late does the store open today"
-
     customer.question(text)
 
     # agent should reply something like:
     # "Nordstrom Stanford Shopping Center opens at 10:00 AM tomorrow."
     agent.converse(text)
 
-#    exit()
+    exit()
 
     ##### case 3: customer requests for service - women's shoes
     print "\n***** CASE 3 *****\n"
@@ -1402,14 +1414,14 @@ if __name__ == '__main__':
     ##### case 6: customer requests for service -- men's shirts/t-shirts
     print "\n***** CASE 6 *****\n"
     text = "Purple under $70"
-    text = "Below $100"
+#    text = "Below $100"
 #    text = "Less than $100"
 #    text = "Less than 100"
 #    text = "Above $100"
 #    text = "More than 100"
 #    text = "Between $70 and $100"
 #    text = "Black dresses between $100 and $200"
-    text = " I like blue polo, size 6, between $50 and $100"
+#    text = " I like blue polo, size 6, between $50 and $100"
 #    text = "I want the dress of size 7"
 #    text = "I want a t-shirt of size 7"
 #    text = "Do you have pink shirts?"
