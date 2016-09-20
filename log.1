@@ -1,0 +1,395 @@
+
+***** CASE 1.a *****
+
+***** MESSAGE *****
+
+Joe > Is there a store near me?
+
+***** MESSAGE LOG *****
+
+Joe > {"mesg_id": 0, "datetime": "2016-09-19 16:49:03", "topic": "question", "state": "question", "link": null, "speaker": "Joe", "message": "Is there a store near me?", "data": {"text": "Is there a store near me?"}}
+
+***** PRIOR STATUS *****
+
+Prior tone: closing
+Prior state: closing
+Prior topic: opening
+Change topic: Resetting to LOCATION
+
+***** SEARCH  *****
+
+AWSDataStore.search:{"action": "find store", "state": "opening"}
+AWSDataStore.locationSearch:{'action': 'find store', 'state': 'opening'}
+AWSDataStore.locationSearch - NO_LOCATION:{"action": "find store", "datastore_action": "location_search", "state": "opening"}
+
+***** RESULT *****
+
+{'action': 'find store', 'datastore_action': 'location_search', 'state': 'opening', 'ERROR_CODE': 'NO_LOCATION'}
+
+***** RESPONSE *****
+
+-> respondWithQuestion:{"action": "find store", "datastore_action": "location_search", "state": "opening", "ERROR_CODE": "NO_LOCATION"}
+
+***** MESSAGE *****
+
+Banter > Thank you for contacting Nordstrom. Where are you located?
+
+***** MESSAGE LOG *****
+
+Banter > {"mesg_id": 0, "datetime": "2016-09-19 16:49:03", "topic": "location", "state": "question", "link": null, "speaker": "Banter", "message": "Thank you for contacting Nordstrom. Where are you located?", "data": {"text": "Thank you for contacting Nordstrom. Where are you located?", "datastore_action": "location_search", "state": "opening", "link": null, "action": "find store", "ERROR_CODE": "NO_LOCATION"}}
+
+***** CURRENT STATUS *****
+
+Current state: question
+Current topic: location
+
+***********************************
+
+
+***** CASE 1.b *****
+
+***** MESSAGE *****
+
+Joe > Palo Alto
+
+***** MESSAGE LOG *****
+
+Joe > {"mesg_id": 1, "datetime": "2016-09-19 16:49:03", "topic": "answer", "state": "answer", "link": null, "speaker": "Joe", "message": "Palo Alto", "data": {"text": "Palo Alto"}}
+
+***** PRIOR STATUS *****
+
+Prior tone: question
+Prior state: question
+Prior topic: location
+
+***** SEARCH  *****
+
+AWSDataStore.search:{"datastore_action": "location_search", "state": "question", "link": null, "location": "Palo Alto", "action": "find store", "prior_subject": "1"}
+AWSDataStore.locationSearch:{'datastore_action': 'location_search', 'state': 'question', 'link': None, 'location': 'Palo Alto', 'action': 'find store', 'prior_subject': '1'}
+AWSDataStore.locationSearch - using location{u'lat': Decimal('37.4418834'), u'lng': Decimal('-122.1430195')}
+AWSDataStore search query:{'sort': [{'_geo_distance': {'location': {'lat': Decimal('37.4418834'), 'lon': Decimal('-122.1430195')}, 'unit': 'km', 'order': 'asc'}}], 'query': {'filtered': {'filter': {'bool': {'must': [{'geo_distance': {'distance': '60km', 'location': {'lat': Decimal('37.4418834'), 'lon': Decimal('-122.1430195')}, 'distance_type': 'sloppy_arc'}}, {'term': {'businessID': 'nordstrom'}}]}}}}}
+AWSDataStore 7 documents found
+AWSDataStore.locationSearch -> response{'datastore_action': 'location_search', 'datastore_locations': [{'sort': [2.593820690901311], 'city': u'Palo Alto', 'docID': u'id=422_nordstrom', 'name': u'Nordstrom Stanford Shopping Center', 'address': u'550 Stanford Shopping Center', 'id': u'422_nordstrom'}, {'sort': [17.444718975918693], 'city': u'San Mateo', 'docID': u'id=420_nordstrom', 'name': u'Nordstrom Hillsdale Shopping Center', 'address': u'130 Hillsdale Shopping Center', 'id': u'420_nordstrom'}, {'sort': [21.736862620290147], 'city': u'San Jose', 'docID': u'id=425_nordstrom', 'name': u'Nordstrom Valley Fair', 'address': u'2400 Forest Avenue', 'id': u'425_nordstrom'}, {'sort': [33.92179100883602], 'city': u'Pleasanton', 'docID': u'id=430_nordstrom', 'name': u'Nordstrom Stoneridge Mall', 'address': u'1600 Stoneridge Mall Road', 'id': u'430_nordstrom'}, {'sort': [43.34705810928158], 'city': u'San Francisco', 'docID': u'id=426_nordstrom', 'name': u'Nordstrom Stonestown Galleria', 'address': u'285 Winston Drive', 'id': u'426_nordstrom'}, {'sort': [44.590001931775895], 'city': u'San Francisco', 'docID': u'id=427_nordstrom', 'name': u'Nordstrom San Francisco Centre', 'address': u'865 Market Street', 'id': u'427_nordstrom'}, {'sort': [51.19471893872001], 'city': u'Walnut Creek', 'docID': u'id=421_nordstrom', 'name': u'Nordstrom Broadway Plaza', 'address': u'1200 Broadway Plaza', 'id': u'421_nordstrom'}], 'state': 'question', 'link': None, 'location': 'Palo Alto', 'action': 'find store', 'prior_subject': '1'}
+
+***** RESULT *****
+
+{'datastore_action': 'location_search', 'datastore_locations': [{'sort': [2.593820690901311], 'city': u'Palo Alto', 'docID': u'id=422_nordstrom', 'name': u'Nordstrom Stanford Shopping Center', 'address': u'550 Stanford Shopping Center', 'id': u'422_nordstrom'}, {'sort': [17.444718975918693], 'city': u'San Mateo', 'docID': u'id=420_nordstrom', 'name': u'Nordstrom Hillsdale Shopping Center', 'address': u'130 Hillsdale Shopping Center', 'id': u'420_nordstrom'}, {'sort': [21.736862620290147], 'city': u'San Jose', 'docID': u'id=425_nordstrom', 'name': u'Nordstrom Valley Fair', 'address': u'2400 Forest Avenue', 'id': u'425_nordstrom'}, {'sort': [33.92179100883602], 'city': u'Pleasanton', 'docID': u'id=430_nordstrom', 'name': u'Nordstrom Stoneridge Mall', 'address': u'1600 Stoneridge Mall Road', 'id': u'430_nordstrom'}, {'sort': [43.34705810928158], 'city': u'San Francisco', 'docID': u'id=426_nordstrom', 'name': u'Nordstrom Stonestown Galleria', 'address': u'285 Winston Drive', 'id': u'426_nordstrom'}, {'sort': [44.590001931775895], 'city': u'San Francisco', 'docID': u'id=427_nordstrom', 'name': u'Nordstrom San Francisco Centre', 'address': u'865 Market Street', 'id': u'427_nordstrom'}, {'sort': [51.19471893872001], 'city': u'Walnut Creek', 'docID': u'id=421_nordstrom', 'name': u'Nordstrom Broadway Plaza', 'address': u'1200 Broadway Plaza', 'id': u'421_nordstrom'}], 'state': 'question', 'link': None, 'location': 'Palo Alto', 'action': 'find store', 'prior_subject': '1'}
+
+***** RESPONSE *****
+
+-> respondWithAnswer DATA:{"datastore_action": "location_search", "datastore_locations": [{"sort": [2.593820690901311], "city": "Palo Alto", "docID": "id=422_nordstrom", "name": "Nordstrom Stanford Shopping Center", "address": "550 Stanford Shopping Center", "id": "422_nordstrom"}, {"sort": [17.444718975918693], "city": "San Mateo", "docID": "id=420_nordstrom", "name": "Nordstrom Hillsdale Shopping Center", "address": "130 Hillsdale Shopping Center", "id": "420_nordstrom"}, {"sort": [21.736862620290147], "city": "San Jose", "docID": "id=425_nordstrom", "name": "Nordstrom Valley Fair", "address": "2400 Forest Avenue", "id": "425_nordstrom"}, {"sort": [33.92179100883602], "city": "Pleasanton", "docID": "id=430_nordstrom", "name": "Nordstrom Stoneridge Mall", "address": "1600 Stoneridge Mall Road", "id": "430_nordstrom"}, {"sort": [43.34705810928158], "city": "San Francisco", "docID": "id=426_nordstrom", "name": "Nordstrom Stonestown Galleria", "address": "285 Winston Drive", "id": "426_nordstrom"}, {"sort": [44.590001931775895], "city": "San Francisco", "docID": "id=427_nordstrom", "name": "Nordstrom San Francisco Centre", "address": "865 Market Street", "id": "427_nordstrom"}, {"sort": [51.19471893872001], "city": "Walnut Creek", "docID": "id=421_nordstrom", "name": "Nordstrom Broadway Plaza", "address": "1200 Broadway Plaza", "id": "421_nordstrom"}], "state": "question", "link": null, "location": "Palo Alto", "action": "find store", "prior_subject": "1"}
+
+***** MESSAGE *****
+
+Banter > Yes, there are several stores nearby:
+1) Nordstrom Stanford Shopping Center
+2) Nordstrom Hillsdale Shopping Center
+3) Nordstrom Valley Fair
+
+***** MESSAGE LOG *****
+
+Banter > {"mesg_id": 1, "datetime": "2016-09-19 16:49:03", "topic": "location", "state": "answer", "link": null, "speaker": "Banter", "message": "Yes, there are several stores nearby:\n1) Nordstrom Stanford Shopping Center\n2) Nordstrom Hillsdale Shopping Center\n3) Nordstrom Valley Fair", "data": {"datastore_action": "location_search", "datastore_locations": [{"sort": [2.593820690901311], "city": "Palo Alto", "docID": "id=422_nordstrom", "name": "Nordstrom Stanford Shopping Center", "address": "550 Stanford Shopping Center", "id": "422_nordstrom"}, {"sort": [17.444718975918693], "city": "San Mateo", "docID": "id=420_nordstrom", "name": "Nordstrom Hillsdale Shopping Center", "address": "130 Hillsdale Shopping Center", "id": "420_nordstrom"}, {"sort": [21.736862620290147], "city": "San Jose", "docID": "id=425_nordstrom", "name": "Nordstrom Valley Fair", "address": "2400 Forest Avenue", "id": "425_nordstrom"}, {"sort": [33.92179100883602], "city": "Pleasanton", "docID": "id=430_nordstrom", "name": "Nordstrom Stoneridge Mall", "address": "1600 Stoneridge Mall Road", "id": "430_nordstrom"}, {"sort": [43.34705810928158], "city": "San Francisco", "docID": "id=426_nordstrom", "name": "Nordstrom Stonestown Galleria", "address": "285 Winston Drive", "id": "426_nordstrom"}, {"sort": [44.590001931775895], "city": "San Francisco", "docID": "id=427_nordstrom", "name": "Nordstrom San Francisco Centre", "address": "865 Market Street", "id": "427_nordstrom"}, {"sort": [51.19471893872001], "city": "Walnut Creek", "docID": "id=421_nordstrom", "name": "Nordstrom Broadway Plaza", "address": "1200 Broadway Plaza", "id": "421_nordstrom"}], "state": "question", "link": null, "location": "Palo Alto", "action": "find store", "text": "Yes, there are several stores nearby:\n1) Nordstrom Stanford Shopping Center\n2) Nordstrom Hillsdale Shopping Center\n3) Nordstrom Valley Fair", "prior_subject": "1"}}
+
+***** CURRENT STATUS *****
+
+Current state: answer
+Current topic: location
+
+***********************************
+
+
+***** CASE 1.c *****
+
+***** MESSAGE *****
+
+Joe > 1
+
+***** MESSAGE LOG *****
+
+Joe > {"mesg_id": 2, "datetime": "2016-09-19 16:49:03", "topic": "answer", "state": "answer", "link": null, "speaker": "Joe", "message": "1", "data": {"text": "1"}}
+
+***** PRIOR STATUS *****
+
+Prior tone: answer
+Prior state: answer
+Prior topic: location
+Inherit topic: LOCATION
+
+***** SEARCH  *****
+
+AWSDataStore.search:{"datastore_action": "location_search", "datastore_locations": [{"sort": [2.593820690901311], "city": "Palo Alto", "docID": "id=422_nordstrom", "name": "Nordstrom Stanford Shopping Center", "address": "550 Stanford Shopping Center", "id": "422_nordstrom"}, {"sort": [17.444718975918693], "city": "San Mateo", "docID": "id=420_nordstrom", "name": "Nordstrom Hillsdale Shopping Center", "address": "130 Hillsdale Shopping Center", "id": "420_nordstrom"}, {"sort": [21.736862620290147], "city": "San Jose", "docID": "id=425_nordstrom", "name": "Nordstrom Valley Fair", "address": "2400 Forest Avenue", "id": "425_nordstrom"}, {"sort": [33.92179100883602], "city": "Pleasanton", "docID": "id=430_nordstrom", "name": "Nordstrom Stoneridge Mall", "address": "1600 Stoneridge Mall Road", "id": "430_nordstrom"}, {"sort": [43.34705810928158], "city": "San Francisco", "docID": "id=426_nordstrom", "name": "Nordstrom Stonestown Galleria", "address": "285 Winston Drive", "id": "426_nordstrom"}, {"sort": [44.590001931775895], "city": "San Francisco", "docID": "id=427_nordstrom", "name": "Nordstrom San Francisco Centre", "address": "865 Market Street", "id": "427_nordstrom"}, {"sort": [51.19471893872001], "city": "Walnut Creek", "docID": "id=421_nordstrom", "name": "Nordstrom Broadway Plaza", "address": "1200 Broadway Plaza", "id": "421_nordstrom"}], "state": "answer", "link": null, "location": "Palo Alto", "action": "find store", "rownum": "1", "prior_subject": "1"}
+AWSDataStore.locationSearch:{'datastore_action': 'location_search', 'datastore_locations': [{'sort': [2.593820690901311], 'city': u'Palo Alto', 'docID': u'id=422_nordstrom', 'name': u'Nordstrom Stanford Shopping Center', 'address': u'550 Stanford Shopping Center', 'id': u'422_nordstrom'}, {'sort': [17.444718975918693], 'city': u'San Mateo', 'docID': u'id=420_nordstrom', 'name': u'Nordstrom Hillsdale Shopping Center', 'address': u'130 Hillsdale Shopping Center', 'id': u'420_nordstrom'}, {'sort': [21.736862620290147], 'city': u'San Jose', 'docID': u'id=425_nordstrom', 'name': u'Nordstrom Valley Fair', 'address': u'2400 Forest Avenue', 'id': u'425_nordstrom'}, {'sort': [33.92179100883602], 'city': u'Pleasanton', 'docID': u'id=430_nordstrom', 'name': u'Nordstrom Stoneridge Mall', 'address': u'1600 Stoneridge Mall Road', 'id': u'430_nordstrom'}, {'sort': [43.34705810928158], 'city': u'San Francisco', 'docID': u'id=426_nordstrom', 'name': u'Nordstrom Stonestown Galleria', 'address': u'285 Winston Drive', 'id': u'426_nordstrom'}, {'sort': [44.590001931775895], 'city': u'San Francisco', 'docID': u'id=427_nordstrom', 'name': u'Nordstrom San Francisco Centre', 'address': u'865 Market Street', 'id': u'427_nordstrom'}, {'sort': [51.19471893872001], 'city': u'Walnut Creek', 'docID': u'id=421_nordstrom', 'name': u'Nordstrom Broadway Plaza', 'address': u'1200 Broadway Plaza', 'id': u'421_nordstrom'}], 'state': 'answer', 'link': None, 'location': 'Palo Alto', 'action': 'find store', 'rownum': '1', 'prior_subject': '1'}
+AWSDataStore.locationSearch - using location{u'lat': Decimal('37.4418834'), u'lng': Decimal('-122.1430195')}
+AWSDataStore search query:{'sort': [{'_geo_distance': {'location': {'lat': Decimal('37.4418834'), 'lon': Decimal('-122.1430195')}, 'unit': 'km', 'order': 'asc'}}], 'query': {'filtered': {'filter': {'bool': {'must': [{'geo_distance': {'distance': '60km', 'location': {'lat': Decimal('37.4418834'), 'lon': Decimal('-122.1430195')}, 'distance_type': 'sloppy_arc'}}, {'term': {'businessID': 'nordstrom'}}]}}}}}
+AWSDataStore 7 documents found
+AWSDataStore.locationSearch -> response{'datastore_action': 'location_search', 'datastore_locations': [{'sort': [2.593820690901311], 'city': u'Palo Alto', 'docID': u'id=422_nordstrom', 'name': u'Nordstrom Stanford Shopping Center', 'address': u'550 Stanford Shopping Center', 'id': u'422_nordstrom'}, {'sort': [17.444718975918693], 'city': u'San Mateo', 'docID': u'id=420_nordstrom', 'name': u'Nordstrom Hillsdale Shopping Center', 'address': u'130 Hillsdale Shopping Center', 'id': u'420_nordstrom'}, {'sort': [21.736862620290147], 'city': u'San Jose', 'docID': u'id=425_nordstrom', 'name': u'Nordstrom Valley Fair', 'address': u'2400 Forest Avenue', 'id': u'425_nordstrom'}, {'sort': [33.92179100883602], 'city': u'Pleasanton', 'docID': u'id=430_nordstrom', 'name': u'Nordstrom Stoneridge Mall', 'address': u'1600 Stoneridge Mall Road', 'id': u'430_nordstrom'}, {'sort': [43.34705810928158], 'city': u'San Francisco', 'docID': u'id=426_nordstrom', 'name': u'Nordstrom Stonestown Galleria', 'address': u'285 Winston Drive', 'id': u'426_nordstrom'}, {'sort': [44.590001931775895], 'city': u'San Francisco', 'docID': u'id=427_nordstrom', 'name': u'Nordstrom San Francisco Centre', 'address': u'865 Market Street', 'id': u'427_nordstrom'}, {'sort': [51.19471893872001], 'city': u'Walnut Creek', 'docID': u'id=421_nordstrom', 'name': u'Nordstrom Broadway Plaza', 'address': u'1200 Broadway Plaza', 'id': u'421_nordstrom'}], 'state': 'answer', 'link': None, 'location': 'Palo Alto', 'action': 'find store', 'rownum': '1', 'prior_subject': '1'}
+
+***** RESULT *****
+
+{'datastore_action': 'location_search', 'datastore_locations': [{'sort': [2.593820690901311], 'city': u'Palo Alto', 'docID': u'id=422_nordstrom', 'name': u'Nordstrom Stanford Shopping Center', 'address': u'550 Stanford Shopping Center', 'id': u'422_nordstrom'}, {'sort': [17.444718975918693], 'city': u'San Mateo', 'docID': u'id=420_nordstrom', 'name': u'Nordstrom Hillsdale Shopping Center', 'address': u'130 Hillsdale Shopping Center', 'id': u'420_nordstrom'}, {'sort': [21.736862620290147], 'city': u'San Jose', 'docID': u'id=425_nordstrom', 'name': u'Nordstrom Valley Fair', 'address': u'2400 Forest Avenue', 'id': u'425_nordstrom'}, {'sort': [33.92179100883602], 'city': u'Pleasanton', 'docID': u'id=430_nordstrom', 'name': u'Nordstrom Stoneridge Mall', 'address': u'1600 Stoneridge Mall Road', 'id': u'430_nordstrom'}, {'sort': [43.34705810928158], 'city': u'San Francisco', 'docID': u'id=426_nordstrom', 'name': u'Nordstrom Stonestown Galleria', 'address': u'285 Winston Drive', 'id': u'426_nordstrom'}, {'sort': [44.590001931775895], 'city': u'San Francisco', 'docID': u'id=427_nordstrom', 'name': u'Nordstrom San Francisco Centre', 'address': u'865 Market Street', 'id': u'427_nordstrom'}, {'sort': [51.19471893872001], 'city': u'Walnut Creek', 'docID': u'id=421_nordstrom', 'name': u'Nordstrom Broadway Plaza', 'address': u'1200 Broadway Plaza', 'id': u'421_nordstrom'}], 'state': 'answer', 'link': None, 'location': 'Palo Alto', 'action': 'find store', 'rownum': '1', 'prior_subject': '1'}
+
+***** RESPONSE *****
+
+-> respondWithAnswer DATA:{"datastore_action": "location_search", "datastore_locations": [{"sort": [2.593820690901311], "city": "Palo Alto", "docID": "id=422_nordstrom", "name": "Nordstrom Stanford Shopping Center", "address": "550 Stanford Shopping Center", "id": "422_nordstrom"}, {"sort": [17.444718975918693], "city": "San Mateo", "docID": "id=420_nordstrom", "name": "Nordstrom Hillsdale Shopping Center", "address": "130 Hillsdale Shopping Center", "id": "420_nordstrom"}, {"sort": [21.736862620290147], "city": "San Jose", "docID": "id=425_nordstrom", "name": "Nordstrom Valley Fair", "address": "2400 Forest Avenue", "id": "425_nordstrom"}, {"sort": [33.92179100883602], "city": "Pleasanton", "docID": "id=430_nordstrom", "name": "Nordstrom Stoneridge Mall", "address": "1600 Stoneridge Mall Road", "id": "430_nordstrom"}, {"sort": [43.34705810928158], "city": "San Francisco", "docID": "id=426_nordstrom", "name": "Nordstrom Stonestown Galleria", "address": "285 Winston Drive", "id": "426_nordstrom"}, {"sort": [44.590001931775895], "city": "San Francisco", "docID": "id=427_nordstrom", "name": "Nordstrom San Francisco Centre", "address": "865 Market Street", "id": "427_nordstrom"}, {"sort": [51.19471893872001], "city": "Walnut Creek", "docID": "id=421_nordstrom", "name": "Nordstrom Broadway Plaza", "address": "1200 Broadway Plaza", "id": "421_nordstrom"}], "state": "answer", "link": null, "location": "Palo Alto", "action": "find store", "rownum": "1", "prior_subject": "1"}
+
+***** MESSAGE *****
+
+Banter > Nordstrom Stanford Shopping Center - 550 Stanford Shopping Center, Palo Alto
+
+***** MESSAGE LOG *****
+
+Banter > {"mesg_id": 2, "datetime": "2016-09-19 16:49:04", "topic": "location", "state": "answer", "link": null, "speaker": "Banter", "message": "Nordstrom Stanford Shopping Center - 550 Stanford Shopping Center, Palo Alto", "data": {"datastore_action": "location_search", "datastore_locations": [{"sort": [2.593820690901311], "city": "Palo Alto", "docID": "id=422_nordstrom", "name": "Nordstrom Stanford Shopping Center", "address": "550 Stanford Shopping Center", "id": "422_nordstrom"}, {"sort": [17.444718975918693], "city": "San Mateo", "docID": "id=420_nordstrom", "name": "Nordstrom Hillsdale Shopping Center", "address": "130 Hillsdale Shopping Center", "id": "420_nordstrom"}, {"sort": [21.736862620290147], "city": "San Jose", "docID": "id=425_nordstrom", "name": "Nordstrom Valley Fair", "address": "2400 Forest Avenue", "id": "425_nordstrom"}, {"sort": [33.92179100883602], "city": "Pleasanton", "docID": "id=430_nordstrom", "name": "Nordstrom Stoneridge Mall", "address": "1600 Stoneridge Mall Road", "id": "430_nordstrom"}, {"sort": [43.34705810928158], "city": "San Francisco", "docID": "id=426_nordstrom", "name": "Nordstrom Stonestown Galleria", "address": "285 Winston Drive", "id": "426_nordstrom"}, {"sort": [44.590001931775895], "city": "San Francisco", "docID": "id=427_nordstrom", "name": "Nordstrom San Francisco Centre", "address": "865 Market Street", "id": "427_nordstrom"}, {"sort": [51.19471893872001], "city": "Walnut Creek", "docID": "id=421_nordstrom", "name": "Nordstrom Broadway Plaza", "address": "1200 Broadway Plaza", "id": "421_nordstrom"}], "state": "answer", "link": null, "location": "Palo Alto", "action": "find store", "text": "Nordstrom Stanford Shopping Center - 550 Stanford Shopping Center, Palo Alto", "rownum": "1", "prior_subject": "1"}}
+
+***** CURRENT STATUS *****
+
+Current state: answer
+Current topic: location
+
+***********************************
+
+
+***** CASE 2.a *****
+
+***** MESSAGE *****
+
+Joe > What are Stanford's hours?
+
+***** MESSAGE LOG *****
+
+Joe > {"mesg_id": 3, "datetime": "2016-09-19 16:49:04", "topic": "question", "state": "question", "link": null, "speaker": "Joe", "message": "What are Stanford's hours?", "data": {"text": "What are Stanford's hours?"}}
+
+***** PRIOR STATUS *****
+
+Prior tone: answer
+Prior state: answer
+Prior topic: location
+Change topic: Resetting to DATETIME
+
+***** SEARCH  *****
+
+AWSDataStore.search:{"action": "ask time", "state": "answer", "location": "Stanford", "datetime": "time"}
+AWSDataStore.locationQuestion:{'action': 'ask time', 'state': 'answer', 'location': 'Stanford', 'datetime': 'time'}
+AWSDataStore.findProduct{'action': 'ask time', 'datastore_action': 'location_question', 'state': 'answer', 'location': 'Stanford', 'datetime': 'time'}
+AWSDataStore seach query{'query': {'bool': {'filter': [{'match': {'businessID': 'nordstrom'}}], 'should': [{'match': {'city': {'query': 'Stanford', 'boost': 10}}}, {'match': {'name': {'query': 'Stanford', 'boost': 5}}}]}}, 'size': 10}
+AWSDataStore 118 documents found
+AWSDataStore.locations[{'city': u'Palo Alto', 'docID': u'id=422_nordstrom', 'name': u'Nordstrom Stanford Shopping Center', 'score': 0.58894, 'address': u'550 Stanford Shopping Center', 'id': u'422_nordstrom'}]
+
+***** RESULT *****
+
+{'datetime': 'time', 'datastore_action': 'location_question', 'state': 'answer', 'location': 'Stanford', 'action': 'ask time', 'datastore_location': {'number': '422', 'zipCode': u'94304', 'hours': {u'wed': u'10am-9pm', u'sun': u'11am-7pm', u'fri': u'10am-9pm', u'thr': u'10am-9pm', u'mon': u'10am-9pm', u'tue': u'10am-9pm', u'sat': u'10am-9pm'}, 'address': u'550 Stanford Shopping Center', 'services': None, 'id': u'422_nordstrom', 'city': u'Palo Alto', 'name': u'Nordstrom Stanford Shopping Center', 'state': u'CA', 'phoneNumber': u'650.323.5111', 'location': u'37.4422,-122.1724', 'type': u'FullLineStore'}}
+
+***** RESPONSE *****
+
+-> respondWithAnswer DATA:{"datetime": "time", "datastore_action": "location_question", "state": "answer", "location": "Stanford", "action": "ask time", "datastore_location": {"number": "422", "zipCode": "94304", "hours": {"wed": "10am-9pm", "sun": "11am-7pm", "fri": "10am-9pm", "thr": "10am-9pm", "mon": "10am-9pm", "tue": "10am-9pm", "sat": "10am-9pm"}, "address": "550 Stanford Shopping Center", "services": null, "id": "422_nordstrom", "city": "Palo Alto", "name": "Nordstrom Stanford Shopping Center", "state": "CA", "phoneNumber": "650.323.5111", "location": "37.4422,-122.1724", "type": "FullLineStore"}}
+
+***** MESSAGE *****
+
+Banter > Nordstrom Stanford Shopping Center Palo Alto is open from 10am until 9pm today.
+
+***** MESSAGE LOG *****
+
+Banter > {"mesg_id": 3, "datetime": "2016-09-19 16:49:05", "topic": "datetime", "state": "answer", "link": null, "speaker": "Banter", "message": "Nordstrom Stanford Shopping Center Palo Alto is open from 10am until 9pm today.", "data": {"text": "Nordstrom Stanford Shopping Center Palo Alto is open from 10am until 9pm today.", "datetime": "time", "datastore_action": "location_question", "state": "answer", "link": null, "location": "Stanford", "action": "ask time", "datastore_location": {"number": "422", "zipCode": "94304", "hours": {"wed": "10am-9pm", "sun": "11am-7pm", "fri": "10am-9pm", "thr": "10am-9pm", "mon": "10am-9pm", "tue": "10am-9pm", "sat": "10am-9pm"}, "address": "550 Stanford Shopping Center", "services": null, "id": "422_nordstrom", "city": "Palo Alto", "name": "Nordstrom Stanford Shopping Center", "state": "CA", "phoneNumber": "650.323.5111", "location": "37.4422,-122.1724", "type": "FullLineStore"}}}
+
+***** CURRENT STATUS *****
+
+Current state: answer
+Current topic: datetime
+
+***********************************
+
+
+***** CASE 2.b *****
+
+***** MESSAGE *****
+
+Joe > What time does it open tomorrow?
+
+***** MESSAGE LOG *****
+
+Joe > {"mesg_id": 4, "datetime": "2016-09-19 16:49:05", "topic": "question", "state": "question", "link": null, "speaker": "Joe", "message": "What time does it open tomorrow?", "data": {"text": "What time does it open tomorrow?"}}
+
+***** PRIOR STATUS *****
+
+Prior tone: question
+Prior state: answer
+Prior topic: datetime
+
+***** SEARCH  *****
+
+AWSDataStore.search:{"datetime": "tomorrow", "datastore_action": "location_question", "descriptor": "open", "state": "answer", "link": null, "location": "Stanford", "action": "ask time", "datastore_location": {"number": "422", "zipCode": "94304", "hours": {"wed": "10am-9pm", "sun": "11am-7pm", "fri": "10am-9pm", "thr": "10am-9pm", "mon": "10am-9pm", "tue": "10am-9pm", "sat": "10am-9pm"}, "address": "550 Stanford Shopping Center", "services": null, "id": "422_nordstrom", "city": "Palo Alto", "name": "Nordstrom Stanford Shopping Center", "state": "CA", "phoneNumber": "650.323.5111", "location": "37.4422,-122.1724", "type": "FullLineStore"}, "prior_subject": "1"}
+AWSDataStore.locationQuestion:{'datetime': 'tomorrow', 'datastore_action': 'location_question', 'descriptor': 'open', 'state': 'answer', 'link': None, 'location': 'Stanford', 'action': 'ask time', 'datastore_location': {'number': '422', 'zipCode': u'94304', 'hours': {u'wed': u'10am-9pm', u'sun': u'11am-7pm', u'fri': u'10am-9pm', u'thr': u'10am-9pm', u'mon': u'10am-9pm', u'tue': u'10am-9pm', u'sat': u'10am-9pm'}, 'address': u'550 Stanford Shopping Center', 'services': None, 'id': u'422_nordstrom', 'city': u'Palo Alto', 'name': u'Nordstrom Stanford Shopping Center', 'state': u'CA', 'phoneNumber': u'650.323.5111', 'location': u'37.4422,-122.1724', 'type': u'FullLineStore'}, 'prior_subject': '1'}
+AWSDataStore.findProduct{'datetime': 'tomorrow', 'datastore_action': 'location_question', 'descriptor': 'open', 'state': 'answer', 'link': None, 'location': 'Stanford', 'action': 'ask time', 'datastore_location': {'number': '422', 'zipCode': u'94304', 'hours': {u'wed': u'10am-9pm', u'sun': u'11am-7pm', u'fri': u'10am-9pm', u'thr': u'10am-9pm', u'mon': u'10am-9pm', u'tue': u'10am-9pm', u'sat': u'10am-9pm'}, 'address': u'550 Stanford Shopping Center', 'services': None, 'id': u'422_nordstrom', 'city': u'Palo Alto', 'name': u'Nordstrom Stanford Shopping Center', 'state': u'CA', 'phoneNumber': u'650.323.5111', 'location': u'37.4422,-122.1724', 'type': u'FullLineStore'}, 'prior_subject': '1'}
+AWSDataStore seach query{'query': {'bool': {'filter': [{'match': {'businessID': 'nordstrom'}}], 'should': [{'match': {'city': {'query': 'Stanford', 'boost': 10}}}, {'match': {'name': {'query': 'Stanford', 'boost': 5}}}]}}, 'size': 10}
+AWSDataStore 118 documents found
+AWSDataStore.locations[{'city': u'Palo Alto', 'docID': u'id=422_nordstrom', 'name': u'Nordstrom Stanford Shopping Center', 'score': 0.58894, 'address': u'550 Stanford Shopping Center', 'id': u'422_nordstrom'}]
+
+***** RESULT *****
+
+{'datetime': 'tomorrow', 'datastore_action': 'location_question', 'descriptor': 'open', 'state': 'answer', 'link': None, 'location': 'Stanford', 'action': 'ask time', 'datastore_location': {'number': '422', 'zipCode': u'94304', 'hours': {u'wed': u'10am-9pm', u'sun': u'11am-7pm', u'fri': u'10am-9pm', u'thr': u'10am-9pm', u'mon': u'10am-9pm', u'tue': u'10am-9pm', u'sat': u'10am-9pm'}, 'address': u'550 Stanford Shopping Center', 'services': None, 'id': u'422_nordstrom', 'city': u'Palo Alto', 'name': u'Nordstrom Stanford Shopping Center', 'state': u'CA', 'phoneNumber': u'650.323.5111', 'location': u'37.4422,-122.1724', 'type': u'FullLineStore'}, 'prior_subject': '1'}
+
+***** RESPONSE *****
+
+-> respondWithAnswer DATA:{"datetime": "tomorrow", "datastore_action": "location_question", "descriptor": "open", "state": "answer", "link": null, "location": "Stanford", "action": "ask time", "datastore_location": {"number": "422", "zipCode": "94304", "hours": {"wed": "10am-9pm", "sun": "11am-7pm", "fri": "10am-9pm", "thr": "10am-9pm", "mon": "10am-9pm", "tue": "10am-9pm", "sat": "10am-9pm"}, "address": "550 Stanford Shopping Center", "services": null, "id": "422_nordstrom", "city": "Palo Alto", "name": "Nordstrom Stanford Shopping Center", "state": "CA", "phoneNumber": "650.323.5111", "location": "37.4422,-122.1724", "type": "FullLineStore"}, "prior_subject": "1"}
+
+***** MESSAGE *****
+
+Banter > Nordstrom Stanford Shopping Center Palo Alto opens at 10am tomorrow.
+
+***** MESSAGE LOG *****
+
+Banter > {"mesg_id": 4, "datetime": "2016-09-19 16:49:06", "topic": "datetime", "state": "answer", "link": null, "speaker": "Banter", "message": "Nordstrom Stanford Shopping Center Palo Alto opens at 10am tomorrow.", "data": {"text": "Nordstrom Stanford Shopping Center Palo Alto opens at 10am tomorrow.", "datetime": "tomorrow", "datastore_action": "location_question", "descriptor": "open", "state": "answer", "link": null, "location": "Stanford", "action": "ask time", "datastore_location": {"number": "422", "zipCode": "94304", "hours": {"wed": "10am-9pm", "sun": "11am-7pm", "fri": "10am-9pm", "thr": "10am-9pm", "mon": "10am-9pm", "tue": "10am-9pm", "sat": "10am-9pm"}, "address": "550 Stanford Shopping Center", "services": null, "id": "422_nordstrom", "city": "Palo Alto", "name": "Nordstrom Stanford Shopping Center", "state": "CA", "phoneNumber": "650.323.5111", "location": "37.4422,-122.1724", "type": "FullLineStore"}, "prior_subject": "1"}}
+
+***** CURRENT STATUS *****
+
+Current state: answer
+Current topic: datetime
+
+***********************************
+
+
+***** CASE 3 *****
+
+***** MESSAGE *****
+
+Joe > I need new red boots with size 6
+
+***** MESSAGE LOG *****
+
+Joe > {"mesg_id": 5, "datetime": "2016-09-19 16:49:06", "topic": "question", "state": "question", "link": null, "speaker": "Joe", "message": "I need new red boots with size 6", "data": {"text": "I need new red boots with size 6"}}
+
+***** PRIOR STATUS *****
+
+Prior tone: question
+Prior state: answer
+Prior topic: datetime
+Change topic: Resetting to BOOTS
+
+***** SEARCH  *****
+
+AWSDataStore.search:{"action": "find", "color": "red", "state": "answer", "goods": "boots:boot", "size": "6"}
+AWSDataStore.productSearch{'action': 'find', 'color': 'red', 'state': 'answer', 'goods': 'boots:boot', 'size': '6'}
+AWSDataStore search query:{'query': {'bool': {'filter': [{'term': {'businessID': 'nordstrom'}}], 'should': [], 'must': [{'match': {'colors': {'query': 'red'}}}, {'bool': {'should': [{'match': {'categories': {'query': 'boot'}}}, {'match': {'categories': {'query': 'boots'}}}]}}, {'bool': {'should': [{'match': {'title': {'query': 'boot'}}}, {'match': {'description': {'query': 'boot'}}}, {'match': {'categories': {'query': 'boot'}}}, {'match': {'details': {'query': 'boot'}}}, {'match': {'features': {'query': 'boot'}}}]}}, {'bool': {'should': [{'match': {'sizes': {'query': 'size6size'}}}, {'match': {'size_desc': {'query': '6'}}}]}}]}}}
+AWSDataStore - 2 documents found
+(u'AWSDataStore found doc: id=4144181_nordstrom) 0.72053987', u'4144181_nordstrom', u"'Yale' Chelsea Boot (Women)")
+(u'AWSDataStore found doc: id=4106432_nordstrom) 0.5209727', u'4106432_nordstrom', u"'Kristin - Classic Slim")
+AWSDataStore.productSearch -> response{'datastore_products': [{'score': 0.72053987, 'docID': u'id=4144181_nordstrom', 'id': u'4144181_nordstrom'}, {'score': 0.5209727, 'docID': u'id=4106432_nordstrom', 'id': u'4106432_nordstrom'}], 'goods': 'boots:boot', 'color': 'red', 'datastore_action': 'product_search', 'state': 'answer', 'action': 'find', 'size': '6'}
+
+***** RESULT *****
+
+{'datastore_products': [{'score': 0.72053987, 'docID': u'id=4144181_nordstrom', 'id': u'4144181_nordstrom'}, {'score': 0.5209727, 'docID': u'id=4106432_nordstrom', 'id': u'4106432_nordstrom'}], 'goods': 'boots:boot', 'color': 'red', 'datastore_action': 'product_search', 'state': 'answer', 'action': 'find', 'size': '6'}
+
+***** RESPONSE *****
+
+-> respondWithAnswer DATA:{"datastore_products": [{"score": 0.72053987, "docID": "id=4144181_nordstrom", "id": "4144181_nordstrom"}, {"score": 0.5209727, "docID": "id=4106432_nordstrom", "id": "4106432_nordstrom"}], "goods": "boots:boot", "color": "red", "datastore_action": "product_search", "state": "answer", "action": "find", "size": "6"}
+
+***** MESSAGE *****
+
+Banter > Here are the best options for you:
+
+***** MESSAGE LOG *****
+
+Banter > {"mesg_id": 5, "datetime": "2016-09-19 16:49:07", "topic": "boots", "state": "answer", "link": "http://nordstrom.banter.ai/products?partner=nordstrom&color=red&pid=4144181_nordstrom&pid=4106432_nordstrom", "speaker": "Banter", "message": "Here are the best options for you:", "data": {"datastore_products": [{"score": 0.72053987, "docID": "id=4144181_nordstrom", "id": "4144181_nordstrom"}, {"score": 0.5209727, "docID": "id=4106432_nordstrom", "id": "4106432_nordstrom"}], "goods": "boots:boot", "color": "red", "text": "Here are the best options for you:", "datastore_action": "product_search", "state": "answer", "link": "http://nordstrom.banter.ai/products?partner=nordstrom&color=red&pid=4144181_nordstrom&pid=4106432_nordstrom", "action": "find", "size": "6"}}
+
+***** CURRENT STATUS *****
+
+Current state: answer
+Current topic: boots
+
+***********************************
+
+
+***** CASE 4 *****
+
+***** MESSAGE *****
+
+Joe > I'm looking for some nike shoes
+
+***** MESSAGE LOG *****
+
+Joe > {"mesg_id": 6, "datetime": "2016-09-19 16:49:07", "topic": "question", "state": "question", "link": null, "speaker": "Joe", "message": "I'm looking for some nike shoes", "data": {"text": "I'm looking for some nike shoes"}}
+
+***** PRIOR STATUS *****
+
+Prior tone: question
+Prior state: answer
+Prior topic: boots
+Change topic: Resetting to SHOE
+
+***** SEARCH  *****
+
+AWSDataStore.search:{"action": "find", "style": "nike", "goods": "shoe:shoe", "state": "answer"}
+AWSDataStore.productSearch{'action': 'find', 'style': 'nike', 'goods': 'shoe:shoe', 'state': 'answer'}
+AWSDataStore search query:{'query': {'bool': {'filter': [{'term': {'businessID': 'nordstrom'}}], 'should': [], 'must': [{'bool': {'should': [{'match': {'categories': {'query': 'shoe'}}}, {'match': {'categories': {'query': 'shoes'}}}]}}, {'bool': {'should': [{'match': {'title': {'query': 'shoe'}}}, {'match': {'description': {'query': 'shoe'}}}, {'match': {'categories': {'query': 'shoe'}}}, {'match': {'details': {'query': 'shoe'}}}, {'match': {'features': {'query': 'shoe'}}}]}}, {'bool': {'should': [{'match': {'title': {'query': 'nike'}}}, {'match': {'description': {'query': 'nike'}}}, {'match': {'categories': {'query': 'nike'}}}, {'match': {'details': {'query': 'nike'}}}, {'match': {'features': {'query': 'nike'}}}, {'match': {'sizes': {'query': 'nike'}}}, {'match': {'color': {'query': 'nike'}}}, {'match': {'colors': {'query': 'nike'}}}]}}]}}}
+AWSDataStore - 22 documents found
+AWSDataStore.productSearch - TOO_MANY:{"datastore_products": [], "style": "nike", "goods": "shoe:shoe", "datastore_action": "product_search", "state": "answer", "action": "find", "ERROR_CODE": "TOO_MANY"}
+
+***** RESULT *****
+
+{'datastore_products': [], 'style': 'nike', 'goods': 'shoe:shoe', 'datastore_action': 'product_search', 'state': 'answer', 'action': 'find', 'ERROR_CODE': 'TOO_MANY'}
+
+***** RESPONSE *****
+
+-> respondWithQuestion:{"datastore_products": [], "style": "nike", "goods": "shoe:shoe", "datastore_action": "product_search", "state": "answer", "action": "find", "ERROR_CODE": "TOO_MANY"}
+
+***** MESSAGE *****
+
+Banter > I can help you with that. We've got a wide variety of nike shoes. Can you help me narrow it down a bit by specifying a color, occasion, size, price or brand?
+
+***** MESSAGE LOG *****
+
+Banter > {"mesg_id": 6, "datetime": "2016-09-19 16:49:07", "topic": "shoe", "state": "question", "link": null, "speaker": "Banter", "message": "I can help you with that. We've got a wide variety of nike shoes. Can you help me narrow it down a bit by specifying a color, occasion, size, price or brand?", "data": {"datastore_products": [], "style": "nike", "goods": "shoe:shoe", "text": "I can help you with that. We've got a wide variety of nike shoes. Can you help me narrow it down a bit by specifying a color, occasion, size, price or brand?", "datastore_action": "product_search", "state": "answer", "link": null, "action": "find", "ERROR_CODE": "TOO_MANY"}}
+
+***** CURRENT STATUS *****
+
+Current state: question
+Current topic: shoe
+
+***********************************
+
+***** MESSAGE *****
+
+Joe > below 500, red, size 6
+
+***** MESSAGE LOG *****
+
+Joe > {"mesg_id": 7, "datetime": "2016-09-19 16:49:07", "topic": "question", "state": "question", "link": null, "speaker": "Joe", "message": "below 500, red, size 6", "data": {"text": "below 500, red, size 6"}}
+
+***** PRIOR STATUS *****
+
+Prior tone: question
+Prior state: question
+Prior topic: shoe
+Inherit topic: SHOE
+
+***** SEARCH  *****
+
+AWSDataStore.search:{"datastore_action": "product_search", "style": "nike", "goods": "shoe:shoe", "lost": ["under"], "color": "red", "price": ["$500"], "datastore_products": [], "state": "question", "link": null, "action": "find", "prior_subject": "1", "size": "6"}
+AWSDataStore.productSearch{'datastore_action': 'product_search', 'style': 'nike', 'goods': 'shoe:shoe', 'lost': ['under'], 'color': 'red', 'price': ['$500'], 'datastore_products': [], 'state': 'question', 'link': None, 'action': 'find', 'prior_subject': '1', 'size': '6'}
+AWSDataStore search query:{'query': {'bool': {'filter': [{'term': {'businessID': 'nordstrom'}}], 'should': [], 'must': [{'match': {'colors': {'query': 'red'}}}, {'bool': {'should': [{'match': {'categories': {'query': 'shoe'}}}, {'match': {'categories': {'query': 'shoes'}}}]}}, {'bool': {'should': [{'match': {'title': {'query': 'shoe'}}}, {'match': {'description': {'query': 'shoe'}}}, {'match': {'categories': {'query': 'shoe'}}}, {'match': {'details': {'query': 'shoe'}}}, {'match': {'features': {'query': 'shoe'}}}]}}, {'bool': {'should': [{'match': {'title': {'query': 'nike'}}}, {'match': {'description': {'query': 'nike'}}}, {'match': {'categories': {'query': 'nike'}}}, {'match': {'details': {'query': 'nike'}}}, {'match': {'features': {'query': 'nike'}}}, {'match': {'sizes': {'query': 'nike'}}}, {'match': {'color': {'query': 'nike'}}}, {'match': {'colors': {'query': 'nike'}}}]}}, {'bool': {'should': [{'range': {'orginalPrice': {'lte': Decimal('500')}}}, {'range': {'salePrice': {'lte': Decimal('500')}}}, {'range': {'regularPrice': {'lte': Decimal('500')}}}]}}, {'bool': {'should': [{'match': {'sizes': {'query': 'size6size'}}}, {'match': {'size_desc': {'query': '6'}}}]}}]}}}
+AWSDataStore - 1 documents found
+(u'AWSDataStore found doc: id=4112732_nordstrom) 0.35448763', u'4112732_nordstrom', u"'Air Huarache' Sneaker (Women)")
+AWSDataStore.productSearch -> response{'datastore_action': 'product_search', 'style': 'nike', 'goods': 'shoe:shoe', 'lost': ['under'], 'color': 'red', 'price': ['$500'], 'datastore_products': [{'score': 0.35448763, 'docID': u'id=4112732_nordstrom', 'id': u'4112732_nordstrom'}], 'state': 'question', 'link': None, 'action': 'find', 'prior_subject': '1', 'size': '6'}
+
+***** RESULT *****
+
+{'datastore_action': 'product_search', 'style': 'nike', 'goods': 'shoe:shoe', 'lost': ['under'], 'color': 'red', 'price': ['$500'], 'datastore_products': [{'score': 0.35448763, 'docID': u'id=4112732_nordstrom', 'id': u'4112732_nordstrom'}], 'state': 'question', 'link': None, 'action': 'find', 'prior_subject': '1', 'size': '6'}
+
+***** RESPONSE *****
+
+-> respondWithAnswer DATA:{"datastore_action": "product_search", "style": "nike", "goods": "shoe:shoe", "lost": ["under"], "color": "red", "price": ["$500"], "datastore_products": [{"score": 0.35448763, "docID": "id=4112732_nordstrom", "id": "4112732_nordstrom"}], "state": "question", "link": null, "action": "find", "prior_subject": "1", "size": "6"}
+
+***** MESSAGE *****
+
+Banter > Here are the best options for you:
+
+***** MESSAGE LOG *****
+
+Banter > {"mesg_id": 7, "datetime": "2016-09-19 16:49:08", "topic": "shoe", "state": "answer", "link": "http://nordstrom.banter.ai/products?partner=nordstrom&style=nike&color=red&pid=4112732_nordstrom", "speaker": "Banter", "message": "Here are the best options for you:", "data": {"datastore_action": "product_search", "style": "nike", "goods": "shoe:shoe", "lost": ["under"], "color": "red", "text": "Here are the best options for you:", "price": ["$500"], "datastore_products": [{"score": 0.35448763, "docID": "id=4112732_nordstrom", "id": "4112732_nordstrom"}], "state": "question", "link": "http://nordstrom.banter.ai/products?partner=nordstrom&style=nike&color=red&pid=4112732_nordstrom", "action": "find", "prior_subject": "1", "size": "6"}}
+
+***** CURRENT STATUS *****
+
+Current state: answer
+Current topic: shoe
+
+***********************************
+
