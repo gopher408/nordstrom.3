@@ -85,7 +85,7 @@ global_dict = ["ralph lauren", "polo shirt", "6 inch", "old fashion", "old fashi
                "expected to", "liked to", "needed to", "wanted to", "what time", "how much", "how late", "how early",
                "how soon", "how long",
                "lunch time", "lunch break", "lunch hour", "lunch hours", "short sleeve", "long sleeve", "how expensive",
-               "how costly", "how cheap"]
+               "how costly", "how cheap", "new york", "big apple", "new jersey"]
 
 wh_tones = ["what", "when", "where", "which", "how", "why", "what_time", "how_much", "how_late"]
 
@@ -604,6 +604,18 @@ class BanterClient:
                     intent['lost']) + "\". Can you check it again?")
                 record = self.set_data(intent, states[2])
             elif intent['ERROR_CODE'] == 'TOO_MANY':
+                link = 'http://' + self.banter_config.get_partner() + '.banter.ai/products?partner=' + self.banter_config.get_partner()
+
+                if 'style' in intent:
+                    link += '&style=' + data['style']
+                if 'color' in intent:
+                    link += '&color=' + data['color']
+                if 'brand' in intent:
+                    link += '&brand=' + data['brand']
+
+                for product in intent['datastore_products']:
+                    link += '&pid=' + product['id']
+
                 if 'goods' in intent and 'dress' in intent['goods']:
                     tmp = []
                     filtermore = []
@@ -656,8 +668,9 @@ class BanterClient:
 
 
                     tmp = 'I can help you with that. We\'ve got a wide selection of ' + ', '.join(
-                        tmp) + ' dresses'+pricedesc+'. Can you help me narrow it down a bit more by specifying a '+expandedFilterMore+'?'
-                    self.set_response_text(intent, tmp.replace('  ', ' ').strip())
+                        tmp) + ' dresses'+pricedesc+'. Can we help you find something in a specific '+expandedFilterMore+'.' \
+                        + ' Here are the best 12 for you: '
+                    self.set_response_text(intent, tmp.replace('  ', ' ').strip(), link)
                     record = self.set_data(intent, states[2])
 
                 elif 'goods' in intent and 'polo' in intent['goods']:
@@ -711,8 +724,9 @@ class BanterClient:
                             expandedFilterMore += x
 
                     tmp = 'I can help you with that. We\'ve got a wide selection of ' + ', '.join(
-                        tmp) + ' polos'+pricedesc+'. Can you help me narrow it down a bit more by specifying a '+expandedFilterMore+'?'
-                    self.set_response_text(intent, tmp.replace('  ', ' ').strip())
+                        tmp) + ' polos'+pricedesc+'. Can we help you find something in a specific '+expandedFilterMore+'.' \
+                        + ' Here are the best 12 for you: '
+                    self.set_response_text(intent, tmp.replace('  ', ' ').strip(), link)
                     record = self.set_data(intent, states[2])
 
 
@@ -780,8 +794,9 @@ class BanterClient:
 
 
                     tmp = 'I can help you with that. We\'ve got a wide variety of ' + ', '.join(
-                        tmp) + ' ' + type +pricedesc+'. Can you help me narrow it down a bit by specifying a '+expandedFilterMore+'?'
-                    self.set_response_text(intent, tmp.replace('  ', ' ').strip())
+                        tmp) + ' ' + type +pricedesc+'. Can we help you find something in a specific '+expandedFilterMore+'.' \
+                        + ' Here are the best 12 for you: '
+                    self.set_response_text(intent, tmp.replace('  ', ' ').strip(), link)
                     record = self.set_data(intent, states[2])
 
                 elif 'goods' in intent and 'shirt' in intent['goods']:
@@ -835,24 +850,28 @@ class BanterClient:
                             expandedFilterMore += x
 
                     tmp = 'I can help you with that. We\'ve got a wide variety of ' + ', '.join(
-                        tmp) + ' shirts'+pricedesc+'. Is there a particular '+expandedFilterMore+'?'
-                    self.set_response_text(intent, tmp.replace('  ', ' ').strip())
+                        tmp) + ' shirts'+pricedesc+'. Can we help you find something in a specific '+expandedFilterMore+'.' \
+                        + ' Here are the best 12 for you: '
+                    self.set_response_text(intent, tmp.replace('  ', ' ').strip(), link)
                     record = self.set_data(intent, states[2])
 
                 elif 'goods' in intent and 'tv' in intent['goods']:
 
                     self.set_response_text(intent,
-                                           'I can help you with that. Is there a particular type (LED/OLED), size, brand or price range?')
+                                           'I can help you with that. We\'ve got a wide is there a particular type (LED/OLED), size, brand or price range?'  \
+                        + ' Here are the best 12 for you:', link)
                     record = self.set_data(intent, states[2])
 
                 elif 'goods' in intent and 'computer' in intent['goods']:
                     self.set_response_text(intent,
-                                           'I can help you with that. Is there a particular Operating system (Mac/Windows/Chrome), size, brand or price range?')
+                                           'I can help you with that. We\'ve got a wide is there a particular Operating system (Mac/Windows/Chrome), size, brand or price range?' \
+                        + ' Here are the best 12 for you:', link)
                     record = self.set_data(intent, states[2])
 
                 else:
                     self.set_response_text(intent,
-                                           "I can help you with that.  Is there a particular type, size, brand or price range?")
+                                           "I can help you with that.  We\'ve got a wide is there a particular type, size, brand or price range?" \
+                        + ' Here are the best 12 for you:', link)
                     record = self.set_data(intent, states[2])
 
             elif intent['ERROR_CODE'] == 'NOT_FOUND':
