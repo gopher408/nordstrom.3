@@ -641,11 +641,11 @@ class BanterClient:
                 link = 'http://' + self.banter_config.get_partner() + '.banter.ai/products?partner=' + self.banter_config.get_partner()
 
                 if 'style' in intent:
-                    link += '&style=' + data['style']
+                    link += '&style=' + intent['style']
                 if 'color' in intent:
-                    link += '&color=' + data['color']
+                    link += '&color=' + intent['color']
                 if 'brand' in intent:
-                    link += '&brand=' + data['brand']
+                    link += '&brand=' + intent['brand']
 
                 for product in intent['datastore_products']:
                     link += '&pid=' + product['id']
@@ -1123,7 +1123,6 @@ class BanterClient:
                             else:
                                 text += ', '
                 # "descriptor":"close"
-<<<<<<< HEAD
 		if dayhours != None:
                    if ('action' in data and 'how late' in data['action']) or ('descriptor' in data and 'open' in data['descriptor'] and  'until' in data['descriptor']):
                       parts = dayhours.split('-')
@@ -1147,27 +1146,7 @@ class BanterClient:
                       parts = dayhours.split('-')
                       self.set_response_text(data, data['datastore_location']['name'] + ' ' + data['datastore_location'][
                         'city'] + ' is open from ' + parts[0] + ' until ' + parts[1] + ' ' + (
-=======
-                if ('action' in data and 'how late' in data['action']) or ('descriptor' in data and 'open' in data['descriptor'] and  'until' in data['descriptor']):
-                    parts = dayhours.split('-')
-                    self.set_response_text(data, data['datastore_location']['name'] + ' is open until ' + parts[1] + ' ' + (
                         datetimefield if datetimefield else 'tonight') + '.')
-
-                elif 'descriptor' in data and 'close' in data['descriptor']:
-                    # Nordstrom Stanford Shopping Center closes at 9:00 PM tonight.
-                    parts = dayhours.split('-')
-                    self.set_response_text(data, data['datastore_location']['name'] + ' closes at ' + parts[1] + ' ' + (
-                        datetimefield if datetimefield else 'tonight') + '.')
-                elif 'descriptor' in data and 'open' in data['descriptor']:
-                    # Nordstrom Stanford Shopping Center opens at 9:00 AM tomorrow.
-                    parts = dayhours.split('-')
-                    self.set_response_text(data, data['datastore_location']['name'] + ' opens at ' + parts[0] + ' ' + (
-                        datetimefield if datetimefield else 'today') + '.')
-                elif dayword in ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']:
-                    parts = dayhours.split('-')
-                    self.set_response_text(data, data['datastore_location']['name'] + ' is open from ' + parts[0] + ' until ' + parts[1] + ' ' + (
->>>>>>> dcfff2fc90e7bc94fec27c8f641d26908fa36262
-                        datetimefield if datetimefield else 'today') + '.')
                 else:
                     self.set_response_text(data, data['datastore_location']['name'] + ' store hours of this week ' + text)
 
@@ -1367,7 +1346,7 @@ if __name__ == '__main__':
     # "Nordstrom Stanford Shopping Center opens at 10:00 AM tomorrow."
     agent.converse(text)
 
-    exit()
+#    exit()
 
     ##### case 3: customer requests for service - women's shoes
     print "\n***** CASE 3 *****\n"
@@ -1438,9 +1417,9 @@ if __name__ == '__main__':
 #    text = "$150"
 #    text = "150"
 #    text = "$150, size 6"
-    text = "size 6, $150"
+#    text = "size 6, $150"
 #    text = "150, gold, Gucci"
-#    text = "below 1000, size 6"
+    text = "below 100"
 #    text = "Below 500, red"
 #    text = "below 500, red, size 6"
 #    text = "above 500, black"
@@ -1478,7 +1457,7 @@ if __name__ == '__main__':
 
     ##### case 6: customer requests for service -- men's shirts/t-shirts
     print "\n***** CASE 6 *****\n"
-    text = "Purple under $70"
+#    text = "Purple under $70"
 #    text = "Below $100"
 #    text = "Less than $100"
 #    text = "Less than 100"
@@ -1486,7 +1465,7 @@ if __name__ == '__main__':
 #    text = "More than 100"
 #    text = "Between $70 and $100"
 #    text = "Black dresses between $100 and $200"
-#    text = " I like blue polo, size 6, between $50 and $100"
+    text = " I like blue polo, size 6, between $50 and $100"
 #    text = "I want the dress of size 7"
 #    text = "I want a t-shirt of size 7"
 #    text = "Do you have pink shirts?"
@@ -1522,8 +1501,8 @@ if __name__ == '__main__':
     #    agent.respondWithQuestion({'text': text})
 
     # customer confirms/rejects the refined question
-    text = "Yes"
-#    text = "No"
+#    text = "Yes"
+    text = "No"
     customer.answer(text)
 
     # agent responds to the order

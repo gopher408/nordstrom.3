@@ -242,10 +242,6 @@ class BanterThinker:
                 missing = missing.replace('"', '')
                 missing = missing.replace('\'', '')
                 missing = missing[1:]
-		if len(missing.split()) == 1:
-		   print "Missing: " + missing
-		elif lenmissing.split()() > 1:
-		   print "Missing: " + ' '.join(missing.split())
    	        self.set_missed(missing)
                 words = query.split()
                 for word in missing.split():
@@ -341,7 +337,6 @@ class BanterThinker:
 
     # This code has to be modified to current settings
     def submit_query(self):
-	print self.get_datastore_request()
         print '\n***** SEARCH  *****\n'
         if self.datastore_request == None or len(self.get_datastore_request()) == 0:
            print "Datastore_request: " + str(self.get_datastore_request())
@@ -423,8 +418,8 @@ if __name__ == "__main__":
     query = "What are Stanford's hours?"
     query = "What time does it close?"
 #    limits = 3
-    datastore_request = nlu.parse_query(dict, query, test, limits)
-    nlu.submit_query()
+#    datastore_request = nlu.parse_query(dict, query, test, limits)
+#    nlu.submit_query()
 
 #    exit()
 
@@ -516,7 +511,7 @@ if __name__ == "__main__":
 #    query = "Between $70 and $100"
 #    query = "Above $100"
 #    query = "Below $100"
-#    query = "Under $100"
+    query = "Under $100"
 #    query = "$100"
 #    query = "Less than $100"
 #    query = "Yellow Between $70 and $100"
@@ -526,8 +521,8 @@ if __name__ == "__main__":
 #    query = "Yellow from $70 to $100 size 12"
 #    query = "Yellow shirt from $70 to $100 size 12"
 #    limits = 3
-#    datastore_request = nlu.parse_query(dict, query, test, limits)
-#    nlu.submit_query()
+    datastore_request = nlu.parse_query(dict, query, test, limits)
+    nlu.submit_query()
 
 # RHS20160827
     query = "I need a dress"
