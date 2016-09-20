@@ -28,6 +28,9 @@ import urllib
 import urllib2
 import requests
 from datastore.aws_datastore import AWSDataStore
+from googleplaces import GooglePlaces, types, lang, GooglePlacesError
+import googleplaces
+
 
 weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
@@ -351,8 +354,15 @@ class BanterClient:
             self.set_topic(topic)
 
         elif len(prev_topic) > 0:
+            if 'lost' in resultData and 'location' not in resultData:
+                foundLocation = self.locationSearch(' '.join(resultData['lost']))
+                if foundLocation:
+                    resultData['location'] = foundLocation;
+                    del resultData['lost']
             if 'lost' in resultData and 'price' not in resultData:
                 del resultData['lost']
+
+
             topic = prev_topic
             self.set_topic(topic)
 
@@ -445,6 +455,24 @@ class BanterClient:
         print self.get_query()
         return self.get_query()
 
+    def locationSearch(self, testLocation):
+
+        googleKey = 'AIzaSyBTq1V4Bj6mSeeJ4u7bDKTPvdlNr-ry8XM'
+        google_places = GooglePlaces(googleKey)
+        try:
+            places = google_places.autocomplete(input=testLocation, types="(cities)")
+        except GooglePlacesError:
+            return None
+
+        if not places:
+            return None
+
+        print "BanterClient.locationSearch - using location" + str(places)
+
+        if len(places.predictions) <= 0:
+            return None
+
+        return places.predictions[0].description;
 
     def converse(self, message, limits=None):
         self.preprocess(message)
