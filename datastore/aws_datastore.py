@@ -921,7 +921,7 @@ class AWSDataStore(DataStore):
             if len(queryData["datastore_products"]) > 12:
                 break
 
-        if res['hits']['total'] > 100 and not 'answer' in queryData['action']:
+        if res['hits']['total'] > 20 and not 'answer' in queryData['action']:
             queryData['ERROR_CODE'] = 'TOO_MANY'
             print "AWSDataStore.productSearch - TOO_MANY:" + json.dumps(queryData)
             return queryData

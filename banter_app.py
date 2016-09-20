@@ -669,7 +669,7 @@ class BanterClient:
 
                     tmp = 'I can help you with that. We\'ve got a wide selection of ' + ', '.join(
                         tmp) + ' dresses'+pricedesc+'. Can we help you find something in a specific '+expandedFilterMore+'.' \
-                        + ' Here are the best 12 for you: '
+                        + ' Here are 12 possiblities out of '+str(intent["datastore_product_count"])+':'
                     self.set_response_text(intent, tmp.replace('  ', ' ').strip(), link)
                     record = self.set_data(intent, states[2])
 
@@ -725,7 +725,7 @@ class BanterClient:
 
                     tmp = 'I can help you with that. We\'ve got a wide selection of ' + ', '.join(
                         tmp) + ' polos'+pricedesc+'. Can we help you find something in a specific '+expandedFilterMore+'.' \
-                        + ' Here are the best 12 for you: '
+                        + ' Here are 12 possiblities out of '+str(intent["datastore_product_count"])+':'
                     self.set_response_text(intent, tmp.replace('  ', ' ').strip(), link)
                     record = self.set_data(intent, states[2])
 
@@ -795,7 +795,7 @@ class BanterClient:
 
                     tmp = 'I can help you with that. We\'ve got a wide variety of ' + ', '.join(
                         tmp) + ' ' + type +pricedesc+'. Can we help you find something in a specific '+expandedFilterMore+'.' \
-                        + ' Here are the best 12 for you: '
+                        + ' Here are 12 possiblities out of '+str(intent["datastore_product_count"])+':'
                     self.set_response_text(intent, tmp.replace('  ', ' ').strip(), link)
                     record = self.set_data(intent, states[2])
 
@@ -851,7 +851,7 @@ class BanterClient:
 
                     tmp = 'I can help you with that. We\'ve got a wide variety of ' + ', '.join(
                         tmp) + ' shirts'+pricedesc+'. Can we help you find something in a specific '+expandedFilterMore+'.' \
-                        + ' Here are the best 12 for you: '
+                        + ' Here are 12 possiblities out of '+str(intent["datastore_product_count"])+':'
                     self.set_response_text(intent, tmp.replace('  ', ' ').strip(), link)
                     record = self.set_data(intent, states[2])
 
@@ -859,19 +859,19 @@ class BanterClient:
 
                     self.set_response_text(intent,
                                            'I can help you with that. We\'ve got a wide is there a particular type (LED/OLED), size, brand or price range?'  \
-                        + ' Here are the best 12 for you:', link)
+                        + ' Here are 12 possiblities out of '+str(intent["datastore_product_count"])+':', link)
                     record = self.set_data(intent, states[2])
 
                 elif 'goods' in intent and 'computer' in intent['goods']:
                     self.set_response_text(intent,
                                            'I can help you with that. We\'ve got a wide is there a particular Operating system (Mac/Windows/Chrome), size, brand or price range?' \
-                        + ' Here are the best 12 for you:', link)
+                        + ' Here are 12 possiblities out of '+str(intent["datastore_product_count"])+':', link)
                     record = self.set_data(intent, states[2])
 
                 else:
                     self.set_response_text(intent,
                                            "I can help you with that.  We\'ve got a wide is there a particular type, size, brand or price range?" \
-                        + ' Here are the best 12 for you:', link)
+                        + ' Here are 12 possiblities out of '+str(intent["datastore_product_count"])+':', link)
                     record = self.set_data(intent, states[2])
 
             elif intent['ERROR_CODE'] == 'NOT_FOUND':
