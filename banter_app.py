@@ -1015,13 +1015,13 @@ class BanterClient:
                 elif len(data['datastore_locations']) == 1:
                     txt = 'Yes, there is a store nearby:\n'
                     txt += data['datastore_locations'][0]['name'] + ' - ' + data['datastore_locations'][0][
-                        'address'] + ', ' + data['datastore_locations'][0]['city']
+                        'address']
                     self.set_response_text(data, txt.strip())
 
                 elif 'rownum' in data:
                     num = int(data['rownum']) - 1
                     txt = data['datastore_locations'][0]['name'] + ' - ' + data['datastore_locations'][num][
-                        'address'] + ', ' + data['datastore_locations'][num]['city']
+                        'address']
                     self.set_response_text(data, txt.strip())
 
                 else:
@@ -1123,6 +1123,7 @@ class BanterClient:
                             else:
                                 text += ', '
                 # "descriptor":"close"
+<<<<<<< HEAD
 		if dayhours != None:
                    if ('action' in data and 'how late' in data['action']) or ('descriptor' in data and 'open' in data['descriptor'] and  'until' in data['descriptor']):
                       parts = dayhours.split('-')
@@ -1146,10 +1147,29 @@ class BanterClient:
                       parts = dayhours.split('-')
                       self.set_response_text(data, data['datastore_location']['name'] + ' ' + data['datastore_location'][
                         'city'] + ' is open from ' + parts[0] + ' until ' + parts[1] + ' ' + (
+=======
+                if ('action' in data and 'how late' in data['action']) or ('descriptor' in data and 'open' in data['descriptor'] and  'until' in data['descriptor']):
+                    parts = dayhours.split('-')
+                    self.set_response_text(data, data['datastore_location']['name'] + ' is open until ' + parts[1] + ' ' + (
+                        datetimefield if datetimefield else 'tonight') + '.')
+
+                elif 'descriptor' in data and 'close' in data['descriptor']:
+                    # Nordstrom Stanford Shopping Center closes at 9:00 PM tonight.
+                    parts = dayhours.split('-')
+                    self.set_response_text(data, data['datastore_location']['name'] + ' closes at ' + parts[1] + ' ' + (
+                        datetimefield if datetimefield else 'tonight') + '.')
+                elif 'descriptor' in data and 'open' in data['descriptor']:
+                    # Nordstrom Stanford Shopping Center opens at 9:00 AM tomorrow.
+                    parts = dayhours.split('-')
+                    self.set_response_text(data, data['datastore_location']['name'] + ' opens at ' + parts[0] + ' ' + (
+                        datetimefield if datetimefield else 'today') + '.')
+                elif dayword in ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']:
+                    parts = dayhours.split('-')
+                    self.set_response_text(data, data['datastore_location']['name'] + ' is open from ' + parts[0] + ' until ' + parts[1] + ' ' + (
+>>>>>>> dcfff2fc90e7bc94fec27c8f641d26908fa36262
                         datetimefield if datetimefield else 'today') + '.')
                 else:
-                    self.set_response_text(data, data['datastore_location']['name'] + ' ' + data['datastore_location'][
-                        'city'] + ' store hours of this week ' + text)
+                    self.set_response_text(data, data['datastore_location']['name'] + ' store hours of this week ' + text)
 
                 record = self.set_data(data, states[3])
 
