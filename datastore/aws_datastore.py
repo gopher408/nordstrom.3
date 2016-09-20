@@ -848,7 +848,8 @@ class AWSDataStore(DataStore):
 
                     queryFields['bool']['must'].append(should)
 
-                elif field not in ['under', 'over', 'between']:
+#                elif field not in ['under', 'over', 'between']:
+                elif field not in ['under', 'over']:
                     should['bool']['should'].append({"match": {"title": {"query": field}}})
                     should['bool']['should'].append({"match": {"description": {"query": field}}})
                     should['bool']['should'].append({"match": {"categories": {"query": field}}})
