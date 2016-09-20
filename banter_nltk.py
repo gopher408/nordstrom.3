@@ -34,7 +34,7 @@ global_dict = ["ralph lauren", "polo shirt", "6 inch", "old fashion", "old fashi
         "personal computers","personal coumpter", "sky blue", "pacific blue", "suger plum","the stanford",
         "t shirt", "t shirts","new year","martin luther king", "martin luther king jr.", "presidents day",
         "st. patrick","saint patrick","memorial day","independence day", "july 4th","july forth","jul 4th","labor day",
-        "colmbus day","thanksgiving day","christmas eve", "no one", "best buy",
+        "colmbus day","thanksgiving day","christmas eve", "no one", "best buy","new york",
         "expect to", "like to", "need to", "want to", "this morning", "this afternoon", "this evening", "flower girls", "flower girl",
         "expects to", "likes to", "needs to", "want to", "young adults", "young adult", "close to", "right now",
         "expected to", "liked to", "needed to", "wanted to", "what time", "how much", "how late", "how early", "how soon","how long",

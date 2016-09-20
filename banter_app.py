@@ -66,7 +66,7 @@ basic_colors = [
 ]
 
 global_dict = ["ralph lauren", "polo shirt", "6 inch", "old fashion", "old fashioned", "in stock", "zip code",
-               "palo alto", "walnut creek",
+               "palo alto", "walnut creek", "new york",
                "san mateo", "santa clara", "san jose", "san francisco", "hewlett packard", "microsoft surtfaces",
                "microsoft surface", "broadway plaza",
                "home theaters", "home theater", "remote controllers", "remote controller", "digital cameras",
@@ -1232,7 +1232,8 @@ if __name__ == '__main__':
 
     print "\n***** CASE 1.b *****\n"
     # customer replies the location
-    text = "Palo Alto"
+    text = "New York"
+#    text = "Palo Alto"
 #    text = "94301"
 #    text = "SF"
 #    text = "San Francisco Central"
@@ -1324,13 +1325,16 @@ if __name__ == '__main__':
 
     ##### case 4: to test bad sentences
     print "\n***** CASE 4 *****\n"
+    text = "I'm looking for some shoes"
 #    text = "I'm looking for some red boots."
 #    text = "I'm looking for some red shoes"
 #    text = "I'm looking for some handbags"
 #    text = "I'm looking for some gucci"
 #    text = "I'm looking for some gucci handbags"
 #    text = "I'm looking for some gucci boots"
-    text = "I'm looking for some gucci shoes"
+#    text = "I'm looking for some gucci shoes"
+#    text = "I'm looking for some nike shoes"
+#    text = "I'm looking for some nike or gucci shoes"
 #    text = "I'm looking for some redd botts." # to test missing words
 #    text = "I'm looking in for some red boots." # to test bogus words
 #    text = "How much I'm looking for some red boots." # to test variation
@@ -1354,15 +1358,18 @@ if __name__ == '__main__':
 #    text = "Red"
 #    text = "White"
 #    text = "Reset"
-#    text = "1$50"
+#    text = "$150"
 #    text = "150"
 #    text = "$150, size 6"
 #    text = "150, gold, Gucci"
 #    text = "below 1000, size 6"
-#    text = "below 1000, black"
-    text = "above 500, black"
+#    text = "Below 500, red"
+#    text = "below 500, red, size 6"
+#    text = "above 500, black"
+#    text = "above 500, red"
 #    text = "Between 500 and 1000, black"
 #    text = "From 500 to 1000, black"
+    text = "Nike or gucci, black"
     customer.question(text)
 
     # agent sends the information of customer's products
