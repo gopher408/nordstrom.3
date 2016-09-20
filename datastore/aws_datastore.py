@@ -909,10 +909,7 @@ class AWSDataStore(DataStore):
         queryData["datastore_products"] = []
 
         print("AWSDataStore - %d documents found" % res['hits']['total'])
-        if res['hits']['total'] > 20 and not 'answer' in queryData['action']:
-            queryData['ERROR_CODE'] = 'TOO_MANY'
-            print "AWSDataStore.productSearch - TOO_MANY:" + json.dumps(queryData)
-            return queryData
+        queryData["datastore_product_count"] = res['hits']['total'];
 
         for doc in res['hits']['hits']:
             print("AWSDataStore found doc: %s) %s" % (doc['_id'], doc['_score']), doc['_source']['id'], doc['_source']['title'])
@@ -921,6 +918,13 @@ class AWSDataStore(DataStore):
                 'docID': doc['_id'],
                 'id': doc['_source']['id']
             })
+            if len(queryData["datastore_products"]) > 12:
+                break
+
+        if res['hits']['total'] > 20 and not 'answer' in queryData['action']:
+            queryData['ERROR_CODE'] = 'TOO_MANY'
+            print "AWSDataStore.productSearch - TOO_MANY:" + json.dumps(queryData)
+            return queryData
 
         print 'AWSDataStore.productSearch -> response' + str(queryData)
 

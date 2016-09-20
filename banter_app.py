@@ -28,6 +28,9 @@ import urllib
 import urllib2
 import requests
 from datastore.aws_datastore import AWSDataStore
+from googleplaces import GooglePlaces, types, lang, GooglePlacesError
+import googleplaces
+
 
 weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
@@ -85,7 +88,7 @@ global_dict = ["ralph lauren", "polo shirt", "6 inch", "old fashion", "old fashi
                "expected to", "liked to", "needed to", "wanted to", "what time", "how much", "how late", "how early",
                "how soon", "how long",
                "lunch time", "lunch break", "lunch hour", "lunch hours", "short sleeve", "long sleeve", "how expensive",
-               "how costly", "how cheap"]
+               "how costly", "how cheap", "new york", "big apple", "new jersey"]
 
 wh_tones = ["what", "when", "where", "which", "how", "why", "what_time", "how_much", "how_late"]
 
@@ -353,8 +356,15 @@ class BanterClient:
             self.set_topic(topic)
 
         elif len(prev_topic) > 0:
+            if 'lost' in resultData and 'location' not in resultData:
+                foundLocation = self.locationSearch(' '.join(resultData['lost']))
+                if foundLocation:
+                    resultData['location'] = foundLocation;
+                    del resultData['lost']
             if 'lost' in resultData and 'price' not in resultData:
                 del resultData['lost']
+
+
             topic = prev_topic
             self.set_topic(topic)
 
@@ -453,6 +463,24 @@ class BanterClient:
         print self.get_query()
         return self.get_query()
 
+    def locationSearch(self, testLocation):
+
+        googleKey = 'AIzaSyBTq1V4Bj6mSeeJ4u7bDKTPvdlNr-ry8XM'
+        google_places = GooglePlaces(googleKey)
+        try:
+            places = google_places.autocomplete(input=testLocation, types="(cities)")
+        except GooglePlacesError:
+            return None
+
+        if not places:
+            return None
+
+        print "BanterClient.locationSearch - using location" + str(places)
+
+        if len(places.predictions) <= 0:
+            return None
+
+        return places.predictions[0].description;
 
     def converse(self, message, limits=None):
         self.preprocess(message)
@@ -612,6 +640,18 @@ class BanterClient:
                     intent['lost']) + "\". Can you check it again?")
                 record = self.set_data(intent, states[2])
             elif intent['ERROR_CODE'] == 'TOO_MANY':
+                link = 'http://' + self.banter_config.get_partner() + '.banter.ai/products?partner=' + self.banter_config.get_partner()
+
+                if 'style' in intent:
+                    link += '&style=' + data['style']
+                if 'color' in intent:
+                    link += '&color=' + data['color']
+                if 'brand' in intent:
+                    link += '&brand=' + data['brand']
+
+                for product in intent['datastore_products']:
+                    link += '&pid=' + product['id']
+
                 if 'goods' in intent and 'dress' in intent['goods']:
                     tmp = []
                     filtermore = []
@@ -664,8 +704,9 @@ class BanterClient:
 
 
                     tmp = 'I can help you with that. We\'ve got a wide selection of ' + ', '.join(
-                        tmp) + ' dresses'+pricedesc+'. Can you help me narrow it down a bit more by specifying a '+expandedFilterMore+'?'
-                    self.set_response_text(intent, tmp.replace('  ', ' ').strip())
+                        tmp) + ' dresses'+pricedesc+'. Can we help you find something in a specific '+expandedFilterMore+'.' \
+                        + ' Here are 12 possiblities out of '+str(intent["datastore_product_count"])+':'
+                    self.set_response_text(intent, tmp.replace('  ', ' ').strip(), link)
                     record = self.set_data(intent, states[2])
 
                 elif 'goods' in intent and 'polo' in intent['goods']:
@@ -719,8 +760,9 @@ class BanterClient:
                             expandedFilterMore += x
 
                     tmp = 'I can help you with that. We\'ve got a wide selection of ' + ', '.join(
-                        tmp) + ' polos'+pricedesc+'. Can you help me narrow it down a bit more by specifying a '+expandedFilterMore+'?'
-                    self.set_response_text(intent, tmp.replace('  ', ' ').strip())
+                        tmp) + ' polos'+pricedesc+'. Can we help you find something in a specific '+expandedFilterMore+'.' \
+                        + ' Here are 12 possiblities out of '+str(intent["datastore_product_count"])+':'
+                    self.set_response_text(intent, tmp.replace('  ', ' ').strip(), link)
                     record = self.set_data(intent, states[2])
 
 
@@ -788,8 +830,9 @@ class BanterClient:
 
 
                     tmp = 'I can help you with that. We\'ve got a wide variety of ' + ', '.join(
-                        tmp) + ' ' + type +pricedesc+'. Can you help me narrow it down a bit by specifying a '+expandedFilterMore+'?'
-                    self.set_response_text(intent, tmp.replace('  ', ' ').strip())
+                        tmp) + ' ' + type +pricedesc+'. Can we help you find something in a specific '+expandedFilterMore+'.' \
+                        + ' Here are 12 possiblities out of '+str(intent["datastore_product_count"])+':'
+                    self.set_response_text(intent, tmp.replace('  ', ' ').strip(), link)
                     record = self.set_data(intent, states[2])
 
                 elif 'goods' in intent and 'shirt' in intent['goods']:
@@ -843,24 +886,28 @@ class BanterClient:
                             expandedFilterMore += x
 
                     tmp = 'I can help you with that. We\'ve got a wide variety of ' + ', '.join(
-                        tmp) + ' shirts'+pricedesc+'. Is there a particular '+expandedFilterMore+'?'
-                    self.set_response_text(intent, tmp.replace('  ', ' ').strip())
+                        tmp) + ' shirts'+pricedesc+'. Can we help you find something in a specific '+expandedFilterMore+'.' \
+                        + ' Here are 12 possiblities out of '+str(intent["datastore_product_count"])+':'
+                    self.set_response_text(intent, tmp.replace('  ', ' ').strip(), link)
                     record = self.set_data(intent, states[2])
 
                 elif 'goods' in intent and 'tv' in intent['goods']:
 
                     self.set_response_text(intent,
-                                           'I can help you with that. Is there a particular type (LED/OLED), size, brand or price range?')
+                                           'I can help you with that. We\'ve got a wide is there a particular type (LED/OLED), size, brand or price range?'  \
+                        + ' Here are 12 possiblities out of '+str(intent["datastore_product_count"])+':', link)
                     record = self.set_data(intent, states[2])
 
                 elif 'goods' in intent and 'computer' in intent['goods']:
                     self.set_response_text(intent,
-                                           'I can help you with that. Is there a particular Operating system (Mac/Windows/Chrome), size, brand or price range?')
+                                           'I can help you with that. We\'ve got a wide is there a particular Operating system (Mac/Windows/Chrome), size, brand or price range?' \
+                        + ' Here are 12 possiblities out of '+str(intent["datastore_product_count"])+':', link)
                     record = self.set_data(intent, states[2])
 
                 else:
                     self.set_response_text(intent,
-                                           "I can help you with that.  Is there a particular type, size, brand or price range?")
+                                           "I can help you with that.  We\'ve got a wide is there a particular type, size, brand or price range?" \
+                        + ' Here are 12 possiblities out of '+str(intent["datastore_product_count"])+':', link)
                     record = self.set_data(intent, states[2])
 
             elif intent['ERROR_CODE'] == 'NOT_FOUND':
