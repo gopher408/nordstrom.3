@@ -251,11 +251,10 @@ class BanterThinker:
 	        if subquery != None and len(subquery) > 0:
                    self.parse_query(dict, subquery, test, limits)
                 else:
-                   self.datastore_request['lost'] = lost 
+                   self.datastore_request['lost'] = missing.split()
                    self.set_datastore_request(self.datastore_request)
-                   return self.get_datastore_request()
         except:
-            temp = None
+	    temp = None
             try:
                 temp = self.trees[0].label()['SEM']
             except:
@@ -300,7 +299,6 @@ class BanterThinker:
                 if isinstance(limits, int):
                     datastore_request['LIMIT'] = limits
             self.set_datastore_request(datastore_request)
-            return self.get_datastore_request()
 
         lost = self.get_missed()
         if len(lost) > 0:
@@ -500,6 +498,7 @@ if __name__ == "__main__":
     query = "I am looking for more tall dress boots like the third one."
     query = "I need new white shoes"
     query = "150, Size 6"
+    query = "Below 150, Size 6"
 #    query = "Size 12 in black"
 #    query = "What is the price?" 
 #    query = "How expensive is that boot?" 
@@ -508,6 +507,7 @@ if __name__ == "__main__":
 #    query = "Above $100"
 #    query = "Below $100"
 #    query = "Under $100"
+#    query = "$100"
 #    query = "Less than $100"
 #    query = "Yellow Between $70 and $100"
 #    query = "Yellow under $70"

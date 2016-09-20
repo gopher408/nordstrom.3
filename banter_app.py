@@ -1380,6 +1380,7 @@ if __name__ == '__main__':
 #    text = "$150"
 #    text = "150"
 #    text = "$150, size 6"
+    text = "size 6, $150"
 #    text = "150, gold, Gucci"
 #    text = "below 1000, size 6"
 #    text = "Below 500, red"
@@ -1388,7 +1389,7 @@ if __name__ == '__main__':
 #    text = "above 500, red"
 #    text = "Between 500 and 1000, black"
 #    text = "From 500 to 1000, black"
-    text = "Nike or gucci, black"
+##    text = "Nike or gucci, black"
     customer.question(text)
 
     # agent sends the information of customer's products
@@ -1396,7 +1397,7 @@ if __name__ == '__main__':
     # product info should be attached to the end of text
     agent.converse(text)
 
-    exit()
+#    exit()
 
     ##### case 5: customer requests for service -- women's dresses
     print "\n***** CASE 5 *****\n"
@@ -1420,13 +1421,14 @@ if __name__ == '__main__':
     ##### case 6: customer requests for service -- men's shirts/t-shirts
     print "\n***** CASE 6 *****\n"
     text = "Purple under $70"
-#    text = "Below $100"
+    text = "Below $100"
 #    text = "Less than $100"
 #    text = "Less than 100"
 #    text = "Above $100"
 #    text = "More than 100"
 #    text = "Between $70 and $100"
 #    text = "Black dresses between $100 and $200"
+    text = " I like blue polo, size 6, between $50 and $100"
 #    text = "I want the dress of size 7"
 #    text = "I want a t-shirt of size 7"
 #    text = "Do you have pink shirts?"
