@@ -66,7 +66,7 @@ basic_colors = [
 ]
 
 global_dict = ["ralph lauren", "polo shirt", "6 inch", "old fashion", "old fashioned", "in stock", "zip code",
-               "palo alto", "walnut creek",
+               "palo alto", "walnut creek", "new york",
                "san mateo", "santa clara", "san jose", "san francisco", "hewlett packard", "microsoft surtfaces",
                "microsoft surface", "broadway plaza",
                "home theaters", "home theater", "remote controllers", "remote controller", "digital cameras",

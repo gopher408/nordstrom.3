@@ -1,5 +1,6 @@
 taupe suede python print combo
 beige pearlized patent leather
+<<<<<<< HEAD
 oxidized silver glitter fabric
 white blk snake print leather
 pewter black metallic leather
@@ -26,10 +27,34 @@ natural snake print leather
 cognac cognac extended calf
 black leather extended calf
 silver glitter silver suede
+=======
+white blk snake print leather
+navy blue france silver chine
+black sparkling grape ceramic
+silver cloud perforated suede
+true white nappa leather blue
+pewter black metallic leather
+metallic glacier black white
+blue glow white coastal blue
+cognac leather extended calf
+sand tan snake print leather
+true grey heather wht stripe
+white navy blue silver chine
+red pearlized patent leather
+court purple dark iris black
+silver blue atoll lime punch
+cognac cognac extended calf
+light crimson reflect black
+black white printed leather
+black leather extended calf
+slate leather extended calf
+pacific nova teal nova teal
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 marmotta distressed leather
 dark loden olive flake sail
 black platinum white patent
 antik gold metallic leather
+<<<<<<< HEAD
 brown python print leather
 blush taupe patent leather
 rendered windowpane hunter
@@ -155,13 +180,142 @@ vintage cognac leather
 black dark grey white
 platinum gold leather
 military gold eyelets
+=======
+bleached lilac hyper violet
+white silver chine papyrus
+silver stones faux leather
+navy blue white cherry red
+brown python print leather
+carbon heather black black
+dark burgundy black patent
+blush taupe patent leather
+roccia snake print leather
+fuchsia nappa leather blue
+rendered windowpane hunter
+champagne metallic leather
+black black patent leather
+green abyss rio teal black
+black python print leather
+picket fence nappa leather
+beige oatmeal dark heather
+silver metallic soft nappa
+black vendange white black
+azalea black cyber yellow
+anthracite metallic nappa
+blue twilight navy fabric
+prugna distressed leather
+black white snake leather
+light grey stretch fabric
+hyper turqoise white jade
+white blue corrida raffia
+sunset vivid orange black
+raffia matting white navy
+midnight blue chine white
+white grey pure platinum
+fresh red patent leather
+evening botanical fabric
+white overcast gray gray
+olive flake black celery
+black multi floral satin
+dark brown stretch suede
+modern ivory snake print
+flash coral black silver
+blush nude cocoon patent
+blue thread pink gingham
+black distressed leather
+summit white varsity red
+peacoat navy snake print
+cognac burnished leather
+multi light gold leather
+champagne glitter fabric
+tobacco distressed suede
+almond tan white leather
+black suede python print
+salmon rose coral orange
+blue cap white ocean fog
+nimbus grey black fabric
+metallic silver leather
+red rose patent leather
+dark tan nubuck leather
+blue surf white gingham
+pastel pale blue fabric
+pure silver black white
+pewter metallic leather
+vivid pink summit white
+black remixed botanical
+clear jade summit white
+stone burnished leather
+taupe burnished leather
+cabernet cabernet suede
+new ivory midnight navy
+tarmac perforated suede
+cordovan mirror leather
+lacquer white navy blue
+blue spark summit white
+grey dawn white gingham
+mushroom nubuck leather
+silver metallic leather
+black reflective silver
+shroom brown storm blue
+navy nappa leather blue
+coastal blue copa white
+graphite gunmetal hrdwr
+black white green gecko
+gold multi candy fabric
+cafe distressed leather
+natural buck morlorrus
+show me the ring crisp
+black blue white black
+black embossed leather
+light photo blue black
+red chestnut kid suede
+black gunmetal leather
+olive light gold hrdwr
+bomber grey distressed
+light gold black white
+eiffel tower kid suede
+gunmetal suede leather
+silver desert metallic
+dark brown solid snake
+platino glitter fabric
+black black white grey
+dark blue fabric suede
+black white anthracite
+mulberry suede leather
+vintage smokey leather
+platino metallic suede
+beige driftwood patent
+black antiqued leather
+brushed nickel leather
+midnight green heather
+volt barely volt black
+vintage cognac leather
+black white cool grey
+marine fabric leather
+black dark grey white
+pewter metallic linen
+platinum gold leather
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 midnight navy opaline
+silver glitter fabric
 black white red suede
+<<<<<<< HEAD
 silver metallic suede
 marine fabric leather
+=======
+fuchsia classic satin
+onyx white blush blue
+black pebbled stretch
+bougainvillea mouline
+putting green academy
+university blue white
+racer blue white blue
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 dark grey black white
+whiskey brown leather
 bright crimson orange
 golden caramel patent
+<<<<<<< HEAD
 royal navy soft nappa
 caribbean blue rubber
 black tumbled leather
@@ -199,10 +353,32 @@ sulfur infantry khaki
 barbados cherry white
 furious fuchsia suede
 ballet patent leather
+=======
+black tumbled leather
+royal navy soft nappa
+caribbean blue rubber
+dark charcoal melange
+sesame nubuck leather
+grey distressed suede
+castlerock grey suede
+multi sparkle glitter
+metallic rust glitter
+silver metallic suede
+platinum white patent
+sulfur infantry khaki
+barbados cherry white
+clear jade white volt
+egyptian gold leather
+dark peony soft nappa
+furious fuchsia suede
+aruba blue white navy
+blue blue suede snake
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 barely volt volt sail
 silver metallic nappa
 blue glow pink blast
 classic nude leather
+<<<<<<< HEAD
 ivory spliced floral
 white patent leather
 begonia heather pink
@@ -231,13 +407,17 @@ black fabric leather
 navy heather seafoam
 hibiscus bella suede
 university red black
+=======
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 black nubuck leather
 grey marl flint blue
 blush nubuck leather
 silver metallic blue
 ivory oatmeal canvas
+black gunmetal suede
 university red white
 grey cool grey white
+<<<<<<< HEAD
 dark burgundy patent
 oatmeal heather grey
 metallic blue fabric
@@ -278,10 +458,60 @@ electric blue suede
 dark midnight suede
 nude nubuck leather
 nimbus grey leather
+=======
+begonia heather pink
+iron gate grey black
+scarlet silk leather
+dark burgundy patent
+oatmeal heather grey
+metallic blue fabric
+golden caramel suede
+blue glow white blue
+burgundy london slub
+ivory spliced floral
+black stretch fabric
+red rosewood heather
+cognac extended calf
+white collegiate red
+whiskey brow leather
+cornstock gold coral
+cognac textured calf
+crystal silver nappa
+bright crimson white
+port royale embossed
+dark grey black grey
+steel deco lame mesh
+black patent leather
+dark grey pink blast
+black fabric leather
+hibiscus bella suede
+dill white navy blue
+chestnut perf nubuck
+navy heather seafoam
+woodland brown suede
+university red black
+night maroon red elm
+olive sarma heather
+taupe black leather
+smoke extended calf
+black textured calf
+blue wing madallion
+grey cloudy heather
+silver gold leather
+new deep grey suede
+teaberry duck green
+silver faux leather
+electric blue suede
+dark midnight suede
+nude nubuck leather
+blue glow copa sail
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 silver grey heather
+brindle oiled suede
 light natural suede
 dark burgundy suede
 grey medium heather
+<<<<<<< HEAD
 parrot jungle black
 blue wing madallion
 silver candy fabric
@@ -324,9 +554,86 @@ dark green leather
 black blush patent
 vintage blue suede
 lite latte leather
+=======
+black stretch suede
+silver candy fabric
+peacoat baton rouge
+olive suede leather
+black flower fabric
+black nappa leather
+academy cadet steel
+nude patent leather
+black suede stretch
+black grey charcoal
+black printed suede
+anthracite hibiscus
+washed navy leather
+gingerbread leather
+soft silver leather
+dark burgundy suede
+white pearl leather
+navy patent leather
+pewter faux leather
+blush white leather
+red chestnut patent
+grey stretch fabric
+smoke taupe leather
+gym red black black
+black black leather
+dark saddle leather
+classic green white
+blush nappa leather
+light taupe leather
+platino desert mesh
+pure platinum black
+powder blush patent
+salmon rose patent
+prairie dust suede
+alpine green white
+canela brown suede
+lite latte leather
+navy sparkle suede
+calypso blue satin
+black dotted suede
+storm gray heather
+crystal gold nappa
+medium brown suede
+black gunmet suede
+coastal blue suede
+cardinal red white
+nattier blue white
+court purple white
+light heather grey
+dark brown leather
+black candy fabric
+coastal blue white
+light grey leather
+drizzle grey suede
+purple jelly ombre
+plum black leather
+tan stretch fabric
+black frozen green
+black black rubber
+black summit white
+paprika nude suede
+old pewter leather
+carmine pink satin
+royal navy leather
+french braid berry
+bandana blue suede
+black strata satin
+powder blush suede
+port sparkle suede
+grey printed suede
+college navy white
+dark green leather
+black gold leather
+black blush patent
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 brown khaki canvas
 blue floral fabric
 gry cloudy heather
+<<<<<<< HEAD
 black black patent
 red nubuck leather
 au natural leather
@@ -406,25 +713,81 @@ dusty blush crisp
 black micro suede
 black black white
 tour blue heather
+=======
+vintage blue suede
+black black patent
+blue peacock suede
+black grey leather
+pale white leather
+pan napp goosebump
+periwinkle purple
+black black suede
+soft gold leather
+black black white
+taupe perf nubuck
+gold lizard print
+honey brown suede
+stone taupe suede
+dusty brown suede
+dark brown rubber
+black multi suede
+light camel suede
+white white black
+silver grey chine
+pajama blue suede
+grey ultrastretch
+black micro suede
+lapis mirror calf
+grey faux leather
+deep navy leather
+tour blue heather
+light oak leather
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 stormy grey suede
 storm chine white
+chlorophyll green
 champagne leather
-navy drop leather
+black solid snake
+purple white pink
 fumo soft leather
+<<<<<<< HEAD
 silver grey chine
 pajama blue suede
 black black hrdwr
 scarlet red suede
+=======
+noir ultrastretch
+sulfur blue ridge
+smoke taupe suede
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 black white black
+deep baltic suede
+frosty pink crisp
+white wall canvas
 white black white
+<<<<<<< HEAD
 stone taupe suede
 pewter grey white
 new black leather
+=======
+fire coral rubber
+pink garnet suede
+pewter grey white
+faded denim suede
+pale grey melange
+black shiny snake
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 blush nude patent
+stone micro suede
+poppy red leather
 black white white
-grey faux leather
+black black hrdwr
+amethyst gunmetal
 olive flake white
+marmalade leather
+zinc gray heather
 brandy wine satin
+<<<<<<< HEAD
 bronze anthracite
 warm taupe suede
 brunello leather
@@ -442,9 +805,39 @@ charcoal heather
 ivory satin mesh
 ivory opalescent
 grey felt fabric
+=======
+dusty blush crisp
+black navy fabric
+silver sage crisp
+chestnut leather
+ocean teal suede
+rust red leather
+champagne fabric
+pearl grey suede
+warm taupe suede
+game royal white
+dark red leather
+warm stone suede
+grey multi snake
+platinum leather
+dusty rose suede
+game royal black
+taupe grey suede
+dark taupe suede
+charcoal heather
+ivory satin mesh
+hyper pink black
+grey perf nubuck
+moss green suede
+black faux suede
+black white pink
+grey felt fabric
+dark green suede
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 navy blue moulin
-light grey suede
+blush faux suede
 brown garnet red
+<<<<<<< HEAD
 rose gold fabric
 brown wool plaid
 nero patent gold
@@ -452,18 +845,49 @@ clear jade white
 dark taupe suede
 red garnet suede
 black satin mesh
+=======
+port red leather
+fall olive suede
+brown wool plaid
+nero patent gold
+clear jade white
+charcoal oatmeal
+pecan comfy calf
+white black grey
+red garnet suede
+avorlo snakeskin
+titanium leather
+pink tea leather
+racer blue white
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 west indies blue
-mushroom leather
+dark grey fabric
 burgundy leather
+<<<<<<< HEAD
 game royal white
 white white blue
+=======
+pink blast black
+pink blast white
+grey dove nubuck
+anthracite suede
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 black true white
-dark green satin
 dark indigo blue
+<<<<<<< HEAD
 white pink black
 santa ana purple
+=======
+new teal leather
+pink mauve suede
+santa ana purple
+navy iris stripe
+pine green suede
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 soft coral suede
+dark beige suede
 navy night fable
+<<<<<<< HEAD
 pine green suede
 chestnut leather
 ocean teal suede
@@ -507,9 +931,28 @@ sea breeze blue
 blue haze satin
 ink navy patent
 pompeii leather
+=======
+light grey suede
+grey frost suede
+ash bronze suede
+black goose bump
+black satin mesh
+dark moss suede
+noble red white
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 olive pink rust
-tour blue white
+lawn chair blue
+soft gold satin
+dark grey white
+new putty suede
+eggplant patent
+juicy red suede
+blue haze satin
+vibrant fuchsia
+tango red suede
+wild dove suede
 aubergine suede
+<<<<<<< HEAD
 red chilli slub
 petunia leather
 midnight rubber
@@ -519,16 +962,63 @@ grey dove suede
 dark teal suede
 port wine suede
 celestial chine
+=======
+purple amethyst
+red chilli slub
+midnight rubber
+purple feminine
+brindle leather
+platino leather
+silver metallic
+navy haze suede
+asphalt heather
+navy blue white
+grey stonehenge
+drifting floral
+sea breeze blue
+whipped apricot
+pompeii leather
+tour blue white
+silver specchio
+dark teal suede
+cool grey black
+white dark blue
+port wine suede
+off black suede
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 champagne satin
+raspberry suede
 chocolate suede
+<<<<<<< HEAD
 new putty suede
 charcoal fabric
 deep grey suede
 pyrite jacquard
 white dark blue
+=======
+navy satin mesh
+candy red suede
+red ochre fable
+nightfall suede
+thursday khakis
+moonlight suede
+greystone suede
+dark navy suede
+charcoal fabric
+deep grey suede
+thursday browns
+warm grey suede
+bordeaux velvet
+pyrite jacquard
+nova teal black
+ink navy patent
+celestial chine
+gunmetal fabric
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 grey castlerock
 warm grey suede
 rich navy crisp
+<<<<<<< HEAD
 chocolate brown
 asphalt heather
 soft gold satin
@@ -608,10 +1098,31 @@ radient silver
 cherry blossom
 magenta purple
 mahogany black
+=======
+sandstone suede
+chocolate brown
+soft gold suede
+charcoal matte
+red white pink
+taupe kidsuede
+cashew leather
+bouquet beauty
+deep turquoise
+toffee leather
+navy blue dyed
+vintage cognac
+fondente brown
+ivory palomino
+silver leather
+cherry blossom
+magenta purple
+beachside blue
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 midnight green
 burgundy satin
 bouquet beauty
 burgundy suede
+<<<<<<< HEAD
 frosted orange
 light lavender
 platinum satin
@@ -630,8 +1141,45 @@ navy blue dyed
 silver glitter
 kumquat yellow
 sangria fabric
+=======
+cognac leather
+saddle leather
+light lavender
+black grnd flr
+platino fabric
+new dusty blue
+emerald forest
+radiant orchid
+purple persian
+hydrangea blue
+gunmetal steel
+bordeaux suede
+mid army green
+black charcoal
+red lite suede
+grey grey pink
+electric suede
+yellow vibrant
+viridian green
+langdon purple
+sangria fabric
+lagoon leather
+steamship blue
+dry leaf suede
+eggplant suede
+sailboat white
+mahogany black
+colorado brown
+college purple
+silver glitter
+kumquat yellow
+pewter leather
+jungle pigment
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 deauville blue
+chestnut suede
 charcoal suede
+<<<<<<< HEAD
 ivory palomino
 rose pink opal
 chrome leather
@@ -642,19 +1190,64 @@ copper leather
 dark red suede
 crimson suede
 ocean channel
+=======
+sapphire satin
+black kidsuede
+burgundy black
+sesame leather
+champagne gold
+burgundy satin
+chrome leather
+frosted orange
+navy kid suede
+vintage indigo
+black tortoise
+teal deep slub
+copper leather
+white cap blue
+mirrored white
+dark red suede
+green pinecone
+bay blue suede
+parisian blue
+purple potion
+oxblood suede
+sterling grey
+gilt specchio
+vanilla satin
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 uniform khaki
 blue mazarine
+platinum gold
 deep burgundy
 tar heel blue
+<<<<<<< HEAD
 fatigue suede
 bright cobalt
 blue poseidon
 pink lavender
 purple potion
 blue darkness
+=======
+oatmeal suede
+bright cobalt
+black glitter
+radish fabric
+natural linen
+burgundy stem
+blue poseidon
+water crystal
+charcoal grey
+gunmetal gold
+purple nubuck
+blue darkness
+seaweed black
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 midnight navy
 asphalt suede
+taupe leather
 emerald green
+<<<<<<< HEAD
 oxblood suede
 dark mushroom
 sable leather
@@ -706,13 +1299,22 @@ seaweed black
 taupe leather
 purple nubuck
 atlantic blue
+=======
+natural white
+apple blossom
+adobe aniline
+pink lavender
+navy gunmetal
+currant suede
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 boheme purple
 black leather
 bronze fabric
 natural suede
-camel leather
+blue chambray
 tobacco solid
 moroccan blue
+<<<<<<< HEAD
 silver fabric
 natural white
 black mercury
@@ -733,13 +1335,59 @@ lt pink satin
 classic white
 gilt specchio
 black peacock
+=======
+linen leather
+taffy pigment
+poudre patent
+burgundy beet
+pewter fabric
+blue insignia
+granite suede
+black mercury
+dark mushroom
+mountain view
+cactus flower
+crimson suede
+bluecap white
+platinum grey
+sable leather
+adobe pigment
+burgundy navy
+steel leather
+brown leather
+silver faille
+praline suede
+cloud leather
+mauve melange
+brindle suede
+ivory glitter
+storm leather
+twilight blue
+camel leather
+classic cream
+lt pink satin
+glitter multi
+vineyard navy
+mulberry nude
+bright violet
+putting green
+grenada green
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 white leather
 magenta satin
+silver fabric
 bridal blush
+evening blue
+black velvet
+cocoon suede
+purple satin
 tarmac suede
+heather gray
 bright coral
+pewter satin
 white silver
 spice orange
+<<<<<<< HEAD
 crystal blue
 white stripe
 forest green
@@ -814,17 +1462,36 @@ cement suede
 brushed gold
 ivory faille
 russet suede
+=======
+tuscan beige
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 green pepper
-cocoon suede
-pewter satin
 buff leather
+<<<<<<< HEAD
 blue dresden
 cotton candy
 merlot suede
+=======
+washed denim
+gold leather
+nattier blue
+forest green
+rain heather
+rust marsala
+grey leather
+orange ochre
+navy antique
+nutmeg suede
+sand leather
+cotton candy
+pewter black
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 pansy purple
+breaker blue
 caicos green
 stone fabric
 bright ivory
+<<<<<<< HEAD
 evening blue
 londra suede
 olive rubber
@@ -833,10 +1500,27 @@ nude leather
 military red
 jitney green
 black faille
+=======
+russet suede
+jungle chine
+londra suede
+cognac suede
+regal purple
+passion plum
+nude leather
+military red
+black faille
+wine leather
+patriot navy
+black mirror
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 blue forever
 navy sparkle
 washed black
+steamer dyed
+red rosewood
 ocean breeze
+<<<<<<< HEAD
 lagoon suede
 silver satin
 navy aniline
@@ -849,17 +1533,69 @@ black cognac
 black silver
 eclipse blue
 heather navy
+=======
+dusty purple
+cardinal red
+navy aniline
+sesame suede
+silver satin
+royal silver
+grey heather
+ivory patent
+white stripe
+crystal blue
+lake heather
+hunter green
+navy melange
+italian plum
+olive rubber
+heather grey
+gold glitter
+black cognac
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 red chateaux
+black silver
+red chestnut
+denim fabric
+mineral blue
+eclipse blue
+grout fabric
+navy peacoat
+heather navy
+black nubuck
+black caviar
 bermuda pink
+<<<<<<< HEAD
 yellow satin
 cabernet red
 white patent
 heather blue
 dusty purple
+=======
+crimson nude
+silver suede
+gerbera pink
+cabernet red
+white patent
+blush rubber
+jitney green
+white canvas
+ivory fabric
+heather blue
+hush aniline
+cobalt suede
+morning mist
+blue dresden
+gray heather
+black canvas
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 wine tasting
 black fabric
-gold leather
+classic blue
+liberty navy
+pewter suede
 black patent
+<<<<<<< HEAD
 regal purple
 antique rose
 mocha patent
@@ -918,16 +1654,117 @@ white satin
 shell white
 black taupe
 spruce pine
+=======
+modern ivory
+seaport blue
+antique rose
+lagoon suede
+black floral
+medium brown
+anemone wine
+green forest
+plum antique
+indigo satin
+brushed gold
+spartan blue
+cobalt glass
+dark heather
+taupe patent
+bearing blue
+az cardinals
+deep truffle
+blush patent
+lobster reef
+antique gold
+navy leather
+burnt auburn
+walnut suede
+red cordovan
+orange tango
+saddle suede
+primer suede
+merlot suede
+oyster satin
+abers babers
+vintage iris
+barolo suede
+picket fence
+bright white
+navy glitter
+ivory faille
+maple flower
+begonia pink
+silver nude
+firecracker
+black matte
+white white
+black nappa
+deep purple
+blue yonder
+dahlia pink
+blue resort
+lilac petal
+saddle sude
+french gray
+blue purple
+ivory satin
+spice suede
+black brush
+stormy grey
+black black
+latte satin
+atlas white
+honey suede
+smokey blue
+white shiny
+red leather
+purple haze
+white pearl
+sulfur army
+navy fabric
+blush satin
+chives dyed
+black tweed
+cherry pink
+blue nubuck
+black suede
+green urban
+black beige
+sangria red
+black multi
+grey patent
+brick suede
+camel suede
+white black
+white satin
+shell white
+navy hunter
+coral spice
+royal ocean
+fusion pink
+optic white
+kitten grey
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 taupe suede
 ivory pearl
 blue thread
+<<<<<<< HEAD
 white pearl
 slate suede
 burnt henna
+=======
+sisley grey
+pigeon grey
+slate suede
+teal lagoon
+bahama blue
+poppy suede
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 navy faille
 red garance
 cobalt haze
 olive night
+<<<<<<< HEAD
 gris souris
 washed navy
 tan leather
@@ -1020,14 +1857,67 @@ ivory combo
 teal lagoon
 petal bloom
 sweet melon
+=======
+washed navy
+tan leather
+smoke taupe
+lobster red
+forest grey
+indigo blue
+putty suede
+blue estate
+gold fabric
+ivory crisp
+white multi
+cobalt blue
+olive sarma
+baja breeze
+deep claret
+storm suede
+black berry
+wild cherry
+summer navy
+kelly green
+grey magnet
+oxford pink
+berry suede
+estate blue
+burnt umber
+ivory combo
+green faint
+ivory blush
+brown suede
+bright opal
+light brite
+silver lace
+medium grey
+plata satin
+khaki suede
+petal bloom
+oyster blue
+sweet melon
+beige black
+grey silver
+storm chine
+brown matte
+jiffy black
+bright blue
+nude patent
+deep lagoon
+dark purple
+golden glow
+black white
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 dusty brown
 storm chine
 brown matte
 olive suede
-summer navy
+steel satin
+tawny suede
 black satin
 terra suede
 black nylon
+<<<<<<< HEAD
 french blue
 beige suede
 nude powder
@@ -1058,13 +1948,65 @@ waterfront
 light gold
 naval blue
 gold satin
+=======
+shadow grey
+french blue
+green apple
+dress blues
+filter grey
+steel suede
+heather red
+pink bonnet
+stone suede
+ivory black
+nude faille
+wine nubuck
+oxford blue
+grey quarry
+beet suede
+spi yellow
+wood suede
+navy dress
+aruba blue
+white nude
+black lace
+java suede
+true black
+blue blaze
+blue multi
+mayan blue
+palace blu
+storm grey
+tan nubuck
+grey suede
+new bisque
+blue satin
+pine green
+ivory satn
+coral reef
+blue combo
+sand suede
+oats chine
+pink multi
+capri blue
+night blue
+waterfront
+light gold
+naval blue
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 fuschia ro
 blue atoll
 soft white
+dusty gold
 red cherry
+<<<<<<< HEAD
 true black
+=======
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 royal blue
+onyx suede
 tan greige
+<<<<<<< HEAD
 deep berry
 teal steel
 dark brick
@@ -1125,10 +2067,22 @@ delta blue
 grey pearl
 grey satin
 navy white
+=======
+teal steel
+light pink
+dark coral
+dark brick
+delta blue
+white snow
+ivory lace
+grey satin
+rust suede
+slate grey
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 opalescent
 parade red
-light sand
 wine suede
+<<<<<<< HEAD
 nude suede
 black sail
 shiny grey
@@ -1140,8 +2094,25 @@ helleborus
 hunt green
 anthracite
 black calf
+=======
+briny deep
+nude suede
+black sail
+navy matte
+taupe pink
+jura green
+navy suede
+hunt green
+topo suede
+black calf
+slate nude
+watermelon
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 black pink
+cola suede
+jazz green
 clay suede
+<<<<<<< HEAD
 gray satin
 teal suede
 hot tamale
@@ -1214,22 +2185,108 @@ diva pink
 pink pink
 lime fizz
 tour blue
+=======
+black noir
+helleborus
+ivory nude
+vine green
+petal pink
+gray satin
+beige lace
+plum black
+hot tamale
+sea urchin
+ale washed
+china blue
+gold satin
+red velvet
+mint green
+lanai blue
+ocean blue
+dusty blue
+river blue
+cameo pink
+white gold
+army suede
+black nude
+grey pearl
+blackberry
+sand beige
+solid grey
+navy satin
+bubble gum
+gulf shore
+buff suede
+jester red
+light grey
+loyal blue
+retro pink
+coral pink
+rose smoke
+blue suede
+deer suede
+light blue
+cove green
+dark earth
+peppermint
+red quasar
+black grey
+surf spray
+plum suede
+true white
+navy blue
+off white
+red chili
+lime fizz
+tan brown
+hydrangea
+wolf grey
+baby pink
+dark navy
+ceil blue
+lake blue
+inky blue
+tour blue
+tan suede
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 blue azul
 yam suede
 agave red
 tangerine
 chocolate
 cool grey
+<<<<<<< HEAD
 grey opal
 rose gold
 lake blue
 true navy
+=======
+blue blue
+grey marl
+diva pink
+bluestone
+blue surf
+cardinals
+ny giants
+headlight
+high seas
+pink snow
+mink grey
+true navy
+ink satin
+grey opal
+jetty red
+star blue
+dark blue
+sea glass
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 rum berry
 black jet
-red combo
-red chili
+inky navy
 dark grey
+moonshine
 blue mist
+<<<<<<< HEAD
 red grape
 sail fish
 navy iris
@@ -1261,21 +2318,103 @@ chestnut
 cordovan
 blue air
 ice mint
+=======
+sea green
+red grape
+sail fish
+gold nude
+tango red
+champagne
+navy iris
+pale grey
+navy nude
+rose gold
+power red
+greystone
+red combo
+aura blue
+city pink
+blue note
+regal red
+red satin
+galapagos
+pink pink
+white cap
+red black
+dark rock
+lime glow
+pale pink
+turquoise
+aubergine
+pale blue
+aqua blue
+sweet pea
+hurricane
+nude pink
+yam suede
+ciel blue
+blue bell
+new black
+deep blue
+peri blue
+red suede
+beige kid
+blackbird
+grey wool
+evergreen
+soft gold
+blue lake
+steelhead
+oilslick
+chargers
+espresso
+burgundy
+patriots
+sky blue
+primrose
+air blue
+chestnut
+charcoal
+ice blue
+phillies
+seahawks
+cardinal
+sailfish
+midnight
+ice mint
+lust red
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 mahogany
 dark red
 amethyst
 paradise
+<<<<<<< HEAD
 sky blue
 spa blue
+=======
+peatmoss
+spa blue
+cashmere
+dockside
+lavender
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 blue jay
+gunmetal
 new navy
 electric
+<<<<<<< HEAD
+=======
+macaroon
+sea blue
+maritime
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 lt blush
 hibiscus
 steelers
 eggplant
 deep bay
 platinum
+<<<<<<< HEAD
 rust red
 panthers
 shamrock
@@ -1313,12 +2452,52 @@ dolphins
 lipstick
 crimson
 vikings
+=======
+wisteria
+rust red
+med grey
+panthers
+shamrock
+ruby red
+blue air
+redstone
+mid blue
+woodrose
+dolphins
+true red
+atlantis
+beet red
+graphite
+sapphire
+bordeaux
+lipstick
+cordovan
+passion
+brownie
+truffle
+currant
+vikings
+crimson
+magenta
+jaguars
+raiders
+natural
+tabacco
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 refresh
 victory
 lucerne
 seaport
+<<<<<<< HEAD
+=======
+dodgers
+red rio
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 clarity
+citrina
+robusta
 peacoat
+<<<<<<< HEAD
 cayenne
 stirrup
 mineral
@@ -1404,8 +2583,77 @@ pewter
 royals
 caviar
 brandy
+=======
+mineral
+falcons
+caramel
+paprika
+brindle
+oxblood
+vanilla
+academy
+yankees
+broncos
+cayenne
+rangers
+retreat
+stirrup
+rio red
+fuchsia
+bengals
+whiskey
+cowboys
+packers
+red sox
+cobalt
+claret
+mirage
+browns
+alpine
+raisin
+angels
+chiefs
+auburn
+safari
+silver
+marina
+marine
+merlot
+powder
+texans
+garnet
+sleigh
+mimosa
+indigo
+caviar
+saints
+giants
+antler
+stucco
+bronze
+sakura
+portal
+pewter
+forest
+eagles
+azalea
+timber
+biscay
+cherry
+cognac
+ravens
+royals
+tigers
+cassis
+orchid
+saddle
+atlas
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 poppy
+burch
+cocoa
 smoke
+<<<<<<< HEAD
 cielo
 salsa
 green
@@ -1414,8 +2662,27 @@ blush
 storm
 shale
 sugar
+=======
+olive
+cielo
+green
+alloy
+curry
+salsa
+beige
+terra
+bayou
+49ers
+blush
+storm
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 steel
+verde
+cream
+shale
+sugar
 sunny
+<<<<<<< HEAD
 kauai
 birch
 ocean
@@ -1442,9 +2709,25 @@ taupe
 cream
 berry
 lemon
+=======
+pearl
+prune
+kauai
+pansy
+berry
+royal
+umber
+chalk
+taupe
+slate
+birch
+ocean
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 camel
 lunar
+khaki
 stone
+<<<<<<< HEAD
 beige
 cocoa
 coral
@@ -1454,11 +2737,27 @@ pansy
 terra
 sand
 dill
+=======
+azure
+mocha
+coral
+lilac
+lions
+ivory
+lemon
+peach
+lime
+sand
+teal
+port
+pine
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 coal
 wine
 soot
 bone
 navy
+<<<<<<< HEAD
 nude
 dune
 grey
@@ -1474,9 +2773,22 @@ port
 lime
 pine
 cubs
+=======
+rose
+glow
+dune
+grey
+mint
+gold
+sage
+cubs
+jade
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 wire
 nile
+dill
 aura
+<<<<<<< HEAD
 lead
 nero
 onyx
@@ -1485,12 +2797,27 @@ elk
 tan
 ink
 sky
+=======
+nude
+plum
+onyx
+nero
+lead
+sun
+sky
+tan
+elk
+ink
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 style on a shoestring shoe steals
 mother of the bride dresses
 hosiery leggings amp socks
 cocktail amp party dresses
 dress amp special occasion
+<<<<<<< HEAD
 clutches amp evening bags
+=======
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 casual button down shirts
 all handbags amp wallets
 workout yoga amp outdoor
@@ -1590,11 +2917,14 @@ boys shoes
 mid length
 polka dot
 slipdress
+<<<<<<< HEAD
 work mode
+=======
+moccasins
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 jumpsuits
 flat heel
 geometric
-moccasins
 shoe care
 wide calf
 two piece
@@ -1604,7 +2934,10 @@ strapless
 haflinger
 high heel
 athletic
+<<<<<<< HEAD
 leggings
+=======
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 shoulder
 ballgown
 crewneck
@@ -1657,7 +2990,6 @@ ballet
 brooks
 dinner
 heeled
-hiking
 chrome
 length
 medium
@@ -1672,7 +3004,10 @@ skinny
 polos
 scuff
 totes
+<<<<<<< HEAD
 ankle
+=======
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 trend
 ultra
 flare
@@ -1715,13 +3050,12 @@ high
 slip
 nike
 maxi
-tops
 rain
 knee
 ugg
 fit
-men
 led
+men
 mac
 one
 ons
@@ -1751,11 +3085,16 @@ catherine catherine malandrino
 sjp by sarah jessica parker
 atm anthony thomas melillo
 carmen marc valvo infusion
+<<<<<<< HEAD
 charles by charles david
+=======
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 john varvatos collection
+charles by charles david
 imagine by vince camuto
 laundry by shelli segal
 john varvatos star usa
+<<<<<<< HEAD
 cupcakes and cashmere
 sarto by franco sarto
 kenneth cole new york
@@ -1814,20 +3153,92 @@ lauren lorraine
 current elliott
 jessica simpson
 donald j pliner
+=======
+aidan by aidan mattox
+victorinox swiss army
+benjamin adams london
+sarto by franco sarto
+kenneth cole new york
+diane von furstenberg
+nordstrom men s shop
+michael michael kors
+dress the population
+kate spade new york
+ami paris mattiussi
+t by alexander wang
+salvatore ferragamo
+two by vince camuto
+for love and lemons
+christian louboutin
+lauren ralph lauren
+kut from the kloth
+versace collection
+ed ellen degeneres
+keepsake the label
+arc teryx veilance
+st john collection
+polo ralph lauren
+felicity and coco
+armani collezioni
+french connection
+oscar de la renta
+comme des gar ons
+show me your mumu
+l amour des pieds
+charlotte olympia
+narciso rodriguez
+original penguin
+giuseppe zanotti
+victoria beckham
+halston heritage
+carolina herrera
+sandro moscoloni
+lanai collection
+ted baker london
+jeffrey campbell
+dessy collection
+stella mccartney
+marc fisher ltd
+lauren lorraine
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 imperial motion
-rebecca minkoff
+luciano barbera
 badgley mischka
 brooks brothers
+<<<<<<< HEAD
 marc fisher ltd
 luciano barbera
+=======
+rebecca minkoff
+adrianna papell
+donald j pliner
+stuart weitzman
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 roberto cavalli
+chinese laundry
+cutter and buck
+sincerely jules
 love nickie lew
 robert barakett
+<<<<<<< HEAD
 cutter and buck
 robert talbott
 yohji yamamoto
+=======
+current elliott
+jessica simpson
+pisarro nights
+rebecca taylor
+the north face
+lilly pulitzer
+paul and shark
+yohji yamamoto
+good man brand
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 shellys london
+betsey johnson
 manolo blahnik
+<<<<<<< HEAD
 vineyard vines
 sun and shadow
 js collections
@@ -1842,9 +3253,19 @@ norse projects
 lilly pulitzer
 james campbell
 kendall kylie
+=======
+pamella roland
+vineyard vines
+norse projects
+js collections
+james campbell
+robert graham
+alex evenings
+saint laurent
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 travis mathew
-shoes of prey
 sequin hearts
+<<<<<<< HEAD
 very volatile
 tadashi shoji
 alex evenings
@@ -1867,9 +3288,32 @@ dolce gabbana
 louise et cie
 saturdays nyc
 ps paul smith
+=======
+orlebar brown
+saturdays nyc
+grey jason wu
+tadashi shoji
+very volatile
+burberry brit
+david donahue
+shoes of prey
+dolce gabbana
+charles henry
+louise et cie
+bcbgeneration
+kendall kylie
+tom and teddy
+rodd and gunn
+ps paul smith
+southern tide
+zachary prell
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 rag and bone
+vince camuto
+jump apparel
 under armour
 sole society
+<<<<<<< HEAD
 psycho bunny
 tommy bahama
 rachel comey
@@ -1922,9 +3366,58 @@ loveappella
 herve leger
 ellen tracy
 dune london
+=======
+rachel comey
+steve madden
+tempur pedic
+hush puppies
+psycho bunny
+ivanka trump
+tommy bahama
+bcbgmaxazria
+mini melissa
+tori richard
+jack o neill
+peter millar
+native shoes
+london times
+street level
+gentle souls
+alice olivia
+maggy london
+franco sarto
+reyn spooner
+calvin klein
+tracy reese
+thom browne
+vilebrequin
+herve leger
+birkenstock
+jack rogers
+marc jacobs
+tucker tate
+ali and jay
+bc footwear
+free people
+loveappella
+dune london
+bobby jones
+wings horns
+james perse
+todd snyder
+steppin out
+ellen tracy
+naturalizer
+new balance
+thomas dean
+lucky brand
+dr scholl s
+sam edelman
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 boss orange
 bobby jones
 helmut lang
+<<<<<<< HEAD
 lucky brand
 dr scholl s
 billy reid
@@ -1932,17 +3425,36 @@ gabby skye
 balenciaga
 bee darlin
 jimmy choo
+=======
+donna ricco
+the kooples
+billy reid
+yosi samra
+jimmy choo
+minnetonka
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 karen kane
 david tate
-pelle moda
 tory burch
+<<<<<<< HEAD
 bella vita
 yosi samra
 corso como
 fly london
+=======
+pelle moda
+gabby skye
+jared lang
+corso como
+seychelles
+balenciaga
+adelyn rae
+missguided
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 paul green
-jack spade
+fred perry
 dolce vita
+<<<<<<< HEAD
 minnetonka
 speechless
 quiksilver
@@ -1968,10 +3480,27 @@ socialite
 arc teryx
 ella moss
 pikolinos
+=======
+jack spade
+bee darlin
+speechless
+g star raw
+cinq sept
+socialite
+klub nico
+dsquared2
+kay unger
+longchamp
+bb dakota
+valentino
+jenny yoo
+reem acra
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 kork ease
 culturata
 nine west
 dear moon
+<<<<<<< HEAD
 jenny yoo
 glamorous
 via spiga
@@ -1983,17 +3512,38 @@ moschino
 callisto
 la femme
 dee elle
+=======
+haflinger
+glamorous
+via spiga
+vera wang
+cole haan
+arc teryx
+ella moss
+aquatalia
+chelsea28
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 thaddeus
 rockport
+earthies
+givenchy
 gramicci
 blanknyc
 madewell
+moschino
 trotters
 the rail
+<<<<<<< HEAD
 jason wu
+=======
+callisto
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 chetta b
 converse
+dee elle
+jason wu
 burberry
+<<<<<<< HEAD
 halogen
 j brand
 brixton
@@ -2022,9 +3572,47 @@ topman
 theory
 me too
 canali
+=======
+bugatchi
+grayers
+halogen
+1 state
+j brand
+brixton
+mud pie
+melissa
+4si3nna
+lacoste
+elliatt
+superga
+miu miu
+eliza j
+moncler
+komarov
+brianna
+topshop
+bonobos
+soprano
+o neill
+z zegna
+theory
+topman
+caslon
+levi s
+xscape
+menbur
+me too
+canali
+everly
+brooks
+marina
+reebok
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 sperry
+tahari
 adidas
 blondo
+<<<<<<< HEAD
 levi s
 aravon
 bardot
@@ -2063,25 +3651,77 @@ s fft
 akris
 munro
 hinge
+=======
+j rene
+volcom
+lanvin
+aravon
+j crew
+clarks
+dansko
+bardot
+hurley
+maceoo
+coach
+tavik
+leith
+prana
+joe s
+prada
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 jambu
+lulus
+hinge
+chaus
+s fft
+vince
+craft
 leota
+<<<<<<< HEAD
 sorel
 asics
+=======
+asics
+sorel
+gucci
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 milly
+zella
+akris
 fendi
+<<<<<<< HEAD
+=======
+munro
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 paige
 keds
+maia
 prps
 b rn
+<<<<<<< HEAD
 vans
+=======
+cece
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 ecco
+joie
+geox
 puma
 wayf
+<<<<<<< HEAD
+=======
+obey
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 boss
+toms
+keen
+daya
+teva
 1901
 chlo
 rvca
 astr
+<<<<<<< HEAD
 lush
 joie
 nina
@@ -2100,9 +3740,24 @@ sea
 eci
 mcm
 hue
+=======
+frye
+nina
+vans
+nike
+ugg
+sea
+eci
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 agl
+12 us fits like 14 selected
 10 us fits like 10 12
 11 5us 41 5euselected
+<<<<<<< HEAD
+=======
+7 7 5us 38euselected
+12 us 16 ukselected
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 8 us fits like 6 8
 4 us fits like 0 2
 5 5us 36euselected
@@ -2112,12 +3767,16 @@ agl
 smallpetite small
 11us 41euselected
 xxx largeselected
+<<<<<<< HEAD
 10 5 regular calf
 7 5 regular calf
 5 5 regular calf
 2 us fits like 0
 6 5 regular calf
 8 5 regular calf
+=======
+2 us fits like 0
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 9 5 regular calf
 x largeselected
 10 regular calf
@@ -2126,16 +3785,23 @@ x largexx large
 x smallselected
 mediumselected
 9 regular calf
+<<<<<<< HEAD
 7 regular calf
 10 10 5us 41eu
 5 regular calf
+=======
+10 10 5us 41eu
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 7 xxl selected
 10 5 11us 41eu
 11 11 5us 42eu
 9 4xl selected
 11 5 12us 42eu
 8 regular calf
+<<<<<<< HEAD
 6 regular calf
+=======
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 8 5 wide calf
 10 5us 40 5eu
 9 5 10us 40eu
@@ -2146,6 +3812,8 @@ smallselected
 6 5 wide calf
 5 5 wide calf
 7 5 wide calf
+7 7 5us 38eu
+11 5selected
 5 5 5us 36eu
 9 5 ext calf
 8 5us 38 5eu
@@ -2157,14 +3825,20 @@ smallselected
 8 5 ext calf
 6 6 5us 37eu
 10 wide calf
+<<<<<<< HEAD
+=======
+10 us 41 5eu
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 6 5us 36 5eu
-8 5us 39 5eu
 8 8 5us 39eu
 7 5 ext calf
 5 5 ext calf
 9 5us 39 5eu
 6 6 5us 36eu
+<<<<<<< HEAD
 10 us 41 5eu
+=======
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 small petite
 10 5selected
 4 4 5us 35eu
@@ -2172,13 +3846,19 @@ small petite
 5 5 6us 36eu
 4 5us 34 5eu
 6 5 ext calf
+<<<<<<< HEAD
 7 7 5us 38eu
 10 us 44 it
+=======
+10 us 44 it
+12 us 46 it
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 10 us 46 it
 10 us 14 uk
 9 wide calf
 6 wide calf
 5xbselected
+<<<<<<< HEAD
 10 ext calf
 7 wide calf
 8 wide calf
@@ -2192,10 +3872,22 @@ small petite
 11 ext calf
 5 5selected
 12 us 48 it
+=======
+12 us 16 uk
+10 ext calf
+7 wide calf
+8 wide calf
+5 wide calf
+9 5selected
+6 5selected
+11 ext calf
+5 5selected
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 8 us 42 it
 16selected
 9 5us 41eu
 8 ext calf
+<<<<<<< HEAD
 7us 37 5eu
 8 us 44 it
 10us 7 5uk
@@ -2205,24 +3897,42 @@ small petite
 6 5us 37eu
 9 ext calf
 4 us 38 it
+=======
+4 us 38 it
+6 5us 37eu
+8 us 44 it
+11us 8 5uk
+10us 7 5uk
+5us 35 5eu
+9 ext calf
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 8 us 12 uk
+10 5us 8uk
 2 us 38 it
 6 us 10 uk
 6 us 42 it
 6 us 40 it
 7 ext calf
 10selected
+<<<<<<< HEAD
 5 5us 36eu
 0 us 36 it
 7 5us 38eu
 10 5us 8uk
 11selected
+=======
+6 ext calf
+5 5us 36eu
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 4 us 40 it
+7 5us 38eu
 8 5us 39eu
+0 us 36 it
 3 5us 34eu
 9us 6 5uk
 6selected
 10us 41eu
+<<<<<<< HEAD
 2 us 6 uk
 3selected
 7 5us 5uk
@@ -2232,16 +3942,30 @@ small petite
 8 5us 6uk
 13us 44eu
 8us 5 5uk
+=======
+3selected
+7 5us 5uk
+6us 3 5uk
+8us 5 5uk
+2 us 6 uk
+14us 45eu
+8 5us 6uk
+13us 44eu
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 12us 43eu
 9 5us 7uk
 11us 41eu
 11us 42eu
 13us 43eu
 7us 4 5uk
-4 us 8 uk
 xxx large
 5 5us 3uk
 12us 42eu
+<<<<<<< HEAD
+=======
+4 us 8 uk
+6 5us 4uk
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 10us 40eu
 8selected
 15us 46eu
@@ -2254,36 +3978,58 @@ xx large
 8us 39eu
 4us 34eu
 5us 36eu
+<<<<<<< HEAD
+=======
+8us 38eu
+9us 40eu
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 xx small
 9us 40eu
 7us 38eu
 9us 39eu
+<<<<<<< HEAD
 8us 38eu
+=======
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 6us 37eu
 34 x 34
 42 x 32
 35 5 eu
 34 x 32
 32 x 34
+<<<<<<< HEAD
 36 x 34
+=======
+25 x 32
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 29 x 32
 40 5 eu
 39 5 eu
 25 x 32
 x small
 38 5 eu
+36 x 34
 37 5 eu
 40 x 32
 34 x 30
 38 x 30
 25 x 30
 36 x 32
+<<<<<<< HEAD
 30 x 34
 32 x 32
 33 x 34
 30 x 30
 33 x 32
 32 x 30
+=======
+33 x 34
+30 x 30
+32 x 32
+33 x 32
+32 x 30
+30 x 34
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 26 x 32
 26 x 30
 28 x 30
@@ -2302,37 +4048,61 @@ small p
 medium
 petite
 9 3xl
-8 3xl
 50 eu
 37 eu
 48 eu
+<<<<<<< HEAD
 7 xxl
+=======
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 large
-41 eu
 39 eu
 11 12
+0 1 m
+8 3xl
 small
+<<<<<<< HEAD
 35 eu
 52 eu
 3 5 m
 4 5 m
+=======
+7 xxl
+35 eu
+52 eu
+3 5 m
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 40 eu
 38 eu
 9 4xl
 7 3xl
 42 eu
+<<<<<<< HEAD
 0 1 m
 6 5 m
 36 eu
 5 5 m
+=======
+4 5 m
+6 5 m
+36 eu
+41 eu
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 5 xxl
 2 3 m
 8 xxl
 6 xxl
+<<<<<<< HEAD
 13 m
 4xlt
 12 5
 6 xl
+=======
+5 5 m
+4xlt
+6 xl
+13 m
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 10 5
 7 xl
 3 xs
@@ -2341,14 +4111,24 @@ small
 2xlt
 11 5
 5 xl
+11 m
 4 xl
 0 xs
+<<<<<<< HEAD
+=======
+12 5
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 9 10
 12 m
 4 5
 14p
+<<<<<<< HEAD
 12p
 1xb
+=======
+12m
+12p
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 3xb
 4 s
 2 m
@@ -2360,10 +4140,19 @@ small
 xlt
 24w
 10p
+<<<<<<< HEAD
 2xb
 7 8
 4xb
 7 m
+=======
+7 8
+1xb
+1 m
+4xb
+7 m
+14w
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 5 6
 5 5
 22w
@@ -2375,6 +4164,7 @@ xlt
 5 m
 3 s
 1 s
+<<<<<<< HEAD
 12m
 18m
 18w
@@ -2384,6 +4174,15 @@ xlt
 9 5
 3 m
 8 5
+=======
+18m
+18w
+8 5
+2xb
+20w
+9 5
+3 m
+>>>>>>> 7b25e030e86b4134355f0b764c9de912ecbc5181
 6 5
 6 m
 6 l
