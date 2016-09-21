@@ -69,7 +69,7 @@ basic_colors = [
 ]
 
 global_dict = ["ralph lauren", "polo shirt", "6 inch", "old fashion", "old fashioned", "in stock", "zip code",
-               "palo alto", "walnut creek", "new york",
+               "palo alto", "walnut creek", "new york", "big apple", "new jersey",
                "san mateo", "santa clara", "san jose", "san francisco", "hewlett packard", "microsoft surtfaces",
                "microsoft surface", "broadway plaza",
                "home theaters", "home theater", "remote controllers", "remote controller", "digital cameras",
@@ -88,7 +88,7 @@ global_dict = ["ralph lauren", "polo shirt", "6 inch", "old fashion", "old fashi
                "expected to", "liked to", "needed to", "wanted to", "what time", "how much", "how late", "how early",
                "how soon", "how long",
                "lunch time", "lunch break", "lunch hour", "lunch hours", "short sleeve", "long sleeve", "how expensive",
-               "how costly", "how cheap", "new york", "big apple", "new jersey"]
+               "how costly", "how cheap", "michael kors"]
 
 wh_tones = ["what", "when", "where", "which", "how", "why", "what_time", "how_much", "how_late"]
 
@@ -133,7 +133,7 @@ class BanterClient:
         self.states = [states[0]]
         self.in_text = []
         self.MesgId = 0
-        self.topics = ["closing"]
+        self.topics = [states[0]]
 
     def evaluate(self, text):
         tokenizer = MWETokenizer()
@@ -209,6 +209,27 @@ class BanterClient:
             return resultData
         if 'action' in resultData and 'start' == resultData['action']:
             self.reset(self.name)
+            return resultData
+        if ('action' in resultData and 'need help' == resultData['action']) or \
+           ('greeting' in resultData and 'hello' == resultData['greeting']):
+            topic = states[1]
+            self.set_topic(topic)
+	    self.set_state(states[1])
+            num = int(math.ceil(random.randint(1, 100) % 3))
+	    if num == 0:
+               text = "Thank you for contacting Nordstrom. "
+	    else:
+               text = ""
+            num1 = int(math.ceil(random.randint(1, 100) % 2))
+	    if num1 == 0:
+               text += "My name is " + self.name + ". How may I help you?"
+	    else:
+               text += "My name is " + self.name + ". Is there anything I can help you with?"
+            self.start(text)
+	    if 'action' not in resultData:
+	       resultData['action'] = states[1] 
+            if 'ERROR_CODE' in resultData:
+                del resultData['ERROR_CODE']
             return resultData
 
         prev_topic = self.get_topic()
@@ -424,7 +445,7 @@ class BanterClient:
                 else:
                     resultData['action'] = states[3]  # 'answer'
 
-        if 'action' not in resultData: # or resultData['state'] in (states[2], states[3]):
+        if 'action' not in resultData or resultData['action'] in (states[2], states[3]):
             if 'datetime' in resultData and resultData['datetime'] != None:
                 resultData['action'] = 'ask time'
             elif 'location' in resultData and resultData['location'] != None:
@@ -492,11 +513,15 @@ class BanterClient:
                 self.start()
                 prev_state = self.get_state()
             resultData = self.verify_dialog(limits)
-            print "\n***** RESPONSE *****\n"
-            if 'ERROR_CODE' in resultData:
-                self.respondWithQuestion(resultData)
-            else:
-                self.respondWithAnswer(resultData)
+            if ('action' in resultData and 'need help' == resultData['action']) or \
+               ('greeting' in resultData and 'hello' == resultData['greeting']):
+	        pass
+	    else:
+                print "\n***** RESPONSE *****\n"
+                if 'ERROR_CODE' in resultData:
+                    self.respondWithQuestion(resultData)
+	        else:
+                    self.respondWithAnswer(resultData)
 
         print "\n***** CURRENT STATUS *****\n"
         tmp = "Current state: " + str(self.get_state())
@@ -611,7 +636,7 @@ class BanterClient:
             self.sendResponse(record)
 
     def respondWithQuestion(self, intent=None):
-        print '-> respondWithQuestion:' + json.dumps(intent) + '\n'
+        print '-> respondWithQuestion:' + json.dumps(intent) 
         record = None
         if 'ERROR_CODE' in intent:
             if intent['ERROR_CODE'] == 'NO_LOCATION':
@@ -971,10 +996,8 @@ class BanterClient:
         self.sendResponse(record)
 
     def respondWithAnswer(self, data=None):
-        print '-> respondWithAnswer DATA:' + json.dumps(data) + '\n'
-
+        print '-> respondWithAnswer DATA:' + json.dumps(data) 
         record = None
-
         if 'datastore_action' in data:
             if data['datastore_action'] == 'product_search':
                 if len(data['datastore_products']) == 0:
@@ -1341,7 +1364,7 @@ if __name__ == '__main__':
     # "Nordstrom Stanford Shopping Center opens at 10:00 AM tomorrow."
     agent.converse(text)
 
-    exit()
+#    exit()
 
     ##### case 3: customer requests for service - women's shoes
     print "\n***** CASE 3 *****\n"
@@ -1403,6 +1426,7 @@ if __name__ == '__main__':
     agent.converse(text)
 
 #   Try not use negative question
+    text = "Gold Sandals."
 #    text = "Don't you need some new red shoes."
 #    text = "Do you have OLED one"
 #    text = "Reset"
@@ -1414,7 +1438,7 @@ if __name__ == '__main__':
 #    text = "$150, size 6"
 #    text = "size 6, $150"
 #    text = "150, gold, Gucci"
-    text = "below 100"
+#    text = "below 100"
 #    text = "Below 500, red"
 #    text = "below 500, red, size 6"
 #    text = "above 500, black"
@@ -1422,7 +1446,7 @@ if __name__ == '__main__':
 #    text = "Between 500 and 1000, black"
 #    text = "From 500 to 1000, black"
 ##    text = "Nike or gucci, black"
-    customer.question(text)
+
 
     # agent sends the information of customer's products
     # text = 'Below is the information for you.'
