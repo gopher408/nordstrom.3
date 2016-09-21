@@ -194,15 +194,12 @@ class BanterClient:
                 curr_tone = states[0]
         self.set_tone(curr_tone)
 
-
     def verify_dialog(self, limits=None):
         curr_tone = self.get_tone()
         hist_tones = self.get_tones()
         num_tones = len(hist_tones)
         in_text = self.in_text[-1]
         resultData = self.nlu.parse_query(self.localdict, in_text, False, limits)
-	print "Original resultData: " 
-        print resultData
 
         if 'action' in resultData and 'reset' == resultData['action']:
             self.reset(self.name)
@@ -427,9 +424,6 @@ class BanterClient:
                 else:
                     resultData['action'] = states[3]  # 'answer'
 
-        print "resultData 2:"
-        print resultData
-        print 'action' not in resultData
         if 'action' not in resultData: # or resultData['state'] in (states[2], states[3]):
             if 'datetime' in resultData and resultData['datetime'] != None:
                 resultData['action'] = 'ask time'
@@ -450,9 +444,6 @@ class BanterClient:
             elif 'descriptor' in resultData and resultData['descriptor'] != None:
                 resultData['action'] = 'find'
 
-        print "resultData 3:"
-        print resultData
-
         self.nlu.set_datastore_request(resultData)
         resultData = self.nlu.submit_query()
 
@@ -460,6 +451,7 @@ class BanterClient:
         self.set_query(resultData)
         print self.get_query()
         return self.get_query()
+
 
     def locationSearch(self, testLocation):
 
@@ -479,6 +471,7 @@ class BanterClient:
             return None
 
         return places.predictions[0].description;
+
 
     def converse(self, message, limits=None):
         self.preprocess(message)
@@ -700,7 +693,6 @@ class BanterClient:
                         else:
                             expandedFilterMore +=  x
 
-
                     tmp = 'I can help you with that. We\'ve got a wide selection of ' + ', '.join(
                         tmp) + ' dresses'+pricedesc+'. Can we help you find something in a specific '+expandedFilterMore+'.' \
                         + ' Here are 12 possiblities out of '+str(intent["datastore_product_count"])+':'
@@ -920,9 +912,8 @@ class BanterClient:
                         record = self.set_data(intent, states[2])
                     elif 'need' in intent['action'] or \
                                     'look' in intent['action'] or \
-                                    'need' in intent['action'] or \
                                     'find' in intent['action'] or \
-                                    'buy' in intent['action'] or \
+                                    'buy'  in intent['action'] or \
                                     'like' in intent['action'] or \
                                     'want' in intent['action']:
 
@@ -1340,13 +1331,17 @@ if __name__ == '__main__':
 #    text = "How late does the Richfield store open today"
 #    text = "How late does Richfield store open today"
 #    text = "How late does the store open today"
+    text = "Reset"
+    text = "Hi"
+    text = "Hello"
+#    text = "Help!"
     customer.question(text)
 
     # agent should reply something like:
     # "Nordstrom Stanford Shopping Center opens at 10:00 AM tomorrow."
     agent.converse(text)
 
-#    exit()
+    exit()
 
     ##### case 3: customer requests for service - women's shoes
     print "\n***** CASE 3 *****\n"
@@ -1439,13 +1434,14 @@ if __name__ == '__main__':
     ##### case 5: customer requests for service -- women's dresses
     print "\n***** CASE 5 *****\n"
 #    text = "I need a blue polo shirt"
-    text = "I need a new dress for picnic"
+#    text = "I need a new dress for picnic"
 #    text = "I need a new dress for a wedding"
 #    text = "I need a new dress for old fashioned day"
 #    text = "I'm looking for some old fashioned dresses"
 #    text = "Do you have any pink dress with buckle"
 #    text = "I need some blue comfort shoes"
 #    text = "I need some old fashioned purple comfort shoes with buckle"
+    text = "Im looking for some picinc shoes"
     customer.question(text)
 
     # agent sends the information of customer's products
@@ -1458,14 +1454,14 @@ if __name__ == '__main__':
     ##### case 6: customer requests for service -- men's shirts/t-shirts
     print "\n***** CASE 6 *****\n"
 #    text = "Purple under $70"
+    text = "Red under $200"
 #    text = "Below $100"
-#    text = "Less than $100"
 #    text = "Less than 100"
 #    text = "Above $100"
 #    text = "More than 100"
 #    text = "Between $70 and $100"
 #    text = "Black dresses between $100 and $200"
-    text = " I like blue polo, size 6, between $50 and $100"
+#    text = " I like blue polo, size 6, between $50 and $100"
 #    text = "I want the dress of size 7"
 #    text = "I want a t-shirt of size 7"
 #    text = "Do you have pink shirts?"
