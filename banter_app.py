@@ -435,17 +435,17 @@ class BanterClient:
                 if 'action' in resultData:
                     if 'find store' in resultData['action'] and not 'location' in resultData:
                         resultData['location'] = in_text
-                else:
-                    resultData['action'] = states[2]  # 'question'
+#                else:
+#                    resultData['action'] = states[2]  # 'question'
 
             elif prev_tone == states[2] and curr_tone == states[3]:
                 if 'action' in resultData:
                     if 'find store' in resultData['action'] and not 'location' in resultData:
                         resultData['location'] = in_text
-                else:
-                    resultData['action'] = states[3]  # 'answer'
+#                else:
+#                    resultData['action'] = states[3]  # 'answer'
 
-        if 'action' not in resultData or resultData['action'] in (states[2], states[3]):
+        if 'action' not in resultData: # or resultData['action'] in (states[2], states[3]):
             if 'datetime' in resultData and resultData['datetime'] != None:
                 resultData['action'] = 'ask time'
             elif 'location' in resultData and resultData['location'] != None:
