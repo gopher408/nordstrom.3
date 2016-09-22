@@ -1118,7 +1118,11 @@ class AWSDataStore(DataStore):
             if 'categories' in itemDB:
                 fields = tds.deserialize(itemDB['categories'])
                 for field in fields:
-                    data['styles'].update(self.cleanData(field, [], False))
+                    if 'brand' in itemDB:
+                        if itemDB['brand']['S'].lower() in field.lower() or field.lower() in itemDB['brand']['S'].lower():
+                            continue
+
+                    data['styles'].update(self.cleanData(field, ['nike'], False))
 
             for field in self.hackedproducts:
                 data['products'].update(self.cleanData(field, ['best buy', 'best_buy', 'bestbuy'], False))
@@ -1174,7 +1178,13 @@ class AWSDataStore(DataStore):
                     fields = tds.deserialize(itemDB['categories'])
 
                     for field in fields:
-                        data['styles'].update(self.cleanData(field, [], False))
+                        for field in fields:
+                            if 'brand' in itemDB:
+                                if itemDB['brand']['S'].lower() in field.lower() or field.lower() in itemDB['brand'][
+                                    'S'].lower():
+                                    continue
+
+                        data['styles'].update(self.cleanData(field, ['nike'], False))
 
                 for field in self.hackedproducts:
                     data['products'].update(self.cleanData(field, ['best buy', 'best_buy', 'bestbuy'], False))
