@@ -1036,7 +1036,7 @@ class BanterClient:
 
                 elif 'rownum' in data:
                     num = int(data['rownum']) - 1
-                    txt = data['datastore_locations'][0]['name'] + ' - ' + data['datastore_locations'][num][
+                    txt = data['datastore_locations'][num]['name'] + ' - ' + data['datastore_locations'][num][
                         'address']
                     self.set_response_text(data, txt.strip())
 
