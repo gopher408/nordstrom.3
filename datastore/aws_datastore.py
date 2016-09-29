@@ -204,7 +204,7 @@ class AWSDataStore(DataStore):
                                 "black", 'little', 'big', 'at',
                                 "blue", "in", "south", 'shops',
                                 "brown", 'out', 'night', 'day', 'evening', 'late'
-                                "green",
+                                "green", 'sunglasses',
                                 "orange",
                                 "pink",
                                 "purple",
