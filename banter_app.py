@@ -781,7 +781,7 @@ class BanterClient:
 
 
                 elif 'goods' in intent and (
-                                    'shoe' in intent['goods'] or 'flats' in intent['goods'] or 'sunglasses' in intent['goods']
+                                    'shoe' in intent['goods'] or 'flats' in intent['goods']
                                     or 'heels' in intent['goods'] or 'boots' in intent['goods'] or 'sneaker' in intent['goods']
                                     or 'sandal' in intent['goods']):
                     tmp = []
@@ -847,6 +847,56 @@ class BanterClient:
                     elif 'sandal' in intent['goods']:
                         type = 'sandals'
 
+
+                    tmp = 'I can help you with that. We\'ve got a wide variety of ' + ', '.join(
+                        tmp) + ' ' + type +pricedesc+'. Can we help you find something in a specific '+expandedFilterMore+'.' \
+                        + ' Here are 12 possiblities out of '+str(intent["datastore_product_count"])+':'
+                    self.set_response_text(intent, tmp.replace('  ', ' ').strip(), link)
+                    record = self.set_data(intent, states[2])
+
+                elif 'goods' in intent and 'sunglasses' in intent['goods']:
+                    tmp = []
+                    filtermore = []
+                    pricedesc = ''
+                    if 'style' in intent:
+                        tmp += intent['style'].split(',')
+                    else:
+                        filtermore.append('style')
+                    if 'color' in intent:
+                        tmp += intent['color'].split(',')
+                    else:
+                        filtermore.append('color')
+                    if 'price' in intent:
+                        (str(intent['price']) if 'price' in intent else '')
+                        if 'lost' in intent and 'under' in intent['lost']:
+                            pricedesc = ' under ' + intent['price'][len(intent['price']) - 1]
+
+                        elif 'lost' in intent and 'over' in intent['lost']:
+                            pricedesc = ' over ' + intent['price'][len(intent['price']) - 1]
+
+                        else:
+                            pricedesc = ' under ' + intent['price'][len(intent['price']) - 1]
+                    else:
+                        filtermore.append('price')
+                    if 'brand' in intent:
+                        tmp += intent['brand'].split(',')
+                    else:
+                        filtermore.append('brand')
+
+                    if len(filtermore) <= 0:
+                        filtermore.append('style')
+
+                    expandedFilterMore = ''
+                    for x in filtermore:
+                        if len(expandedFilterMore):
+                            if x == filtermore[len(filtermore) - 1]:
+                                expandedFilterMore += ' or ' + x
+                            else:
+                                expandedFilterMore += ', ' + x
+                        else:
+                            expandedFilterMore += x
+
+                    type = 'sunglasses'
 
                     tmp = 'I can help you with that. We\'ve got a wide variety of ' + ', '.join(
                         tmp) + ' ' + type +pricedesc+'. Can we help you find something in a specific '+expandedFilterMore+'.' \

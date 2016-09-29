@@ -668,6 +668,17 @@ class AWSDataStore(DataStore):
 
                         queryFields['bool']['must'].append(should2)
 
+                    elif 'sunglasses' in good[0]:
+                        should2 = {
+                            'bool': {
+                                'should': []
+                            }
+                        }
+                        should2['bool']['should'].append({"match": {"categories": {"query": "sunglasses"}}})
+                        should2['bool']['should'].append({"match": {"categories": {"query": "sunglass"}}})
+
+                        queryFields['bool']['must'].append(should2)
+
                     elif 'shoe' in good[0]:
                         should2 = {
                             'bool': {
