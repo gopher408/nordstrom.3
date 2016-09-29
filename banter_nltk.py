@@ -8,8 +8,8 @@ Created on Wed Aug 03 11:01:25 2016
 
 @author: raysun
 """
-import nltk
-nltk.download('stopwords')
+#import nltk
+#nltk.download('stopwords')
 
 import banter_nltk as banter
 
