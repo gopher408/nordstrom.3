@@ -128,6 +128,12 @@ def sendSMS(request):
         if smsto == '+18312268372':
             partner = 'nordstrom'
             name = 'Nordstrom'
+        elif smsto == '+15042268374':
+            partner = 'nordstrom'
+            name = 'Nordstrom'
+        elif smsto == '+18312268378':
+            partner = 'nordstrom'
+            name = 'Nordstrom'
         elif smsto == '+16506678411':
             partner = 'bestbuy'
             name = 'Best Buy'
