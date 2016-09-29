@@ -9,7 +9,6 @@ Created on Wed Jul 13 10:52:35 2016
 
 @author: raysun
 """
-
 import banter_nltk as banter
 import math, random, time, os, re, sys
 
@@ -227,7 +226,7 @@ class BanterClient:
                text += "My name is " + self.name + ". Is there anything I can help you with?"
             self.start(text)
 	    if 'action' not in resultData:
-	       resultData['action'] = states[1] 
+	       resultData['action'] = states[1]
             if 'ERROR_CODE' in resultData:
                 del resultData['ERROR_CODE']
             return resultData
@@ -636,7 +635,7 @@ class BanterClient:
             self.sendResponse(record)
 
     def respondWithQuestion(self, intent=None):
-        print '-> respondWithQuestion:' + json.dumps(intent) 
+        print '-> respondWithQuestion:' + json.dumps(intent)
         record = None
         if 'ERROR_CODE' in intent:
             if intent['ERROR_CODE'] == 'NO_LOCATION':
@@ -1001,7 +1000,7 @@ class BanterClient:
         self.sendResponse(record)
 
     def respondWithAnswer(self, data=None):
-        print '-> respondWithAnswer DATA:' + json.dumps(data) 
+        print '-> respondWithAnswer DATA:' + json.dumps(data)
         record = None
         if 'datastore_action' in data:
             if data['datastore_action'] == 'product_search':

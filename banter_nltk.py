@@ -8,6 +8,8 @@ Created on Wed Aug 03 11:01:25 2016
 
 @author: raysun
 """
+import nltk
+nltk.download('stopwords')
 
 import banter_nltk as banter
 
@@ -66,13 +68,13 @@ class BanterThinker:
     def __init__(self, banter_config, communication, datastore):
         self.communication = communication
         self.datastore = datastore
-        self.query = None 
+        self.query = None
         self.banter_config = banter_config
         self.trees = None
         self.datastore_request = []
-        self.answer = None 
+        self.answer = None
         self.missed = []
-        self.dict = None 
+        self.dict = None
 
     def load_dict(self,dict):
         dict.sort(key=lambda item:(-len(item),item))
@@ -129,10 +131,10 @@ class BanterThinker:
         for terms in self.get_dict():
 	    terms = terms.lower()
 	    items = terms.split()
-            temp = []  
+            temp = []
             if terms in text:
                words = list(set(items).intersection(ques))
-	       if len(words) == len(items): 
+	       if len(words) == len(items):
                   buf = '_'.join(items)
                   text = text.replace(terms, buf)
         self.set_query(text)
@@ -213,13 +215,13 @@ class BanterThinker:
     def parse_query(self, dict, query, test=False, limits=None):
 	lost = []
         self.reset_datastore_request()
-        self.performNLP(dict,query,test) 
+        self.performNLP(dict,query,test)
         query = self.get_query()
         cp = nltk.load_parser(self.banter_config.get_grammer_file())
         try:
             if len(query.split()) == 0:
                self.trees = list(cp.parse(list(query)))
-            else: 
+            else:
                self.trees = list(cp.parse(query.split()))
         except ValueError:
             print "ERROR_CODE': 'DID_NOT_UNDERSTAND 1'"
@@ -267,12 +269,12 @@ class BanterThinker:
             for field in temp:
                 parts = field.split('=')
                 if parts[0] in datastore_request:
-		    item = parts[1].replace('"','') 
+		    item = parts[1].replace('"','')
 		    if item not in datastore_request[parts[0]].split(','):
                        datastore_request[parts[0]] += ',' + item
                 else:
                     datastore_request[parts[0]] = parts[1].replace('"', '')
-            if 'descriptor' in datastore_request and 'datetime' in datastore_request: 
+            if 'descriptor' in datastore_request and 'datetime' in datastore_request:
 	       items = datastore_request['descriptor'].split(',')
 	       buf = []
                for item in items:
@@ -280,18 +282,18 @@ class BanterThinker:
                       datastore_request['datetime'] = item + ',' + datastore_request['datetime']
                    else:
                       buf.append(item)
-               datastore_request['descriptor'] = ','.join(buf) 
+               datastore_request['descriptor'] = ','.join(buf)
             elif 'descriptor' in datastore_request:
 	       items = datastore_request['descriptor'].split(',')
                for item in items:
                   if item in ['open','close','until']:
-                     if 'action' not in datastore_request: 
+                     if 'action' not in datastore_request:
                         datastore_request['action'] = 'ask time'
             elif 'datetime' in datastore_request:
                if len(datastore_request['datetime']) > 0:
-                  if 'action' not in datastore_request: 
+                  if 'action' not in datastore_request:
                      datastore_request['action'] = 'ask time'
-	    elif 'datetime' not in datastore_request: 
+	    elif 'datetime' not in datastore_request:
                if 'store' and 'location' in datastore_request:
                   if 'action' not in datastore_request:
                      datastore_request['action'] = 'find store'
@@ -382,11 +384,11 @@ if __name__ == "__main__":
     query = "What is the closest Nordstrom in San Francisco"
     query = "What is the nearest Nordstrom store in Palo Alto?"
     query = "Are you in Palo Alto?"
-    query = "Does Palo Alto have a Nordstrom?" 
+    query = "Does Palo Alto have a Nordstrom?"
     query = "Is there a store near me?"
     query = "Can you direct me to a Nordstrom in San Francisco"
-    query = "Palo Alto Nordstrom?" 
-    query = "Palo Alto store?" 
+    query = "Palo Alto Nordstrom?"
+    query = "Palo Alto store?"
     query = "Juno, Alaska"
     query = "New Bruanswick"
     query = "New Haven"
@@ -394,7 +396,7 @@ if __name__ == "__main__":
     query = "Palo Alto"
 #    limits = 3
 #    datastore_request = nlu.parse_query(dict, query, test, limits)
-#    nlu.submit_query() 
+#    nlu.submit_query()
 
     query = "What time is Richfield open until?"
     query = "What time is Alaska open until?"
@@ -505,9 +507,9 @@ if __name__ == "__main__":
     query = "150, Size 6"
     query = "Below 150, Size 6"
 #    query = "Size 12 in black"
-#    query = "What is the price?" 
-#    query = "How expensive is that boot?" 
-#    query = "How much is the first one?" 
+#    query = "What is the price?"
+#    query = "How expensive is that boot?"
+#    query = "How much is the first one?"
 #    query = "Between $70 and $100"
 #    query = "Above $100"
 #    query = "Below $100"
