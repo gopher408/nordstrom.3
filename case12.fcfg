@@ -297,6 +297,7 @@ N[SEM='group="women"'] -> 'women' | 'woman'
 
 # RHS: plural form should be taken automatically
 N[SEM='goods="shoe:booties"'] -> 'booties'
+N[SEM='goods="sunglasses:sunglasses"'] -> 'sunglasses' | 'sunglass'
 N[SEM='goods="flats:flats"'] -> 'flats'
 N[SEM='goods="shoe:loafer"'] -> 'loafers' | 'loafer'
 N[SEM='goods="pumps:pumps"'] -> 'pumps'

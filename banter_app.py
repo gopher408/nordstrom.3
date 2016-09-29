@@ -782,8 +782,9 @@ class BanterClient:
 
 
                 elif 'goods' in intent and (
-                                    'shoe' in intent['goods'] or 'flats' in intent['goods'] or 'heels' in intent[
-                            'goods'] or 'boots' in intent['goods'] or 'sneaker' in intent['goods'] or 'sandal' in intent['goods']):
+                                    'shoe' in intent['goods'] or 'flats' in intent['goods'] or 'sunglasses' in intent['goods']
+                                    or 'heels' in intent['goods'] or 'boots' in intent['goods'] or 'sneaker' in intent['goods']
+                                    or 'sandal' in intent['goods']):
                     tmp = []
                     filtermore = []
                     pricedesc = ''
@@ -836,8 +837,10 @@ class BanterClient:
                     type = 'shoes'
                     if 'flats' in intent['goods']:
                         type = 'flats'
+                    elif 'sunglasses' in intent['goods']:
+                        type = 'sunglasses'
                     elif 'heels' in intent['goods']:
-                        type = 'flats'
+                        type = 'heels'
                     elif 'boots' in intent['goods']:
                         type = 'boots'
                     elif 'sneaker' in intent['goods']:
@@ -904,7 +907,7 @@ class BanterClient:
 
                     tmp = 'I can help you with that. We\'ve got a wide variety of ' + ', '.join(
                         tmp) + ' shirts'+pricedesc+'. Can we help you find something in a specific '+expandedFilterMore+'.' \
-                        + ' Here are 12 possiblities out of '+str(intent["datastore_product_count"])+':'
+                        + ' Here are 12 possibilities out of '+str(intent["datastore_product_count"])+':'
                     self.set_response_text(intent, tmp.replace('  ', ' ').strip(), link)
                     record = self.set_data(intent, states[2])
 
@@ -912,19 +915,19 @@ class BanterClient:
 
                     self.set_response_text(intent,
                                            'I can help you with that. We\'ve got a wide selection. Is there a particular type (LED/OLED), size, brand or price range?'  \
-                        + ' Here are 12 possiblities out of '+str(intent["datastore_product_count"])+':', link)
+                        + ' Here are 12 possibilities out of '+str(intent["datastore_product_count"])+':', link)
                     record = self.set_data(intent, states[2])
 
                 elif 'goods' in intent and 'computer' in intent['goods']:
                     self.set_response_text(intent,
                                            'I can help you with that. We\'ve got a wide selection. Is there a particular Operating system (Mac/Windows/Chrome), size, brand or price range?' \
-                        + ' Here are 12 possiblities out of '+str(intent["datastore_product_count"])+':', link)
+                        + ' Here are 12 possibilities out of '+str(intent["datastore_product_count"])+':', link)
                     record = self.set_data(intent, states[2])
 
                 else:
                     self.set_response_text(intent,
                                            "I can help you with that. We\'ve got a wide selection. Is there a particular type, size, brand or price range?" \
-                        + ' Here are 12 possiblities out of '+str(intent["datastore_product_count"])+':', link)
+                        + ' Here are 12 possibilities out of '+str(intent["datastore_product_count"])+':', link)
                     record = self.set_data(intent, states[2])
 
             elif intent['ERROR_CODE'] == 'NOT_FOUND':
